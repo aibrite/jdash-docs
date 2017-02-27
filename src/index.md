@@ -1,17 +1,36 @@
-# Welcome to JDash Docs
+# Welcome
+
+Welcome to Jdash documentation.
+
+Jdash provides javascript + backend platform for adding end user designable dashboards into your web application.
+
+End users can personalize your application better with Jdash. Users can;
+
+* Create their own dashboards
+* Share dashboards/dashlets
+* Configure dashlets
+
+## Features
+
+### Client side features
+* Fully customizable user interface
+* Easy dashlet development
+* Builtin themes for Bootstrap & Material
+* Custom themes
 
 
+### Server side features
+* Either use Jdash Cloud or install on your servers
+* Support for NodeJs, Asp.Net MVC and Net Core server
+* Support for MongoDB, MySQL and Microsoft SQL Server
 
-## Commands
+## Outline
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+### Getting Started
 
-## Project layout
+### Working with dashboards
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+### Dashlet development
+
+### Advanced Topics
+

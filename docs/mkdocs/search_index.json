@@ -2,106 +2,136 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to JDash Docs\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "text": "Welcome\n\n\nWelcome to Jdash documentation.\n\n\nJdash provides javascript + backend platform for adding end user designable dashboards into your web application.\n\n\nEnd users can personalize your application better with Jdash. Users can;\n\n\n\n\nCreate their own dashboards\n\n\nShare dashboards/dashlets\n\n\nConfigure dashlets\n\n\n\n\nFeatures\n\n\nClient side features\n\n\n\n\nFully customizable user interface\n\n\nEasy dashlet development\n\n\nBuiltin themes for Bootstrap \n Material\n\n\nCustom themes\n\n\n\n\nServer side features\n\n\n\n\nEither use Jdash Cloud or install on your servers\n\n\nSupport for NodeJs, Asp.Net MVC and Net Core server\n\n\nSupport for MongoDB, MySQL and Microsoft SQL Server\n\n\n\n\nOutline\n\n\nGetting Started\n\n\nWorking with dashboards\n\n\nDashlet development\n\n\nAdvanced Topics", 
             "title": "Home"
         }, 
         {
-            "location": "/#welcome-to-jdash-docs", 
+            "location": "/#welcome", 
+            "text": "Welcome to Jdash documentation.  Jdash provides javascript + backend platform for adding end user designable dashboards into your web application.  End users can personalize your application better with Jdash. Users can;   Create their own dashboards  Share dashboards/dashlets  Configure dashlets", 
+            "title": "Welcome"
+        }, 
+        {
+            "location": "/#features", 
             "text": "", 
-            "title": "Welcome to JDash Docs"
+            "title": "Features"
         }, 
         {
-            "location": "/#commands", 
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
-            "title": "Commands"
+            "location": "/#client-side-features", 
+            "text": "Fully customizable user interface  Easy dashlet development  Builtin themes for Bootstrap   Material  Custom themes", 
+            "title": "Client side features"
         }, 
         {
-            "location": "/#project-layout", 
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
-            "title": "Project layout"
+            "location": "/#server-side-features", 
+            "text": "Either use Jdash Cloud or install on your servers  Support for NodeJs, Asp.Net MVC and Net Core server  Support for MongoDB, MySQL and Microsoft SQL Server", 
+            "title": "Server side features"
         }, 
         {
-            "location": "/dashboard/dashlet-development/", 
+            "location": "/#outline", 
+            "text": "", 
+            "title": "Outline"
+        }, 
+        {
+            "location": "/#getting-started", 
+            "text": "", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/#working-with-dashboards", 
+            "text": "", 
+            "title": "Working with dashboards"
+        }, 
+        {
+            "location": "/#dashlet-development", 
+            "text": "", 
+            "title": "Dashlet development"
+        }, 
+        {
+            "location": "/#advanced-topics", 
+            "text": "", 
+            "title": "Advanced Topics"
+        }, 
+        {
+            "location": "/Documentation/dashlet-development/", 
             "text": "Dashlet Development", 
             "title": "Dashlet development"
         }, 
         {
-            "location": "/dashboard/dashlet-development/#dashlet-development", 
+            "location": "/Documentation/dashlet-development/#dashlet-development", 
             "text": "", 
             "title": "Dashlet Development"
         }, 
         {
-            "location": "/dashboard/getting-started/", 
+            "location": "/Documentation/getting-started/", 
             "text": "Getting Started\n\n\nQuick Start\n\n\nThe aim of this article is to get you up and running with jdash in 5 minutes.\n\n\nStep 1: Get a free api key\n\n\nJDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.\n\n\nTo get a free api key use \nJDash Cloud\n\n\nStep 2: Install JDash Client\n\n\nbower install jdash\n\n\n\n\nStep 3: Create a basic HTML page\n\n\n!DOCTYPE html\n\n\nhtml\n\n    \nhead\n\n        \nmeta charset=\nutf-8\n\n        \ntitle\nA Simple Page with CKEditor\n/title\n\n        \n!-- Make sure the path to CKEditor is correct. --\n\n        \nscript src=\n../ckeditor.js\n/script\n\n    \n/head\n\n    \nbody\n\n        \nform\n\n            \ntextarea name=\neditor1\n id=\neditor1\n rows=\n10\n cols=\n80\n\n                This is my textarea to be replaced with CKEditor.\n            \n/textarea\n\n            \nscript\n\n                // Replace the \ntextarea id=\neditor1\n with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n            \n/script\n\n        \n/form\n\n    \n/body\n\n\n/html\n\n\n\n\n\nStep 4: Develop your first dashlet\n\n\nBasic Concepts", 
             "title": "Getting started"
         }, 
         {
-            "location": "/dashboard/getting-started/#getting-started", 
+            "location": "/Documentation/getting-started/#getting-started", 
             "text": "", 
             "title": "Getting Started"
         }, 
         {
-            "location": "/dashboard/getting-started/#quick-start", 
+            "location": "/Documentation/getting-started/#quick-start", 
             "text": "The aim of this article is to get you up and running with jdash in 5 minutes.", 
             "title": "Quick Start"
         }, 
         {
-            "location": "/dashboard/getting-started/#step-1-get-a-free-api-key", 
+            "location": "/Documentation/getting-started/#step-1-get-a-free-api-key", 
             "text": "JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.  To get a free api key use  JDash Cloud", 
             "title": "Step 1: Get a free api key"
         }, 
         {
-            "location": "/dashboard/getting-started/#step-2-install-jdash-client", 
+            "location": "/Documentation/getting-started/#step-2-install-jdash-client", 
             "text": "bower install jdash", 
             "title": "Step 2: Install JDash Client"
         }, 
         {
-            "location": "/dashboard/getting-started/#step-3-create-a-basic-html-page", 
+            "location": "/Documentation/getting-started/#step-3-create-a-basic-html-page", 
             "text": "!DOCTYPE html  html \n     head \n         meta charset= utf-8 \n         title A Simple Page with CKEditor /title \n         !-- Make sure the path to CKEditor is correct. -- \n         script src= ../ckeditor.js /script \n     /head \n     body \n         form \n             textarea name= editor1  id= editor1  rows= 10  cols= 80 \n                This is my textarea to be replaced with CKEditor.\n             /textarea \n             script \n                // Replace the  textarea id= editor1  with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n             /script \n         /form \n     /body  /html", 
             "title": "Step 3: Create a basic HTML page"
         }, 
         {
-            "location": "/dashboard/getting-started/#step-4-develop-your-first-dashlet", 
+            "location": "/Documentation/getting-started/#step-4-develop-your-first-dashlet", 
             "text": "", 
             "title": "Step 4: Develop your first dashlet"
         }, 
         {
-            "location": "/dashboard/getting-started/#basic-concepts", 
+            "location": "/Documentation/getting-started/#basic-concepts", 
             "text": "", 
             "title": "Basic Concepts"
         }, 
         {
-            "location": "/dashboard/", 
+            "location": "/Documentation/", 
             "text": "Client\n\n\nGetting Started", 
             "title": "Home"
         }, 
         {
-            "location": "/dashboard/#client", 
+            "location": "/Documentation/#client", 
             "text": "", 
             "title": "Client"
         }, 
         {
-            "location": "/dashboard/#getting-started", 
+            "location": "/Documentation/#getting-started", 
             "text": "", 
             "title": "Getting Started"
         }, 
         {
-            "location": "/dashboard/working-with-dashboards/", 
+            "location": "/Documentation/working-with-dashboards/", 
             "text": "Working with Dashboards", 
             "title": "Working with dashboards"
         }, 
         {
-            "location": "/dashboard/working-with-dashboards/#working-with-dashboards", 
+            "location": "/Documentation/working-with-dashboards/#working-with-dashboards", 
             "text": "", 
             "title": "Working with Dashboards"
         }, 
         {
-            "location": "/dashboard/working-with-layouts/", 
+            "location": "/Documentation/working-with-layouts/", 
             "text": "Working with Layouts", 
             "title": "Working with layouts"
         }, 
         {
-            "location": "/dashboard/working-with-layouts/#working-with-layouts", 
+            "location": "/Documentation/working-with-layouts/#working-with-layouts", 
             "text": "", 
             "title": "Working with Layouts"
         }
