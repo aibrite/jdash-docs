@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Working with dashboards - JDash</title>
+    <title>Getting started - JDash</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -70,9 +70,30 @@
                 
                 
                 
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backend Development <b class="caret"></b></a>
                         <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Backend Development/gettings-started/">Gettings started</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../advanced topics/">Advanced topics</a>
+</li>
+
                         
                             
 <li >
@@ -81,8 +102,8 @@
 
                         
                             
-<li >
-    <a href="../getting-started/">Getting started</a>
+<li class="active">
+    <a href="./">Getting started</a>
 </li>
 
                         
@@ -93,14 +114,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Working with dashboards</a>
-</li>
-
-                        
-                            
 <li >
-    <a href="../working-with-layouts/">Working with layouts</a>
+    <a href="../working-with-dashboards/">Working with dashboards</a>
 </li>
 
                         
@@ -119,12 +134,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../">
+                        <a rel="next" href="../dashlet-development/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../working-with-layouts/">
+                        <a rel="prev" href="../">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -140,14 +155,63 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#working-with-dashboards">Working with Dashboards</a></li>
+        <li class="first-level active"><a href="#getting-started">Getting Started</a></li>
+        
+            <li class="second-level"><a href="#quick-start">Quick Start</a></li>
+            
+                <li class="third-level"><a href="#step-1-get-a-free-api-key">Step 1: Get a free api key</a></li>
+            
+                <li class="third-level"><a href="#step-2-install-jdash-client">Step 2: Install JDash Client</a></li>
+            
+                <li class="third-level"><a href="#step-3-create-a-basic-html-page">Step 3: Create a basic HTML page</a></li>
+            
+                <li class="third-level"><a href="#step-4-develop-your-first-dashlet">Step 4: Develop your first dashlet</a></li>
+            
+        
+            <li class="second-level"><a href="#basic-concepts">Basic Concepts</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="working-with-dashboards">Working with Dashboards</h1></div>
+<h1 id="getting-started">Getting Started</h1>
+<h2 id="quick-start">Quick Start</h2>
+<p>The aim of this article is to get you up and running with jdash in 5 minutes.</p>
+<h3 id="step-1-get-a-free-api-key">Step 1: Get a free api key</h3>
+<p>JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.</p>
+<p>To get a free api key use <a href="https://app.jdash.io" target="_blank">JDash Cloud</a></p>
+<h3 id="step-2-install-jdash-client">Step 2: Install JDash Client</h3>
+<pre><code class="no-highlight">bower install jdash
+</code></pre>
+
+<h3 id="step-3-create-a-basic-html-page">Step 3: Create a basic HTML page</h3>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;A Simple Page with CKEditor&lt;/title&gt;
+        &lt;!-- Make sure the path to CKEditor is correct. --&gt;
+        &lt;script src=&quot;../ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form&gt;
+            &lt;textarea name=&quot;editor1&quot; id=&quot;editor1&quot; rows=&quot;10&quot; cols=&quot;80&quot;&gt;
+                This is my textarea to be replaced with CKEditor.
+            &lt;/textarea&gt;
+            &lt;script&gt;
+                // Replace the &lt;textarea id=&quot;editor1&quot;&gt; with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            &lt;/script&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="step-4-develop-your-first-dashlet">Step 4: Develop your first dashlet</h3>
+<h2 id="basic-concepts">Basic Concepts</h2></div>
         
     </div>
 

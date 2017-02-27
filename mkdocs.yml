@@ -1,5 +1,5 @@
 site_name: JDash
-pages: Client Development
+pages: 
 
 docs_dir: src
 site_dir: docs

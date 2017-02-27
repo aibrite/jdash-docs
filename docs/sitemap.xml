@@ -12,31 +12,41 @@
     
         
     <url>
-     <loc>/Documentation/dashlet-development/</loc>
+     <loc>/Backend Development/gettings-started/</loc>
+     <lastmod>2017-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Client Development/advanced topics/</loc>
      <lastmod>2017-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Documentation/getting-started/</loc>
+     <loc>/Client Development/dashlet-development/</loc>
      <lastmod>2017-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Documentation/</loc>
+     <loc>/Client Development/getting-started/</loc>
      <lastmod>2017-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Documentation/working-with-dashboards/</loc>
+     <loc>/Client Development/</loc>
      <lastmod>2017-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Documentation/working-with-layouts/</loc>
+     <loc>/Client Development/working-with-dashboards/</loc>
      <lastmod>2017-02-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
