@@ -1,5 +1,5 @@
 site_name: JDash
 pages:
-repo_url: https://github.com/aibrite/jdash-docs.git
+
 docs_dir: src
 site_dir: docs
