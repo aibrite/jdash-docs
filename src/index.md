@@ -24,13 +24,28 @@ End users can personalize your application better with Jdash. Users can;
 * Support for NodeJs, Asp.Net MVC and Net Core server
 * Support for MongoDB, MySQL and Microsoft SQL Server
 
-## Outline
+## Client Development
+
+### Getting Started
+Basic stuff to start using Jdash.
+
+### Working with dashboards
+Articles related about using dashboards. 
+
+### Dashlet development
+Articles related about developing your dashlets. 
+
+### Advanced Topics
+Advanced topics i.e. authentication, advanced customization etc.
+
+## Server Development
 
 ### Getting Started
 
-### Working with dashboards
+### Using Jdash Cloud
 
-### Dashlet development
+### NodeJs development
 
-### Advanced Topics
+### Asp.Net MVC development
 
+### Net Core development
