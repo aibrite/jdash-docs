@@ -3,7 +3,7 @@
 
     
     <url>
-     <loc>/</loc>
+     <loc>http://doc.jdash.io/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -12,31 +12,31 @@
     
         
     <url>
-     <loc>/client/</loc>
+     <loc>http://doc.jdash.io/client/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/getting-started/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/getting-started/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/getting-started/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/getting-started/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -46,49 +46,49 @@
     
         
     <url>
-     <loc>/backend/</loc>
+     <loc>http://doc.jdash.io/backend/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/jdash-cloud/</loc>
+     <loc>http://doc.jdash.io/backend/jdash-cloud/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/nodejs-dev/</loc>
+     <loc>http://doc.jdash.io/backend/nodejs-dev/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/aspnet-mvc-dev/</loc>
+     <loc>http://doc.jdash.io/backend/aspnet-mvc-dev/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/net-core-dev/</loc>
+     <loc>http://doc.jdash.io/backend/net-core-dev/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/using-mongodb/</loc>
+     <loc>http://doc.jdash.io/backend/using-mongodb/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/using-mysql/</loc>
+     <loc>http://doc.jdash.io/backend/using-mysql/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/backend/using-mssql/</loc>
+     <loc>http://doc.jdash.io/backend/using-mssql/</loc>
      <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
