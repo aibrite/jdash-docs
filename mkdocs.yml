@@ -1,4 +1,5 @@
 site_name: JDash
+site_url: http://doc.jdash.io
 pages: 
 - Home: index.md
 - Client Development: 
