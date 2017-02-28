@@ -1,3 +1,0 @@
-# Backend Development
-
-## Getting Started

@@ -1,6 +1,0 @@
-site_name: JDash
-pages: 
-
-docs_dir: src
-site_dir: docs
-theme_dir: cinder
