@@ -1,6 +1,21 @@
 site_name: JDash
 pages: 
-
+- Home: index.md
+- Client Development: 
+    - Client Home: client/index.md
+    - Getting Started: client/getting-started.md
+    - Working with Dashboards: client/getting-started.md
+    - Dashlet Development: client/getting-started.md
+    - Getting Started: client/getting-started.md
+- Backend Development:
+    - Backend Home: backend/index.md
+    - JDash Cloud: backend/jdash-cloud.md
+    - NodeJS Development: backend/nodejs-dev.md
+    - Asp.Net MVC Development: backend/aspnet-mvc-dev.md
+    - Net Core Development: backend/net-core-dev.md
+    - MongoDB: backend/using-mongodb.md
+    - MySQL: backend/using-mysql.md
+    - MSSQL: backend/using-mssql.md
 docs_dir: src
 site_dir: docs
 theme_dir: cinder
