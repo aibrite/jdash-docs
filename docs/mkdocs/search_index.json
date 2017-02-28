@@ -81,104 +81,229 @@
             "title": "Net Core development"
         }, 
         {
-            "location": "/Backend Development/gettings-started/", 
-            "text": "Backend Development\n\n\nGetting Started", 
-            "title": "Gettings started"
-        }, 
-        {
-            "location": "/Backend Development/gettings-started/#backend-development", 
-            "text": "", 
-            "title": "Backend Development"
-        }, 
-        {
-            "location": "/Backend Development/gettings-started/#getting-started", 
-            "text": "", 
-            "title": "Getting Started"
-        }, 
-        {
-            "location": "/Client Development/advanced topics/", 
-            "text": "Working with Layouts", 
-            "title": "Advanced topics"
-        }, 
-        {
-            "location": "/Client Development/advanced topics/#working-with-layouts", 
-            "text": "", 
-            "title": "Working with Layouts"
-        }, 
-        {
-            "location": "/Client Development/dashlet-development/", 
-            "text": "Dashlet Development", 
-            "title": "Dashlet development"
-        }, 
-        {
-            "location": "/Client Development/dashlet-development/#dashlet-development", 
-            "text": "", 
-            "title": "Dashlet Development"
-        }, 
-        {
-            "location": "/Client Development/getting-started/", 
-            "text": "Getting Started\n\n\nQuick Start\n\n\nThe aim of this article is to get you up and running with jdash in 5 minutes.\n\n\nStep 1: Get a free api key\n\n\nJDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.\n\n\nTo get a free api key use \nJDash Cloud\n\n\nStep 2: Install JDash Client\n\n\nbower install jdash\n\n\n\n\nStep 3: Create a basic HTML page\n\n\n!DOCTYPE html\n\n\nhtml\n\n    \nhead\n\n        \nmeta charset=\nutf-8\n\n        \ntitle\nA Simple Page with CKEditor\n/title\n\n        \n!-- Make sure the path to CKEditor is correct. --\n\n        \nscript src=\n../ckeditor.js\n/script\n\n    \n/head\n\n    \nbody\n\n        \nform\n\n            \ntextarea name=\neditor1\n id=\neditor1\n rows=\n10\n cols=\n80\n\n                This is my textarea to be replaced with CKEditor.\n            \n/textarea\n\n            \nscript\n\n                // Replace the \ntextarea id=\neditor1\n with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n            \n/script\n\n        \n/form\n\n    \n/body\n\n\n/html\n\n\n\n\n\nStep 4: Develop your first dashlet\n\n\nBasic Concepts", 
-            "title": "Getting started"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#getting-started", 
-            "text": "", 
-            "title": "Getting Started"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#quick-start", 
-            "text": "The aim of this article is to get you up and running with jdash in 5 minutes.", 
-            "title": "Quick Start"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#step-1-get-a-free-api-key", 
-            "text": "JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.  To get a free api key use  JDash Cloud", 
-            "title": "Step 1: Get a free api key"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#step-2-install-jdash-client", 
-            "text": "bower install jdash", 
-            "title": "Step 2: Install JDash Client"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#step-3-create-a-basic-html-page", 
-            "text": "!DOCTYPE html  html \n     head \n         meta charset= utf-8 \n         title A Simple Page with CKEditor /title \n         !-- Make sure the path to CKEditor is correct. -- \n         script src= ../ckeditor.js /script \n     /head \n     body \n         form \n             textarea name= editor1  id= editor1  rows= 10  cols= 80 \n                This is my textarea to be replaced with CKEditor.\n             /textarea \n             script \n                // Replace the  textarea id= editor1  with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n             /script \n         /form \n     /body  /html", 
-            "title": "Step 3: Create a basic HTML page"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#step-4-develop-your-first-dashlet", 
-            "text": "", 
-            "title": "Step 4: Develop your first dashlet"
-        }, 
-        {
-            "location": "/Client Development/getting-started/#basic-concepts", 
-            "text": "", 
-            "title": "Basic Concepts"
-        }, 
-        {
-            "location": "/Client Development/", 
+            "location": "/client/", 
             "text": "Client\n\n\nGetting Started", 
-            "title": "Home"
+            "title": "Client Home"
         }, 
         {
-            "location": "/Client Development/#client", 
+            "location": "/client/#client", 
             "text": "", 
             "title": "Client"
         }, 
         {
-            "location": "/Client Development/#getting-started", 
+            "location": "/client/#getting-started", 
             "text": "", 
             "title": "Getting Started"
         }, 
         {
-            "location": "/Client Development/working-with-dashboards/", 
-            "text": "Working with Dashboards", 
-            "title": "Working with dashboards"
+            "location": "/client/getting-started/", 
+            "text": "Getting Started\n\n\nQuick Start\n\n\nThe aim of this article is to get you up and running with jdash in 5 minutes.\n\n\nStep 1: Get a free api key\n\n\nJDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.\n\n\nTo get a free api key use \nJDash Cloud\n\n\nStep 2: Install JDash Client\n\n\nbower install jdash\n\n\n\n\nStep 3: Create a basic HTML page\n\n\n!DOCTYPE html\n\n\nhtml\n\n    \nhead\n\n        \nmeta charset=\nutf-8\n\n        \ntitle\nA Simple Page with CKEditor\n/title\n\n        \n!-- Make sure the path to CKEditor is correct. --\n\n        \nscript src=\n../ckeditor.js\n/script\n\n    \n/head\n\n    \nbody\n\n        \nform\n\n            \ntextarea name=\neditor1\n id=\neditor1\n rows=\n10\n cols=\n80\n\n                This is my textarea to be replaced with CKEditor.\n            \n/textarea\n\n            \nscript\n\n                // Replace the \ntextarea id=\neditor1\n with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n            \n/script\n\n        \n/form\n\n    \n/body\n\n\n/html\n\n\n\n\n\nStep 4: Develop your first dashlet\n\n\nBasic Concepts", 
+            "title": "Getting Started"
         }, 
         {
-            "location": "/Client Development/working-with-dashboards/#working-with-dashboards", 
+            "location": "/client/getting-started/#getting-started", 
             "text": "", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/client/getting-started/#quick-start", 
+            "text": "The aim of this article is to get you up and running with jdash in 5 minutes.", 
+            "title": "Quick Start"
+        }, 
+        {
+            "location": "/client/getting-started/#step-1-get-a-free-api-key", 
+            "text": "JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.  To get a free api key use  JDash Cloud", 
+            "title": "Step 1: Get a free api key"
+        }, 
+        {
+            "location": "/client/getting-started/#step-2-install-jdash-client", 
+            "text": "bower install jdash", 
+            "title": "Step 2: Install JDash Client"
+        }, 
+        {
+            "location": "/client/getting-started/#step-3-create-a-basic-html-page", 
+            "text": "!DOCTYPE html  html \n     head \n         meta charset= utf-8 \n         title A Simple Page with CKEditor /title \n         !-- Make sure the path to CKEditor is correct. -- \n         script src= ../ckeditor.js /script \n     /head \n     body \n         form \n             textarea name= editor1  id= editor1  rows= 10  cols= 80 \n                This is my textarea to be replaced with CKEditor.\n             /textarea \n             script \n                // Replace the  textarea id= editor1  with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n             /script \n         /form \n     /body  /html", 
+            "title": "Step 3: Create a basic HTML page"
+        }, 
+        {
+            "location": "/client/getting-started/#step-4-develop-your-first-dashlet", 
+            "text": "", 
+            "title": "Step 4: Develop your first dashlet"
+        }, 
+        {
+            "location": "/client/getting-started/#basic-concepts", 
+            "text": "", 
+            "title": "Basic Concepts"
+        }, 
+        {
+            "location": "/client/getting-started/", 
+            "text": "Getting Started\n\n\nQuick Start\n\n\nThe aim of this article is to get you up and running with jdash in 5 minutes.\n\n\nStep 1: Get a free api key\n\n\nJDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.\n\n\nTo get a free api key use \nJDash Cloud\n\n\nStep 2: Install JDash Client\n\n\nbower install jdash\n\n\n\n\nStep 3: Create a basic HTML page\n\n\n!DOCTYPE html\n\n\nhtml\n\n    \nhead\n\n        \nmeta charset=\nutf-8\n\n        \ntitle\nA Simple Page with CKEditor\n/title\n\n        \n!-- Make sure the path to CKEditor is correct. --\n\n        \nscript src=\n../ckeditor.js\n/script\n\n    \n/head\n\n    \nbody\n\n        \nform\n\n            \ntextarea name=\neditor1\n id=\neditor1\n rows=\n10\n cols=\n80\n\n                This is my textarea to be replaced with CKEditor.\n            \n/textarea\n\n            \nscript\n\n                // Replace the \ntextarea id=\neditor1\n with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n            \n/script\n\n        \n/form\n\n    \n/body\n\n\n/html\n\n\n\n\n\nStep 4: Develop your first dashlet\n\n\nBasic Concepts", 
             "title": "Working with Dashboards"
+        }, 
+        {
+            "location": "/client/getting-started/#getting-started", 
+            "text": "", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/client/getting-started/#quick-start", 
+            "text": "The aim of this article is to get you up and running with jdash in 5 minutes.", 
+            "title": "Quick Start"
+        }, 
+        {
+            "location": "/client/getting-started/#step-1-get-a-free-api-key", 
+            "text": "JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.  To get a free api key use  JDash Cloud", 
+            "title": "Step 1: Get a free api key"
+        }, 
+        {
+            "location": "/client/getting-started/#step-2-install-jdash-client", 
+            "text": "bower install jdash", 
+            "title": "Step 2: Install JDash Client"
+        }, 
+        {
+            "location": "/client/getting-started/#step-3-create-a-basic-html-page", 
+            "text": "!DOCTYPE html  html \n     head \n         meta charset= utf-8 \n         title A Simple Page with CKEditor /title \n         !-- Make sure the path to CKEditor is correct. -- \n         script src= ../ckeditor.js /script \n     /head \n     body \n         form \n             textarea name= editor1  id= editor1  rows= 10  cols= 80 \n                This is my textarea to be replaced with CKEditor.\n             /textarea \n             script \n                // Replace the  textarea id= editor1  with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n             /script \n         /form \n     /body  /html", 
+            "title": "Step 3: Create a basic HTML page"
+        }, 
+        {
+            "location": "/client/getting-started/#step-4-develop-your-first-dashlet", 
+            "text": "", 
+            "title": "Step 4: Develop your first dashlet"
+        }, 
+        {
+            "location": "/client/getting-started/#basic-concepts", 
+            "text": "", 
+            "title": "Basic Concepts"
+        }, 
+        {
+            "location": "/client/getting-started/", 
+            "text": "Getting Started\n\n\nQuick Start\n\n\nThe aim of this article is to get you up and running with jdash in 5 minutes.\n\n\nStep 1: Get a free api key\n\n\nJDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.\n\n\nTo get a free api key use \nJDash Cloud\n\n\nStep 2: Install JDash Client\n\n\nbower install jdash\n\n\n\n\nStep 3: Create a basic HTML page\n\n\n!DOCTYPE html\n\n\nhtml\n\n    \nhead\n\n        \nmeta charset=\nutf-8\n\n        \ntitle\nA Simple Page with CKEditor\n/title\n\n        \n!-- Make sure the path to CKEditor is correct. --\n\n        \nscript src=\n../ckeditor.js\n/script\n\n    \n/head\n\n    \nbody\n\n        \nform\n\n            \ntextarea name=\neditor1\n id=\neditor1\n rows=\n10\n cols=\n80\n\n                This is my textarea to be replaced with CKEditor.\n            \n/textarea\n\n            \nscript\n\n                // Replace the \ntextarea id=\neditor1\n with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n            \n/script\n\n        \n/form\n\n    \n/body\n\n\n/html\n\n\n\n\n\nStep 4: Develop your first dashlet\n\n\nBasic Concepts", 
+            "title": "Dashlet Development"
+        }, 
+        {
+            "location": "/client/getting-started/#getting-started", 
+            "text": "", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/client/getting-started/#quick-start", 
+            "text": "The aim of this article is to get you up and running with jdash in 5 minutes.", 
+            "title": "Quick Start"
+        }, 
+        {
+            "location": "/client/getting-started/#step-1-get-a-free-api-key", 
+            "text": "JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.  To get a free api key use  JDash Cloud", 
+            "title": "Step 1: Get a free api key"
+        }, 
+        {
+            "location": "/client/getting-started/#step-2-install-jdash-client", 
+            "text": "bower install jdash", 
+            "title": "Step 2: Install JDash Client"
+        }, 
+        {
+            "location": "/client/getting-started/#step-3-create-a-basic-html-page", 
+            "text": "!DOCTYPE html  html \n     head \n         meta charset= utf-8 \n         title A Simple Page with CKEditor /title \n         !-- Make sure the path to CKEditor is correct. -- \n         script src= ../ckeditor.js /script \n     /head \n     body \n         form \n             textarea name= editor1  id= editor1  rows= 10  cols= 80 \n                This is my textarea to be replaced with CKEditor.\n             /textarea \n             script \n                // Replace the  textarea id= editor1  with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n             /script \n         /form \n     /body  /html", 
+            "title": "Step 3: Create a basic HTML page"
+        }, 
+        {
+            "location": "/client/getting-started/#step-4-develop-your-first-dashlet", 
+            "text": "", 
+            "title": "Step 4: Develop your first dashlet"
+        }, 
+        {
+            "location": "/client/getting-started/#basic-concepts", 
+            "text": "", 
+            "title": "Basic Concepts"
+        }, 
+        {
+            "location": "/client/getting-started/", 
+            "text": "Getting Started\n\n\nQuick Start\n\n\nThe aim of this article is to get you up and running with jdash in 5 minutes.\n\n\nStep 1: Get a free api key\n\n\nJDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.\n\n\nTo get a free api key use \nJDash Cloud\n\n\nStep 2: Install JDash Client\n\n\nbower install jdash\n\n\n\n\nStep 3: Create a basic HTML page\n\n\n!DOCTYPE html\n\n\nhtml\n\n    \nhead\n\n        \nmeta charset=\nutf-8\n\n        \ntitle\nA Simple Page with CKEditor\n/title\n\n        \n!-- Make sure the path to CKEditor is correct. --\n\n        \nscript src=\n../ckeditor.js\n/script\n\n    \n/head\n\n    \nbody\n\n        \nform\n\n            \ntextarea name=\neditor1\n id=\neditor1\n rows=\n10\n cols=\n80\n\n                This is my textarea to be replaced with CKEditor.\n            \n/textarea\n\n            \nscript\n\n                // Replace the \ntextarea id=\neditor1\n with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n            \n/script\n\n        \n/form\n\n    \n/body\n\n\n/html\n\n\n\n\n\nStep 4: Develop your first dashlet\n\n\nBasic Concepts", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/client/getting-started/#getting-started", 
+            "text": "", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/client/getting-started/#quick-start", 
+            "text": "The aim of this article is to get you up and running with jdash in 5 minutes.", 
+            "title": "Quick Start"
+        }, 
+        {
+            "location": "/client/getting-started/#step-1-get-a-free-api-key", 
+            "text": "JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.  To get a free api key use  JDash Cloud", 
+            "title": "Step 1: Get a free api key"
+        }, 
+        {
+            "location": "/client/getting-started/#step-2-install-jdash-client", 
+            "text": "bower install jdash", 
+            "title": "Step 2: Install JDash Client"
+        }, 
+        {
+            "location": "/client/getting-started/#step-3-create-a-basic-html-page", 
+            "text": "!DOCTYPE html  html \n     head \n         meta charset= utf-8 \n         title A Simple Page with CKEditor /title \n         !-- Make sure the path to CKEditor is correct. -- \n         script src= ../ckeditor.js /script \n     /head \n     body \n         form \n             textarea name= editor1  id= editor1  rows= 10  cols= 80 \n                This is my textarea to be replaced with CKEditor.\n             /textarea \n             script \n                // Replace the  textarea id= editor1  with a CKEditor\n                // instance, using default configuration.\n                CKEDITOR.replace( 'editor1' );\n             /script \n         /form \n     /body  /html", 
+            "title": "Step 3: Create a basic HTML page"
+        }, 
+        {
+            "location": "/client/getting-started/#step-4-develop-your-first-dashlet", 
+            "text": "", 
+            "title": "Step 4: Develop your first dashlet"
+        }, 
+        {
+            "location": "/client/getting-started/#basic-concepts", 
+            "text": "", 
+            "title": "Basic Concepts"
+        }, 
+        {
+            "location": "/backend/", 
+            "text": "Backend Development\n\n\nGetting Started", 
+            "title": "Backend Home"
+        }, 
+        {
+            "location": "/backend/#backend-development", 
+            "text": "", 
+            "title": "Backend Development"
+        }, 
+        {
+            "location": "/backend/#getting-started", 
+            "text": "", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/backend/jdash-cloud/", 
+            "text": "", 
+            "title": "JDash Cloud"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/", 
+            "text": "", 
+            "title": "NodeJS Development"
+        }, 
+        {
+            "location": "/backend/aspnet-mvc-dev/", 
+            "text": "", 
+            "title": "Asp.Net MVC Development"
+        }, 
+        {
+            "location": "/backend/net-core-dev/", 
+            "text": "", 
+            "title": "Net Core Development"
+        }, 
+        {
+            "location": "/backend/using-mongodb/", 
+            "text": "", 
+            "title": "MongoDB"
+        }, 
+        {
+            "location": "/backend/using-mysql/", 
+            "text": "", 
+            "title": "MySQL"
+        }, 
+        {
+            "location": "/backend/using-mssql/", 
+            "text": "", 
+            "title": "MSSQL"
         }
     ]
 }

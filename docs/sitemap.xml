@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,8 +12,32 @@
     
         
     <url>
-     <loc>/Backend Development/gettings-started/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <loc>/client/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/client/getting-started/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/client/getting-started/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/client/getting-started/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/client/getting-started/</loc>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -22,32 +46,50 @@
     
         
     <url>
-     <loc>/Client Development/advanced topics/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <loc>/backend/</loc>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Client Development/dashlet-development/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <loc>/backend/jdash-cloud/</loc>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Client Development/getting-started/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <loc>/backend/nodejs-dev/</loc>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Client Development/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <loc>/backend/aspnet-mvc-dev/</loc>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/Client Development/working-with-dashboards/</loc>
-     <lastmod>2017-02-27</lastmod>
+     <loc>/backend/net-core-dev/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/backend/using-mongodb/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/backend/using-mysql/</loc>
+     <lastmod>2017-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/backend/using-mssql/</loc>
+     <lastmod>2017-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
