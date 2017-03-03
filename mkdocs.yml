@@ -5,9 +5,10 @@ pages:
 - Client Development: 
     - Client Home: client/index.md
     - Getting Started: client/getting-started.md
-    - Working with Dashboards: client/getting-started.md
-    - Dashlet Development: client/getting-started.md
-    - Getting Started: client/getting-started.md
+    - Basic Concepts: client/basic-concepts.md
+    - Working with Dashboards: client/working-with-dashboards.md
+    - Dashlet Development: client/dashlet-development.md
+    - Advanced Topics: client/advanced-topics.md
 - Backend Development:
     - Backend Home: backend/index.md
     - JDash Cloud: backend/jdash-cloud.md
