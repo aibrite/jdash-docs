@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="canonical" href="http://doc.jdash.io/backend/using-mysql/"> 
+    <link rel="canonical" href="http://doc.jdash.io/client/basic-concepts/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>MySQL - JDash</title>
+    <title>Basic Concepts - JDash</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -73,43 +73,43 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client Development <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../client/">Client Home</a>
+    <a href="../">Client Home</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../client/getting-started/">Getting Started</a>
+    <a href="../getting-started/">Getting Started</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Basic Concepts</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../client/basic-concepts/">Basic Concepts</a>
+    <a href="../working-with-dashboards/">Working with Dashboards</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../client/working-with-dashboards/">Working with Dashboards</a>
+    <a href="../dashlet-development/">Dashlet Development</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../client/dashlet-development/">Dashlet Development</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../client/advanced-topics/">Advanced Topics</a>
+    <a href="../advanced-topics/">Advanced Topics</a>
 </li>
 
                         
@@ -118,55 +118,55 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backend Development <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../">Backend Home</a>
+    <a href="../../backend/">Backend Home</a>
 </li>
 
                         
                             
 <li >
-    <a href="../jdash-cloud/">JDash Cloud</a>
+    <a href="../../backend/jdash-cloud/">JDash Cloud</a>
 </li>
 
                         
                             
 <li >
-    <a href="../nodejs-dev/">NodeJS Development</a>
+    <a href="../../backend/nodejs-dev/">NodeJS Development</a>
 </li>
 
                         
                             
 <li >
-    <a href="../aspnet-mvc-dev/">Asp.Net MVC Development</a>
+    <a href="../../backend/aspnet-mvc-dev/">Asp.Net MVC Development</a>
 </li>
 
                         
                             
 <li >
-    <a href="../net-core-dev/">Net Core Development</a>
+    <a href="../../backend/net-core-dev/">Net Core Development</a>
 </li>
 
                         
                             
 <li >
-    <a href="../using-mongodb/">MongoDB</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">MySQL</a>
+    <a href="../../backend/using-mongodb/">MongoDB</a>
 </li>
 
                         
                             
 <li >
-    <a href="../using-mssql/">MSSQL</a>
+    <a href="../../backend/using-mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../backend/using-mssql/">MSSQL</a>
 </li>
 
                         
@@ -185,12 +185,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../using-mongodb/">
+                        <a rel="next" href="../getting-started/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../using-mssql/">
+                        <a rel="prev" href="../working-with-dashboards/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -206,11 +206,67 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="first-level active"><a href="#basic-concepts">Basic Concepts</a></li>
+        
+            <li class="second-level"><a href="#features">Features</a></li>
+            
+                <li class="third-level"><a href="#license-models">License Models</a></li>
+            
+                <li class="third-level"><a href="#easy-dashlet-development">Easy dashlet development</a></li>
+            
+        
+    
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<h1 id="basic-concepts">Basic Concepts</h1>
+<p>Using Jdash you can add drag-drop end user designable dashboards to your application.</p>
+<h2 id="features">Features</h2>
+<h3 id="license-models">License Models</h3>
+<p>There are two license models.</p>
+<p><strong>JDash Cloud</strong>
+You can use <a href="https://app.jdash.io">JDash Cloud</a> to store dashboard &amp; dashlet related data. </p>
+<p>If you have a cloud based application and don't want to integrate Jdash backend platform into your server application this is an ideal, cheap and fast solution to get you up.</p>
+<p><strong>On Premise</strong>
+If you are a developer/company which develop applications for other customers or if you have a product which you want to embed Jdash this is the right license type for you.</p>
+<p>You can integrate Jdash backend platform into your server application easily.</p>
+<ul>
+<li>If you are using NodeJs, we support it with MongoDB and MySQL.</li>
+<li>If you are using Asp.Net MVC 5+, we support it with MySQL and MSSQL.</li>
+<li>If you are using Net Core, we support it with MySQL and MSSQL.</li>
+</ul>
+<p>If you need other platforms/database servers just drop us an e-mail (hello@jdash.io).</p>
+<h3 id="easy-dashlet-development">Easy dashlet development</h3>
+<p>Jdash uses W3C custom elements spec for dashlet development. </p>
+<p>On top of this spec we developed a component framework to make dashlet development easier.</p>
+<p>Here is a sample dashlet.</p>
+<pre><code class="html">&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+    &lt;template&gt;
+        &lt;!-- This will be the HTML content of your dashlet  --&gt;
+        &lt;!-- Think template as user interface layer of your dashlet --&gt;
+        &lt;h1&gt;&lt;/h1&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+
+        // An optional javascript function allows you implement
+        // your business logic.
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+                var h1 = this.querySelector('h1')
+                h1.textContent = 'Hello World!';
+            }
+        })
+    &lt;/script&gt;
+&lt;/j-dashlet&gt;
+</code></pre>
+
+<p>Above code snippet defines <code>hello-world</code> custom element which inherits from <code>jdash.Dashlet</code> class.</p>
+<p>You can also use this element directly inside yout HTML.</p>
+<pre><code class="html">&lt;hello-world&gt;&lt;/hello-world&gt;
+</code></pre></div>
         
     </div>
 

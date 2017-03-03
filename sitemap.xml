@@ -24,19 +24,25 @@
     </url>
         
     <url>
-     <loc>http://doc.jdash.io/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/basic-concepts/</loc>
      <lastmod>2017-03-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://doc.jdash.io/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/working-with-dashboards/</loc>
      <lastmod>2017-03-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://doc.jdash.io/client/getting-started/</loc>
+     <loc>http://doc.jdash.io/client/dashlet-development/</loc>
+     <lastmod>2017-03-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://doc.jdash.io/client/advanced-topics/</loc>
      <lastmod>2017-03-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
