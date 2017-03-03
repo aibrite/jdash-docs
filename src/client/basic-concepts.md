@@ -24,7 +24,7 @@ You can integrate Jdash backend platform into your server application easily.
 
 If you need other platforms/database servers just drop us an e-mail (hello@jdash.io).
 
-### Easy dashlet development
+### Custom elements
 Jdash uses W3C custom elements spec for dashlet development. 
 
 On top of this spec we developed a component framework to make dashlet development easier.
@@ -60,4 +60,19 @@ You can also use this element directly inside yout HTML.
 ```html
 <hello-world></hello-world>
 ```
+
+### Key elements
+
+Below table shows key elements and descriptions.
+
+| Element       | Description                   |
+| ------------- | -------------------------     |
+| j-dashboard   | Displays dashboard            |
+| j-dashlet     | Defines a new dashlet element |
+| j-grid-layout | Multi column/row layout       |
+
+
+Dashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.
+
+It is also possible to develop new layout elements by inheriting `jdash.DashboardLayout` class. Currently Jdash framework contains one layout element: `j-grid-layout`. In future 
 
