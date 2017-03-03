@@ -204,16 +204,19 @@
         
             <li class="second-level"><a href="#quick-start">Quick Start</a></li>
             
-                <li class="third-level"><a href="#step-1-get-a-free-api-key">Step 1: Get a free api key</a></li>
+                <li class="third-level"><a href="#step-1-install-jdash-client">Step 1: Install JDash Client</a></li>
             
-                <li class="third-level"><a href="#step-2-install-jdash-client">Step 2: Install JDash Client</a></li>
+                <li class="third-level"><a href="#step-2-create-a-basic-html-page">Step 2: Create a basic HTML page</a></li>
             
-                <li class="third-level"><a href="#step-3-create-a-basic-html-page">Step 3: Create a basic HTML page</a></li>
+                <li class="third-level"><a href="#step-3-develop-your-first-dashlet">Step 3: Develop your first dashlet</a></li>
             
-                <li class="third-level"><a href="#step-4-develop-your-first-dashlet">Step 4: Develop your first dashlet</a></li>
+                <li class="third-level"><a href="#step-4-get-a-free-api-key">Step 4: Get a free api key</a></li>
             
-        
-            <li class="second-level"><a href="#basic-concepts">Basic Concepts</a></li>
+                <li class="third-level"><a href="#step-5-create-and-display-dashboard">Step 5: Create and display dashboard</a></li>
+            
+                <li class="third-level"><a href="#step-6-view-dashboards">Step 6: View dashboards</a></li>
+            
+                <li class="third-level"><a href="#step-7-download-source-code">Step 7: Download source code</a></li>
             
         
     
@@ -223,40 +226,156 @@
 
 <h1 id="getting-started">Getting Started</h1>
 <h2 id="quick-start">Quick Start</h2>
-<p>The aim of this article is to get you up and running with jdash in 5 minutes.</p>
-<h3 id="step-1-get-a-free-api-key">Step 1: Get a free api key</h3>
-<p>JDash cloud allows you to save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.</p>
-<p>To get a free api key use <a href="https://app.jdash.io" target="_blank">JDash Cloud</a></p>
-<h3 id="step-2-install-jdash-client">Step 2: Install JDash Client</h3>
-<pre><code class="no-highlight">bower install jdash
+<p>The aim of this article is to get you up and running with Jdash in 5 minutes.</p>
+<h3 id="step-1-install-jdash-client">Step 1: Install JDash Client</h3>
+<p>Use npm to install Jdash client library.</p>
+<pre><code class="no-highlight">npm install jdash-ui --save
 </code></pre>
 
-<h3 id="step-3-create-a-basic-html-page">Step 3: Create a basic HTML page</h3>
+<p>This will create node_modules/jdash-ui folder.</p>
+<p>Note: If this is the first time you use npm to add a package first execute npm init to create a package.json.</p>
+<h3 id="step-2-create-a-basic-html-page">Step 2: Create a basic HTML page</h3>
+<p>Create index.html and paste below code inside.</p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;A Simple Page with CKEditor&lt;/title&gt;
-        &lt;!-- Make sure the path to CKEditor is correct. --&gt;
-        &lt;script src=&quot;../ckeditor.js&quot;&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;form&gt;
-            &lt;textarea name=&quot;editor1&quot; id=&quot;editor1&quot; rows=&quot;10&quot; cols=&quot;80&quot;&gt;
-                This is my textarea to be replaced with CKEditor.
-            &lt;/textarea&gt;
-            &lt;script&gt;
-                // Replace the &lt;textarea id=&quot;editor1&quot;&gt; with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'editor1' );
-            &lt;/script&gt;
-        &lt;/form&gt;
-    &lt;/body&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=1, user-scalable=no&quot; /&gt;
+    &lt;title&gt;JDash Tutorial&lt;/title&gt;
+
+    &lt;!-- jdash client library --&gt;
+    &lt;script src=&quot;node_modules/jdash-ui/dist/jdash.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jdash theme &amp; elements --&gt;
+    &lt;link rel=&quot;import&quot; href=&quot;node_modules/jdash-ui/dist/components/jdash.html&quot;&gt;
+&lt;/head&gt;
+
+&lt;body class=&quot;j-light-gray j-padding&quot;&gt;
+
+&lt;/body&gt;
+
 &lt;/html&gt;
 </code></pre>
 
-<h3 id="step-4-develop-your-first-dashlet">Step 4: Develop your first dashlet</h3>
-<h2 id="basic-concepts">Basic Concepts</h2></div>
+<h3 id="step-3-develop-your-first-dashlet">Step 3: Develop your first dashlet</h3>
+<p>You use <code>j-dashlet</code> element to define a dashlet. </p>
+<p>Content of <code>j-dashlet</code> can include <code>template</code> element which can be used to define dom (innerHTML) of your dashlet. An optional <code>script</code> element inside <code>j-dashlet</code> can be used to execute javascript for this dashlet. That simple &amp; clear!</p>
+<p>Copy the following code inside body tag. </p>
+<pre><code class="html">&lt;!-- Define &lt;hello-world&gt; dashlet --&gt;
+&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+    &lt;template&gt;
+        &lt;!-- This will be the HTML content of your dashlet  --&gt;
+        &lt;h1&gt;&lt;/h1&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+                var h1 = this.querySelector('h1')
+                h1.textContent = 'Hello World!';
+            }
+
+        })
+    &lt;/script&gt;
+&lt;/j-dashlet&gt;
+</code></pre>
+
+<h3 id="step-4-get-a-free-api-key">Step 4: Get a free api key</h3>
+<p>JDash cloud can save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.</p>
+<p>To use Jdash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. Use them to initialize authentication.</p>
+<p>Todo so, add a <code>script</code> element just before <code>&lt;/body&gt;</code> tag.</p>
+<pre><code class="html">    &lt;script&gt;
+        jdash.ready(function () {
+            jdash.Provider.init({
+                apiKey: 'YOUR API KEY',
+                userToken: 'USER TOKEN'
+            })
+        })
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>apikey
+:  A string value which identifies your application.</p>
+<p>userToken
+:  A string value or function to authenticate your end user to Jdash cloud.</p>
+<h3 id="step-5-create-and-display-dashboard">Step 5: Create and display dashboard</h3>
+<p>You use <code>j-dashboard</code> element to display a dashboard. </p>
+<p>Inside <code>body</code> tag, before <code>&lt;script&gt;</code> element add following code.</p>
+<pre><code class="html">&lt;button id=&quot;createDashboardBtn&quot;&gt;Create Dashboard&lt;/button&gt;
+&lt;button id=&quot;addDashletBtn&quot;&gt;Add Dashlet&lt;/button&gt;
+&lt;div id=&quot;dashboardList&quot;&gt;&lt;/div&gt;
+
+&lt;j-dashboard id=&quot;dashboard&quot; j-view-mode=&quot;dashletedit&quot;&gt;
+    &lt;h2 j-bind=&quot;title&quot;&gt;&lt;/h2&gt;
+&lt;/j-dashboard&gt;
+</code></pre>
+
+<p>We also added some buttons to create dashboard and adding dashlets.</p>
+<p>Now and event handlers inside <code>jdash.ready</code> handler.</p>
+<pre><code class="html">&lt;script&gt;
+    jdash.ready(function () {
+
+        jdash.Provider.init({
+            apiKey: 'YOUR API KEY',
+            userToken: 'USER TOKEN'
+        })
+
+        document.querySelector('#createDashboardBtn').addEventListener('click', function () {
+            var title = window.prompt('Set a title for new dashboard');
+
+            // Create a new dashboard
+            jdash.Provider.createDashboard({
+                title: title
+            }).then(function (result) {
+                console.log('Dashboard created with id:' + result.id);
+                dashboard.load(result.id);
+            }).catch(function (err) {
+                alert('There was an error creating dashboard: ' + err.message || err)
+            })
+        })
+
+        // add hello world dashlet to dashboard
+        document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
+            dashboard.addDashlet('hello-world');
+        })
+    })
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h3 id="step-6-view-dashboards">Step 6: View dashboards</h3>
+<p>As last step we will implement creating buttons to view existing dashboards.</p>
+<p><code>jdash.Provider.getMyDashboards</code> method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for <code>userToken</code> param for <code>jdash.Provider.init</code> method.</p>
+<p>Add following function inside <code>script</code> element.</p>
+<pre><code class="javascript">function createDashboardList() {
+    var container = document.querySelector('#dashboardList');
+
+    // clear existing buttons.
+    container.innerHTML = '';
+    return jdash.Provider.getMyDashboards().then(function (result) {
+
+        // for each dashboard create a button
+        for (var i = 0; i &lt; result.data.length; i++) {
+            var btn = document.createElement('button');
+            btn.textContent = result.data[i].title;
+            btn.id = result.data[i].id;
+            container.appendChild(btn);
+            btn.addEventListener('click', function (e) {
+                var idToLoad = e.target.id;
+                dashboard.load(idToLoad);
+            })
+        }
+    })
+}
+</code></pre>
+
+<p>Call this function when page loads or user creates a new dashboard.</p>
+<h3 id="step-7-download-source-code">Step 7: Download source code</h3>
+<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-tutorial">GitHub Repo</a>.</p>
+<p>If you enjoy Jdash you can continue from Basic Concepts.</p></div>
         
     </div>
 
