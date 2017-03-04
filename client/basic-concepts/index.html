@@ -152,24 +152,6 @@
 </li>
 
                         
-                            
-<li >
-    <a href="../../backend/using-mongodb/">MongoDB</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../backend/using-mysql/">MySQL</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../backend/using-mssql/">MSSQL</a>
-</li>
-
-                        
                         </ul>
                     </li>
                 
@@ -212,7 +194,9 @@
             
                 <li class="third-level"><a href="#license-models">License Models</a></li>
             
-                <li class="third-level"><a href="#easy-dashlet-development">Easy dashlet development</a></li>
+                <li class="third-level"><a href="#custom-elements">Custom elements</a></li>
+            
+                <li class="third-level"><a href="#key-elements">Key elements</a></li>
             
         
     
@@ -237,7 +221,7 @@ If you are a developer/company which develop applications for other customers or
 <li>If you are using Net Core, we support it with MySQL and MSSQL.</li>
 </ul>
 <p>If you need other platforms/database servers just drop us an e-mail (hello@jdash.io).</p>
-<h3 id="easy-dashlet-development">Easy dashlet development</h3>
+<h3 id="custom-elements">Custom elements</h3>
 <p>Jdash uses W3C custom elements spec for dashlet development. </p>
 <p>On top of this spec we developed a component framework to make dashlet development easier.</p>
 <p>Here is a sample dashlet.</p>
@@ -266,7 +250,34 @@ If you are a developer/company which develop applications for other customers or
 <p>Above code snippet defines <code>hello-world</code> custom element which inherits from <code>jdash.Dashlet</code> class.</p>
 <p>You can also use this element directly inside yout HTML.</p>
 <pre><code class="html">&lt;hello-world&gt;&lt;/hello-world&gt;
-</code></pre></div>
+</code></pre>
+
+<h3 id="key-elements">Key elements</h3>
+<p>Below table shows key elements and descriptions.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>j-dashboard</td>
+<td>Displays dashboard</td>
+</tr>
+<tr>
+<td>j-dashlet</td>
+<td>Defines a new dashlet element</td>
+</tr>
+<tr>
+<td>j-grid-layout</td>
+<td>Multi column/row layout</td>
+</tr>
+</tbody>
+</table>
+<p>Dashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.</p>
+<p>It is also possible to develop new layout elements by inheriting <code>jdash.DashboardLayout</code> class. Currently Jdash framework contains one layout element: <code>j-grid-layout</code>. In future </p></div>
         
     </div>
 

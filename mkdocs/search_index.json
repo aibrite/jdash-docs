@@ -147,7 +147,7 @@
         }, 
         {
             "location": "/client/basic-concepts/", 
-            "text": "Basic Concepts\n\n\nUsing Jdash you can add drag-drop end user designable dashboards to your application.\n\n\nFeatures\n\n\nLicense Models\n\n\nThere are two license models.\n\n\nJDash Cloud\n\nYou can use \nJDash Cloud\n to store dashboard \n dashlet related data. \n\n\nIf you have a cloud based application and don't want to integrate Jdash backend platform into your server application this is an ideal, cheap and fast solution to get you up.\n\n\nOn Premise\n\nIf you are a developer/company which develop applications for other customers or if you have a product which you want to embed Jdash this is the right license type for you.\n\n\nYou can integrate Jdash backend platform into your server application easily.\n\n\n\n\nIf you are using NodeJs, we support it with MongoDB and MySQL.\n\n\nIf you are using Asp.Net MVC 5+, we support it with MySQL and MSSQL.\n\n\nIf you are using Net Core, we support it with MySQL and MSSQL.\n\n\n\n\nIf you need other platforms/database servers just drop us an e-mail (hello@jdash.io).\n\n\nEasy dashlet development\n\n\nJdash uses W3C custom elements spec for dashlet development. \n\n\nOn top of this spec we developed a component framework to make dashlet development easier.\n\n\nHere is a sample dashlet.\n\n\nj-dashlet id=\nhello-world\n title=\nHello world!\n\n    \ntemplate\n\n        \n!-- This will be the HTML content of your dashlet  --\n\n        \n!-- Think template as user interface layer of your dashlet --\n\n        \nh1\n/h1\n\n    \n/template\n\n    \nscript\n\n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n    \n/script\n\n\n/j-dashlet\n\n\n\n\n\nAbove code snippet defines \nhello-world\n custom element which inherits from \njdash.Dashlet\n class.\n\n\nYou can also use this element directly inside yout HTML.\n\n\nhello-world\n/hello-world", 
+            "text": "Basic Concepts\n\n\nUsing Jdash you can add drag-drop end user designable dashboards to your application.\n\n\nFeatures\n\n\nLicense Models\n\n\nThere are two license models.\n\n\nJDash Cloud\n\nYou can use \nJDash Cloud\n to store dashboard \n dashlet related data. \n\n\nIf you have a cloud based application and don't want to integrate Jdash backend platform into your server application this is an ideal, cheap and fast solution to get you up.\n\n\nOn Premise\n\nIf you are a developer/company which develop applications for other customers or if you have a product which you want to embed Jdash this is the right license type for you.\n\n\nYou can integrate Jdash backend platform into your server application easily.\n\n\n\n\nIf you are using NodeJs, we support it with MongoDB and MySQL.\n\n\nIf you are using Asp.Net MVC 5+, we support it with MySQL and MSSQL.\n\n\nIf you are using Net Core, we support it with MySQL and MSSQL.\n\n\n\n\nIf you need other platforms/database servers just drop us an e-mail (hello@jdash.io).\n\n\nCustom elements\n\n\nJdash uses W3C custom elements spec for dashlet development. \n\n\nOn top of this spec we developed a component framework to make dashlet development easier.\n\n\nHere is a sample dashlet.\n\n\nj-dashlet id=\nhello-world\n title=\nHello world!\n\n    \ntemplate\n\n        \n!-- This will be the HTML content of your dashlet  --\n\n        \n!-- Think template as user interface layer of your dashlet --\n\n        \nh1\n/h1\n\n    \n/template\n\n    \nscript\n\n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n    \n/script\n\n\n/j-dashlet\n\n\n\n\n\nAbove code snippet defines \nhello-world\n custom element which inherits from \njdash.Dashlet\n class.\n\n\nYou can also use this element directly inside yout HTML.\n\n\nhello-world\n/hello-world\n\n\n\n\n\nKey elements\n\n\nBelow table shows key elements and descriptions.\n\n\n\n\n\n\n\n\nElement\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nj-dashboard\n\n\nDisplays dashboard\n\n\n\n\n\n\nj-dashlet\n\n\nDefines a new dashlet element\n\n\n\n\n\n\nj-grid-layout\n\n\nMulti column/row layout\n\n\n\n\n\n\n\n\nDashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.\n\n\nIt is also possible to develop new layout elements by inheriting \njdash.DashboardLayout\n class. Currently Jdash framework contains one layout element: \nj-grid-layout\n. In future", 
             "title": "Basic Concepts"
         }, 
         {
@@ -166,19 +166,69 @@
             "title": "License Models"
         }, 
         {
-            "location": "/client/basic-concepts/#easy-dashlet-development", 
+            "location": "/client/basic-concepts/#custom-elements", 
             "text": "Jdash uses W3C custom elements spec for dashlet development.   On top of this spec we developed a component framework to make dashlet development easier.  Here is a sample dashlet.  j-dashlet id= hello-world  title= Hello world! \n     template \n         !-- This will be the HTML content of your dashlet  -- \n         !-- Think template as user interface layer of your dashlet -- \n         h1 /h1 \n     /template \n     script \n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n     /script  /j-dashlet   Above code snippet defines  hello-world  custom element which inherits from  jdash.Dashlet  class.  You can also use this element directly inside yout HTML.  hello-world /hello-world", 
-            "title": "Easy dashlet development"
+            "title": "Custom elements"
+        }, 
+        {
+            "location": "/client/basic-concepts/#key-elements", 
+            "text": "Below table shows key elements and descriptions.     Element  Description      j-dashboard  Displays dashboard    j-dashlet  Defines a new dashlet element    j-grid-layout  Multi column/row layout     Dashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.  It is also possible to develop new layout elements by inheriting  jdash.DashboardLayout  class. Currently Jdash framework contains one layout element:  j-grid-layout . In future", 
+            "title": "Key elements"
         }, 
         {
             "location": "/client/working-with-dashboards/", 
-            "text": "Working with Dashboards", 
+            "text": "Working with Dashboards\n\n\nGetting started\n\n\nProvider basics\n\n\nJdash uses \njdash.Provider\n methods to create, save, load, delete dashboards and dashlets.\n\n\nProvider class has the following members.\n\n\nUsing provider methods\n\n\nModels\n\n\nUsing j-dashlet element\n\n\nCreating dashboards\n\n\nLoading dashboards\n\n\nView modes\n\n\nLayouts", 
             "title": "Working with Dashboards"
         }, 
         {
             "location": "/client/working-with-dashboards/#working-with-dashboards", 
             "text": "", 
             "title": "Working with Dashboards"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#getting-started", 
+            "text": "", 
+            "title": "Getting started"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#provider-basics", 
+            "text": "Jdash uses  jdash.Provider  methods to create, save, load, delete dashboards and dashlets.  Provider class has the following members.", 
+            "title": "Provider basics"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#using-provider-methods", 
+            "text": "", 
+            "title": "Using provider methods"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#models", 
+            "text": "", 
+            "title": "Models"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#using-j-dashlet-element", 
+            "text": "", 
+            "title": "Using j-dashlet element"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#creating-dashboards", 
+            "text": "", 
+            "title": "Creating dashboards"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#loading-dashboards", 
+            "text": "", 
+            "title": "Loading dashboards"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#view-modes", 
+            "text": "", 
+            "title": "View modes"
+        }, 
+        {
+            "location": "/client/working-with-dashboards/#layouts", 
+            "text": "", 
+            "title": "Layouts"
         }, 
         {
             "location": "/client/dashlet-development/", 
@@ -234,21 +284,6 @@
             "location": "/backend/net-core-dev/", 
             "text": "", 
             "title": "Net Core Development"
-        }, 
-        {
-            "location": "/backend/using-mongodb/", 
-            "text": "", 
-            "title": "MongoDB"
-        }, 
-        {
-            "location": "/backend/using-mysql/", 
-            "text": "", 
-            "title": "MySQL"
-        }, 
-        {
-            "location": "/backend/using-mssql/", 
-            "text": "", 
-            "title": "MSSQL"
         }
     ]
 }
