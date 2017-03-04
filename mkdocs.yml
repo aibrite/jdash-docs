@@ -15,9 +15,9 @@ pages:
     - NodeJS Development: backend/nodejs-dev.md
     - Asp.Net MVC Development: backend/aspnet-mvc-dev.md
     - Net Core Development: backend/net-core-dev.md
-    - MongoDB: backend/using-mongodb.md
-    - MySQL: backend/using-mysql.md
-    - MSSQL: backend/using-mssql.md
+    # - MongoDB: backend/using-mongodb.md
+    # - MySQL: backend/using-mysql.md
+    # - MSSQL: backend/using-mssql.md
 docs_dir: src
 site_dir: docs
 theme_dir: cinder
