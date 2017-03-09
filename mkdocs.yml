@@ -6,6 +6,7 @@ pages:
     - Client Home: client/index.md
     - Getting Started: client/getting-started.md
     - Basic Concepts: client/basic-concepts.md
+    - Providers: client/working-with-providers.md
     - Working with Dashboards: client/working-with-dashboards.md
     - Dashlet Development: client/dashlet-development.md
     - Advanced Topics: client/advanced-topics.md
