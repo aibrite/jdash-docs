@@ -9,7 +9,7 @@ pages:
     - Providers: client/working-with-providers.md
     - Working with Dashboards: client/working-with-dashboards.md
     - Dashlet Development: client/dashlet-development.md
-    - Advanced Topics: client/advanced-topics.md
+    # - Advanced Topics: client/advanced-topics.md
 - Backend Development:
     - Backend Home: backend/index.md
     - JDash Cloud: backend/jdash-cloud.md

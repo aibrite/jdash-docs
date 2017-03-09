@@ -86,4 +86,4 @@ dashboard.addDashlet(mydashlet);
 ### Drag-drop adding
 As an alternative you can use makeDroppable method of layout. This lets yo to create an HTML element for a dashlet and users can add this dashlet just by dropping to the dashboard element.
 
-Refer to sample applications to see how to use makeDroppable method. 
+Refer to sample applications to see how to use `makeDroppable` method. 
