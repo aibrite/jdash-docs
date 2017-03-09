@@ -106,3 +106,90 @@ Note: For backward compability we used ES5 style dashlet definition in this docu
 
 ## Configurable dashlets
 
+### Defining editor element
+
+Use `j-dashlet-editor` element to define a dashlet editor. Same rules (templates, script, lifecycle etc.) are valid for dashlet editors since they are developed by Jdash component framework.
+
+```html
+<j-dashlet-editor id="hello-world-editor">
+
+    <template>
+        Editor content goes here
+    </template>
+
+    <script>
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+            }
+
+        })
+    </script>
+
+</j-dashlet-editor>
+```
+When a new dashlet is defined, Jdash looks for an element tag with postfixed by `-editor`. For example if your dashlet is defined by `hello-world` Jdash looks for `hello-world-editor`. If it finds it associates this tag as editor for your dashlet.
+
+You can override this behaviour by explicitly setting a value to `j-editor` attribute.
+
+```html
+<j-dashlet id="hello-world" j-editor="my-editor" title="Hello world!"></j-dashlet>
+<j-dashlet-editor id="my-editor"></j-dashlet-editor>
+```
+### Loading configuration
+You can set and retrieve configuration values for dashlets. Configuration values are automatically converted to Json and stored on Jdash Cloud or on your backend.
+
+```html
+<j-dashlet id="hello-world" title="Hello world!">
+    <template>
+        <h1></h1>
+    </template>
+    <script>
+        jdash.define(function () {
+
+            this.loadConfig = function () {
+                var h1 = this.querySelector('h1')
+                h1.textContent = this.config.get('header') || 'Hello World!';
+            }
+
+            this.initialized = function () {
+                // Dom is ready!
+            }
+        })
+    </script>
+</j-dashlet>
+```
+If you attach a function named `loadConfig` to your dashlet Jdash automatically calls it when a new instance of your dashlet is created or after successfully saving new configuration values.
+
+```html
+<j-dashlet-editor id="hello-world-editor">
+
+    <template>
+        <h3>Set a header value:</h3>
+        <input type="text">
+    </template>
+
+    <script>
+        jdash.define(function () {
+
+            this.initialized = function () {
+                var inputEl = this.querySelector('input');
+                inputEl.value = this.dashlet.config.get('header') || '';
+            }
+
+            this.addEventListener('setconfig', function (event) {
+                var inputEl = this.querySelector('input'), value = inputEl.value;
+                if (!value) {
+                    alert('Set a valid value please!');
+                    event.preventDefault();
+                } else this.dashlet.config.set('header', value)
+            })
+
+        })
+    </script>
+
+</j-dashlet-editor>
+``` 
+Add an event listener for `setconfig` event so that you can set new values for configuration.
+
