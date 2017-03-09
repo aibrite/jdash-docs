@@ -97,6 +97,12 @@
                         
                             
 <li >
+    <a href="../working-with-providers/">Providers</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../working-with-dashboards/">Working with Dashboards</a>
 </li>
 
@@ -104,12 +110,6 @@
                             
 <li class="active">
     <a href="./">Dashlet Development</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../advanced-topics/">Advanced Topics</a>
 </li>
 
                         
@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../advanced-topics/">
+                        <a rel="prev" href="../../backend/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -190,12 +190,195 @@
     
         <li class="first-level active"><a href="#dashlet-development">Dashlet Development</a></li>
         
+            <li class="second-level"><a href="#about-dashlets">About dashlets</a></li>
+            
+        
+            <li class="second-level"><a href="#defining-dashlets">Defining dashlets</a></li>
+            
+        
+            <li class="second-level"><a href="#dashlet-lifecycle">Dashlet lifecycle</a></li>
+            
+        
+            <li class="second-level"><a href="#configurable-dashlets">Configurable dashlets</a></li>
+            
+                <li class="third-level"><a href="#defining-editor-element">Defining editor element</a></li>
+            
+                <li class="third-level"><a href="#loading-configuration">Loading configuration</a></li>
+            
+        
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="dashlet-development">Dashlet Development</h1></div>
+<h1 id="dashlet-development">Dashlet Development</h1>
+<h2 id="about-dashlets">About dashlets</h2>
+<p>In Jdash, <em>Dashlet</em> means a custom element which consists of Html dom elements and optional business layer.</p>
+<p>Jdash includes component based custom element development framework. This framework allows you to develop and register custom elements easily.</p>
+<h2 id="defining-dashlets">Defining dashlets</h2>
+<pre><code class="html">&lt;!-- Define &lt;hello-world&gt; element --&gt;
+&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+    &lt;template&gt;
+        &lt;!-- This will be the HTML content of your dashlet  --&gt;
+        &lt;h1&gt;&lt;/h1&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+                var h1 = this.querySelector('h1')
+                h1.textContent = 'Hello World!';
+            }
+
+        })
+    &lt;/script&gt;
+&lt;/j-dashlet&gt;
+</code></pre>
+
+<p><code>template</code>element is used to set html dom elements. When a new instance of dashlet is created, elements inside template element is cloned and dom of new dashlet instance is created.</p>
+<p><code>script</code> element is optional and allows you to execute javascript for dashlet. </p>
+<p>After defining a dashlet you can add it to a dashboard or just use as custom element.</p>
+<pre><code class="html">&lt;hello-world&gt;&lt;/hello-word&gt;
+</code></pre>
+
+<p>or add to a dashboard.</p>
+<pre><code class="javascript">dashboard.addDashlet('hello-world');
+</code></pre>
+
+<p>Jdash also supports placing dashlet definition inside another file.</p>
+<pre><code class="html">&lt;link rel=&quot;import&quot; href=&quot;dashlets/helloworld.html&quot;&gt;
+</code></pre>
+
+<p>It is also possible to seperate dashlet dom and script. Below is an example.</p>
+<pre><code class="html">&lt;!-- put a template element with an id value same as id of your dashlet --&gt;
+&lt;template id=&quot;hello-world&quot;&gt;
+    &lt;h1&gt;&lt;/h1&gt;
+&lt;/template&gt;
+
+&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+&lt;/j-dashlet&gt;
+
+&lt;script&gt;
+
+// Define hello-world dashlet
+jdash.define('hello-world', function () {
+
+    this.initialized = function () {
+        // Dom is ready!
+        var h1 = this.querySelector('h1')
+        h1.textContent = 'Hello World!';
+    }
+
+})
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="dashlet-lifecycle">Dashlet lifecycle</h2>
+<p>Since Jdash uses custom elements as dashlets same rules for custom elements apply for dashlets.</p>
+<p>Below code summarizes dashlet lifecycle.</p>
+<pre><code class="javascript">jdash.define('hello-world', function () {
+
+    // a new instance is created.
+
+    this.initialized = function () {
+        // Dom is ready!
+    }
+
+    this.connected = function() {
+        // Attached to document
+    }
+
+    this.disconnected = function() {
+        // Detached from document
+    }
+
+})
+</code></pre>
+
+<p>See <a href=" https://www.w3.org/TR/custom-elements/" target="_blank">W3C Custom Elements</a> document to get more information about custom elements.</p>
+<p>Note: For backward compability we used ES5 style dashlet definition in this document. Jdash also supports ES6 and you can use <code>class</code> keyword and inherit from <code>Dashlet</code> to define your dashlet.</p>
+<h2 id="configurable-dashlets">Configurable dashlets</h2>
+<h3 id="defining-editor-element">Defining editor element</h3>
+<p>Use <code>j-dashlet-editor</code> element to define a dashlet editor. Same rules (templates, script, lifecycle etc.) are valid for dashlet editors since they are developed by Jdash component framework.</p>
+<pre><code class="html">&lt;j-dashlet-editor id=&quot;hello-world-editor&quot;&gt;
+
+    &lt;template&gt;
+        Editor content goes here
+    &lt;/template&gt;
+
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+            }
+
+        })
+    &lt;/script&gt;
+
+&lt;/j-dashlet-editor&gt;
+</code></pre>
+
+<p>When a new dashlet is defined, Jdash looks for an element tag with postfixed by <code>-editor</code>. For example if your dashlet is defined by <code>hello-world</code> Jdash looks for <code>hello-world-editor</code>. If it finds it associates this tag as editor for your dashlet.</p>
+<p>You can override this behaviour by explicitly setting a value to <code>j-editor</code> attribute.</p>
+<pre><code class="html">&lt;j-dashlet id=&quot;hello-world&quot; j-editor=&quot;my-editor&quot; title=&quot;Hello world!&quot;&gt;&lt;/j-dashlet&gt;
+&lt;j-dashlet-editor id=&quot;my-editor&quot;&gt;&lt;/j-dashlet-editor&gt;
+</code></pre>
+
+<h3 id="loading-configuration">Loading configuration</h3>
+<p>You can set and retrieve configuration values for dashlets. Configuration values are automatically converted to Json and stored on Jdash Cloud or on your backend.</p>
+<pre><code class="html">&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+    &lt;template&gt;
+        &lt;h1&gt;&lt;/h1&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.loadConfig = function () {
+                var h1 = this.querySelector('h1')
+                h1.textContent = this.config.get('header') || 'Hello World!';
+            }
+
+            this.initialized = function () {
+                // Dom is ready!
+            }
+        })
+    &lt;/script&gt;
+&lt;/j-dashlet&gt;
+</code></pre>
+
+<p>If you attach a function named <code>loadConfig</code> to your dashlet Jdash automatically calls it when a new instance of your dashlet is created or after successfully saving new configuration values.</p>
+<pre><code class="html">&lt;j-dashlet-editor id=&quot;hello-world-editor&quot;&gt;
+
+    &lt;template&gt;
+        &lt;h3&gt;Set a header value:&lt;/h3&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/template&gt;
+
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.initialized = function () {
+                var inputEl = this.querySelector('input');
+                inputEl.value = this.dashlet.config.get('header') || '';
+            }
+
+            this.addEventListener('setconfig', function (event) {
+                var inputEl = this.querySelector('input'), value = inputEl.value;
+                if (!value) {
+                    alert('Set a valid value please!');
+                    event.preventDefault();
+                } else this.dashlet.config.set('header', value)
+            })
+
+        })
+    &lt;/script&gt;
+
+&lt;/j-dashlet-editor&gt;
+</code></pre>
+
+<p>Add an event listener for <code>setconfig</code> event so that you can set new values for configuration.</p></div>
         
     </div>
 

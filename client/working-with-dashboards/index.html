@@ -96,6 +96,12 @@
 
                         
                             
+<li >
+    <a href="../working-with-providers/">Providers</a>
+</li>
+
+                        
+                            
 <li class="active">
     <a href="./">Working with Dashboards</a>
 </li>
@@ -104,12 +110,6 @@
                             
 <li >
     <a href="../dashlet-development/">Dashlet Development</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../advanced-topics/">Advanced Topics</a>
 </li>
 
                         
@@ -167,7 +167,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../basic-concepts/">
+                        <a rel="next" href="../working-with-providers/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -190,24 +190,21 @@
     
         <li class="first-level active"><a href="#working-with-dashboards">Working with Dashboards</a></li>
         
-            <li class="second-level"><a href="#getting-started">Getting started</a></li>
-            
-                <li class="third-level"><a href="#provider-basics">Provider basics</a></li>
-            
-                <li class="third-level"><a href="#using-provider-methods">Using provider methods</a></li>
-            
-                <li class="third-level"><a href="#models">Models</a></li>
+            <li class="second-level"><a href="#j-dashboard-element">j-dashboard element</a></li>
             
         
-            <li class="second-level"><a href="#using-j-dashlet-element">Using j-dashlet element</a></li>
+            <li class="second-level"><a href="#viewing-dashboard">Viewing dashboard</a></li>
             
-                <li class="third-level"><a href="#creating-dashboards">Creating dashboards</a></li>
+                <li class="third-level"><a href="#about-view-modes">About View modes</a></li>
             
-                <li class="third-level"><a href="#loading-dashboards">Loading dashboards</a></li>
+        
+            <li class="second-level"><a href="#adding-dashlets">Adding dashlets</a></li>
             
-                <li class="third-level"><a href="#view-modes">View modes</a></li>
+                <li class="third-level"><a href="#getting-a-list-of-available-dashlets">Getting a list of available dashlets</a></li>
             
-                <li class="third-level"><a href="#layouts">Layouts</a></li>
+                <li class="third-level"><a href="#adding-dashlet-to-dashboard">Adding dashlet to dashboard</a></li>
+            
+                <li class="third-level"><a href="#drag-drop-adding">Drag-drop adding</a></li>
             
         
     
@@ -216,17 +213,89 @@
         <div class="col-md-9" role="main">
 
 <h1 id="working-with-dashboards">Working with Dashboards</h1>
-<h2 id="getting-started">Getting started</h2>
-<h3 id="provider-basics">Provider basics</h3>
-<p>Jdash uses <code>jdash.Provider</code> methods to create, save, load, delete dashboards and dashlets.</p>
-<p>Provider class has the following members.</p>
-<h3 id="using-provider-methods">Using provider methods</h3>
-<h3 id="models">Models</h3>
-<h2 id="using-j-dashlet-element">Using j-dashlet element</h2>
-<h3 id="creating-dashboards">Creating dashboards</h3>
-<h3 id="loading-dashboards">Loading dashboards</h3>
-<h3 id="view-modes">View modes</h3>
-<h3 id="layouts">Layouts</h3></div>
+<h2 id="j-dashboard-element">j-dashboard element</h2>
+<p>Use <code>j-dashboard</code>element to display an existing dashboard.</p>
+<pre><code class="html">&lt;j-dashboard id=&quot;dashboard&quot;&gt;
+    &lt;h2 j-bind=&quot;title&quot;&gt;&lt;/h2&gt;
+&lt;/j-dashboard&gt;
+</code></pre>
+
+<h2 id="viewing-dashboard">Viewing dashboard</h2>
+<p>Use <code>load</code> method to load (display) a dashboard.</p>
+<pre><code class="typescript">load(id: string | DashboardModel): Promise&lt;DashboardModel&gt;;
+</code></pre>
+
+<p><code>load</code>method returns a promise and you can use dashboard id or <code>DashboardModel</code>.</p>
+<p>As a common scenario you can use jdash.Provider.getMyDashboards method to get a list of dashboard for current user. After a click for a dashboard use <code>load</code>method to display selected dashboard.</p>
+<p>Refer to Getting Started for sample usage of <code>load</code>method.</p>
+<h3 id="about-view-modes">About View modes</h3>
+<p>A dashboard may have one of the following view modes.</p>
+<table>
+<thead>
+<tr>
+<th>View mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readonly</td>
+<td>Displays dashboard in readonly mode. Best for viewing dashboard</td>
+</tr>
+<tr>
+<td>dashletedit</td>
+<td>User can edit dashlet properties and positions. Best for creating and configuring dashlets</td>
+</tr>
+<tr>
+<td>layoutedit</td>
+<td>User can edit layout of dashboard. Best for desiging structure of dashboard.</td>
+</tr>
+</tbody>
+</table>
+<p>Set initialize dashboard view mode use <code>j-view-mode</code> attribute of <code>j-dashboard</code> element. </p>
+<pre><code class="html">&lt;j-dashboard id=&quot;dashboard&quot; j-view-mode=&quot;dashletedit&quot;&gt;
+
+&lt;/j-dashboard&gt;
+</code></pre>
+
+<p>You can also use HTMLElement.setAttribute method to change it later.</p>
+<pre><code class="javascript">var dashboard = document.querySelector('#dashboard');
+dashboard.setAttribute('j-view-mode', 'readonly');
+</code></pre>
+
+<h2 id="adding-dashlets">Adding dashlets</h2>
+<h3 id="getting-a-list-of-available-dashlets">Getting a list of available dashlets</h3>
+<p>Use jdash.DashletModule.getModules method to get a list of available dashlet elements. Refer to Dashlet Development (next section) for more information about defining dashlets.</p>
+<p>You can use <code>title</code>attribute to display a dashlet to user. <code>id</code> attribute can be used to create an instance.</p>
+<pre><code class="javascript">var dashletElements = jdash.DashletModule.getModules();
+for(var i = 0; i &lt; dashletElements.length;i++) 
+    console.log(dashletElements[i].title, ',', dashletElements[i].id)
+</code></pre>
+
+<p>An example output can be</p>
+<pre><code class="no-highlight">Hello World, hello-world
+Astronomy of Day, nasa-apod-dashlet
+Rss Dashlet, rss-dashlet
+Chart Dashlet, chart-dashlet
+Pure HTML, content-dashlet
+Rich Content, rich-content
+</code></pre>
+
+<h3 id="adding-dashlet-to-dashboard">Adding dashlet to dashboard</h3>
+<p>Use <code>addDashlet</code> method of <code>j-dashboard</code>element to create a new dashlet.</p>
+<pre><code class="javascript">dashboard.addDashlet('hello-world');
+</code></pre>
+
+<p>You can also create a dashlet instance and use that instance instead of using element tag.</p>
+<pre><code class="javascript">var mydashlet = document.createElement('hello-word');
+mydashlet.title = 'Say Hi to me!';
+dashboard.addDashlet(mydashlet);
+</code></pre>
+
+<p><code>j-dashboard</code>element automatically calls <code>createDashlet</code>method of provider so new dashlet is persisted and will be available when dashboard loads at later.</p>
+<h3 id="drag-drop-adding">Drag-drop adding</h3>
+<p>As an alternative you can use makeDroppable method of layout. This lets yo to create an HTML element for a dashlet and users can add this dashlet just by dropping to the dashboard element.</p>
+<p>Refer to sample applications to see how to use <code>makeDroppable</code> method. </p></div>
         
     </div>
 

@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="canonical" href="http://doc.jdash.io/client/advanced-topics/"> 
+    <link rel="canonical" href="http://doc.jdash.io/client/working-with-providers/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Advanced Topics - JDash</title>
+    <title>Providers - JDash</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -96,6 +96,12 @@
 
                         
                             
+<li class="active">
+    <a href="./">Providers</a>
+</li>
+
+                        
+                            
 <li >
     <a href="../working-with-dashboards/">Working with Dashboards</a>
 </li>
@@ -104,12 +110,6 @@
                             
 <li >
     <a href="../dashlet-development/">Dashlet Development</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Advanced Topics</a>
 </li>
 
                         
@@ -167,12 +167,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../dashlet-development/">
+                        <a rel="next" href="../basic-concepts/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../backend/">
+                        <a rel="prev" href="../working-with-dashboards/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -188,14 +188,230 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#working-with-layouts">Working with Layouts</a></li>
+        <li class="first-level active"><a href="#working-with-provider">Working with Provider</a></li>
+        
+            <li class="second-level"><a href="#provider-basics">Provider basics</a></li>
+            
+                <li class="third-level"><a href="#initializing-provider">İnitializing provider</a></li>
+            
+                <li class="third-level"><a href="#user-based-design">User based design</a></li>
+            
+                <li class="third-level"><a href="#methods-and-samples">Methods and samples</a></li>
+            
+                <li class="third-level"><a href="#key-interfaces">Key interfaces</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="working-with-layouts">Working with Layouts</h1></div>
+<h1 id="working-with-provider">Working with Provider</h1>
+<h2 id="provider-basics">Provider basics</h2>
+<p>Jdash uses <code>jdash.Provider</code> methods to create, save and delete dashboards and dashlets.</p>
+<p>Provider should be initialized before using any methods of the below methods. </p>
+<h3 id="initializing-provider">İnitializing provider</h3>
+<p>If you are using Jdash Cloud initializing means setting a valid api key and user token.</p>
+<p>After <a href="https://app.jdash.io/#!/app/account/register" target="_blank">registering as a new user</a> you will get an api key and test user token. Use them to initialize provider.</p>
+<pre><code class="javascript">jdash.ready(function () {
+    jdash.Provider.init({
+        apiKey: 'YOUR API KEY',
+        userToken: 'USER TOKEN'
+    })
+})
+</code></pre>
+
+<h3 id="user-based-design">User based design</h3>
+<p>In Jdash, a dashboard belongs to a user. A user may have many dashboards and a dashboard contains dashlets.</p>
+<p>This allows your users to create and design their own dashboards.</p>
+<p>When you initialize provider, <code>apiKey</code> represents your application in Jdash cloud. <code>userToken</code> allows you to set a security token for current user. Methods like <code>createDashboard</code> uses this token to assign dashboard to current user. </p>
+<h3 id="methods-and-samples">Methods and samples</h3>
+<p>Use <code>getDashboard</code> method to get dashboard model with dashboard id.</p>
+<pre><code class="javascript">jdash.Provider.getDashboard('58b72f14421b57354bf58cc5').then(function(model) { 
+        console.log(model)
+    }).catch(function(err) { 
+        console.log(err)
+    })
+</code></pre>
+
+<p>All provider methods return promises. </p>
+<p>Use <code>createDashboard</code> method to create a dashboard.</p>
+<pre><code class="javascript">jdash.Provider.createDashboard({
+    title: 'My dashboard'
+}).then(function (result) {
+    console.log('Dashboard created with id:' + result.id);
+    dashboard.load(result.id);
+}).catch(function (err) {
+    alert('There was an error creating dashboard: ' + err.message || err)
+})
+</code></pre>
+
+<p>Note that the user which creates the dashboard is autoımatically retreived from the user token.</p>
+<p>Use <code>getMyDashboards</code> method to get a list of dashboards which belongs to current user.</p>
+<p>Use <code>searchDashboards</code>method to search for dashboards.</p>
+<p>Use <code>deleteDashboard</code> method to delete a dashboard. When a dashboard is deleted all dashlets inside that dashboard are automatically deleted.</p>
+<p>Use <code>saveDashboard</code> to update a dashboard.</p>
+<p>Provider also has CRUD methods for dashlets. Although you can use these methods directly it's better to use methods of <code>j-dashboard</code> element to create, remove or save dashlets.</p>
+<p>Below table is a summary of methods for dashlets.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createDashlet</td>
+<td>Creates dashlet</td>
+</tr>
+<tr>
+<td>saveDashlet</td>
+<td>Updates a dashlet</td>
+</tr>
+<tr>
+<td>deleteDashlet</td>
+<td>Deletes a dashlet</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-interfaces">Key interfaces</h3>
+<p><code>jdash.Provider</code> implements <code>IClientProvider</code>interface.</p>
+<pre><code class="typescript">interface IClientProvider {
+    getDashboard(id: string): Promise&lt;GetDashboardResult&gt;;
+    createDashboard(model: DashboardCreateModel): Promise&lt;CreateResult&gt;;
+    getMyDashboards(query?: Query): Promise&lt;QueryResult&lt;DashboardModel&gt;&gt;;
+    searchDashboards(search?: ISearchDashboards, query?: Query): Promise&lt;QueryResult&lt;DashboardModel&gt;&gt;;
+    deleteDashboard(id: string): Promise&lt;any&gt;;
+    saveDashboard(id: string, updateValues: DashboardUpdateModel): Promise&lt;any&gt;;
+    createDashlet(model: DashletCreateModel): Promise&lt;CreateResult&gt;;
+    deleteDashlet(id: string): Promise&lt;any&gt;;
+    saveDashlet(id: string, updateValues: DashletUpdateModel): Promise&lt;any&gt;;
+}
+</code></pre>
+
+<p>See below definitions for dashboard, dashlet and common data types.</p>
+<pre><code class="typescript">
+interface DashboardModel {
+    id: string;
+    title: string;
+    appid: string;
+    user: string;
+    config: {
+        [key: string]: any;
+    };
+    description: string;
+    layout: LayoutModel;
+    createdAt: Date;
+    shareWith?: string;
+}
+
+interface DashletModel {
+    moduleId: string;
+    dashboardId: string;
+    id?: string;
+    title?: string;
+    description?: string;
+    configuration?: {
+        [key: string]: any;
+    };
+    createdAt: Date;
+}
+
+interface ISearchDashboards {
+    user: string | Array&lt;string&gt;;
+    shareWith?: string | Array&lt;string&gt;;
+}
+
+interface Query {
+    limit: number;
+    startFrom?: any;
+}
+
+interface SearchQuery extends Query {
+    filters: any;
+}
+
+interface QueryResult&lt;T&gt; {
+    data: Array&lt;T&gt;;
+    hasMore: boolean;
+}
+
+interface CreateResult {
+    id: string;
+}
+
+interface GetDashboardResult {
+    dashboard: DashboardModel;
+    dashlets: Array&lt;DashletModel&gt;;
+}
+
+interface DashboardCreateModel {
+    id?: string;
+    title?: string;
+    description?: string;
+    shareWith?: string;
+    layout: LayoutModel;
+    config?: {
+        [key: string]: any;
+    };
+    user?: string;
+}
+
+interface DashboardUpdateModel {
+    title?: string;
+    description?: string;
+    shareWith?: string;
+    layout?: LayoutModel;
+    config?: {
+        [key: string]: any;
+    };
+}
+
+
+
+interface DashletPositionModel {
+    zone?: string;
+    y?: number;
+    x?: number;
+    z?: number;
+}
+
+interface DashletCreateModel {
+    moduleId: string;
+    dashboardId: string;
+    id?: string;
+    title?: string;
+    description?: string;
+    configuration?: {
+        [key: string]: any;
+    };
+}
+
+interface DashletUpdateModel {
+    title?: string;
+    description?: string;
+    configuration?: {
+        [key: string]: any;
+    };
+}
+
+interface LayoutDashletMetaModel {
+    data?: any;
+    position?: DashletPositionModel;
+}
+
+interface LayoutModel {
+    moduleId: string;
+    config?: {
+        [key: string]: any;
+    };
+    dashlets?: {
+        [key: string]: LayoutDashletMetaModel;
+    };
+}
+
+</code></pre></div>
         
     </div>
 
