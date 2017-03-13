@@ -55,7 +55,7 @@ Here is a sample dashlet.
 ```
 Above code snippet defines `hello-world` custom element which inherits from `jdash.Dashlet` class.
 
-You can also use this element directly inside yout HTML.
+You can also use this element directly inside your HTML.
 
 ```html
 <hello-world></hello-world>
