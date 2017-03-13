@@ -127,3 +127,40 @@ All you have to do for jdash-mongodb is this, now you can use jdash-express and 
 ```
 
 All you have to do for jdash-mysqldb is this, now you can use jdash-express and jdash-mongodb without any problems.
+
+
+## Using jdash-auth-jwt for authorizing jdash-cloud requests.
+
+/// installation part for jdash-jwt
+
+You must first install jsonwebtoken npm package 
+
+    npm install jsonwebtoken --save
+
+    /// install jdash-auth-jwt here
+
+jdash-auth-jwt has interface below.
+```typescript
+    interface ITokenOptions {
+        secret: string;
+        apikey: string;
+        expirationInSeconds?: number;
+    }
+
+    userToken(user: string | Object, options: ITokenOptions): Promise<string>;
+```
+
+You just require jdas-auth-jwt with default property. 
+```javascript
+    var jdashAuth = require('jdash-auth-jwt').default;
+
+    var jwt = jdashAuth.userToken(user /* string or object */ , {
+        secret: /* your secret key */
+        apikey: /* your api key */,
+        expirationInSeconds: /* optional */
+    });
+```
+
+JDash-Cloud will use this generated jwt for authorization of your users.
+
+(Please see  [JDash Cloud](./jdash-cloud.md) for details.)
