@@ -18,34 +18,14 @@ End users can personalize your application better with Jdash. Users can;
 * Builtin themes for Bootstrap & Material
 * Custom themes
 
+Please see [Client Developoment Section](./client/index.md) to get more information.
+
 
 ### Server side features
 * Either use Jdash Cloud or install on your servers
-* Support for NodeJs, Asp.Net MVC and Net Core server
+* Support for NodeJs and Net Core 
 * Support for MongoDB, MySQL and Microsoft SQL Server
 
-## Client Development
+Please see [Backend Developoment Section](./backend/index.md) to get more information.
 
-### Getting Started
-Basic stuff to start using Jdash.
 
-### Working with dashboards
-Articles related about using dashboards. 
-
-### Dashlet development
-Articles related about developing your dashlets. 
-
-### Advanced Topics
-Advanced topics i.e. authentication, advanced customization etc.
-
-## Server Development
-
-### Getting Started
-
-### Using Jdash Cloud
-
-### NodeJs development
-
-### Asp.Net MVC development
-
-### Net Core development
