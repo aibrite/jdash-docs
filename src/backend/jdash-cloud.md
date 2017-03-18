@@ -45,30 +45,119 @@ Please see  [NodeJS Development](./nodejs-dev.md) or [.Net Core Development](./n
 
 Before proceeding here please read [Getting Started](../client/getting-started.md) section first.</small>
 
-Lets say you have successfully created your backend authorization code at uri : "/jdashauth?user=user1".
+Lets say you have successfully created your backend authorization code at uri : "/jdashController/authorize".
 
 On jdash.Provider.init function of jdash you will have to make some changes like below
 
 ```javascript
+
      jdash.Provider.init({
             apiKey: 'YOUR API KEY',
             userToken: function(tokenCallback){
                 // make a XMLHttpRequest (aka Ajax call)
                 // you can use any ajax library ie $.ajax, we are just using basic stuff
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        // response JWT text will be passed to the JDash Token Callback
-                        tokenCallback(xhr.responseText);
-                    }
-                }
-                xhr.open('GET', '/jdashauth?user=user1', true);
-                xhr.send();
+
+                jdash.Http.get('jdashController/authorize').then(function(result){
+                    // response must be a jwt string that will be filled to the result.data property.
+                    // response JWT text will be passed to the JDash Token Callback
+                    tokenCallback(result.data);
+                });
             }
         })
 ```
 
 If the response is a valid JWT, JDash will use this JWT for authentication unless it expires. 
+
+## Integration JWT Mechanizm for Backend
+
+Jdash Cloud Supports all backends for authorization, however we are providing node-js and .Net samples here 
+
+### Node-JS JWT Mechanizm
+
+You must first install jsonwebtoken npm package 
+
+    npm install jsonwebtoken --save
+
+This will install jsonwebtoken package for your application.
+
+On your router (express application) you can define your own api path. We simple put sample url "/jdashController/authorize" for the example.
+```javascript
+    router.get('/jdashController/authorize', function(req,res,next){
+        var username = getCurrentUserName();
+        var jwt = require('jsonwebtoken');
+        jwt.sign({
+             data: {
+                 user : username /* your active user */
+             }
+        }, 'YOUR API SECRET', {
+            algorithm: 'HS256',
+            subject: 'YOUR API KEY',
+            expiresIn:  "2h" /* optional but recommended */
+        }, (err, token) => {
+            if(err){
+                next(new Error(err)) 
+            }else { 
+                res.send(token); 
+            }
+        });
+    });
+```
+
+You can find detailed information for jsonwebtoken package <a href="https://github.com/auth0/node-jsonwebtoken" target="_blank">here</a>.
+
+
+### .Net (C#) JWT Mechanizm 
+
+You can use `Jwt.Net` NuGet package <a href="https://www.nuget.org/packages/jose-jwt/" target="_blank" > here </a> or you can find source code on git <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank"> here</a>.  Or you can chose any .Net Libraries listed on <a href="https://jwt.io/#libraries-io">https://jwt.io/#libraries-io</a> 
+
+We will show you how to implement JWT for Jose-JWT Nuget Package.
+
+First install Jose-JWT 
+
+    Install-Package jose-jwt
+
+```C
+       using Jose;
+
+        
+       static void Main(string[] args)
+        {
+          var token = CreateToken();
+          // you can use this token for any client authorization request.
+        }
+
+        static string CreateToken()
+        { 
+            DateTime issued = DateTime.Now;
+            DateTime expire = DateTime.Now.AddHours(10);
+
+            var payload = new Dictionary<string, object>()
+            {
+                { "data" , new { user = "CURRENT USER NAME/ID" } }
+                {"sub", "YOUR API KEY"},
+                {"iat", ToUnixTime(issued).ToString()},
+                {"exp", ToUnixTime(expire).ToString()} // optional(recommended)
+            };
+            
+            string token = JWT.Encode(payload, "YOUR SECRET KEY HERE", JwsAlgorithm.HS256);
+            return token;
+        }
+
+        /// <remarks>
+        /// Take a look at http://stackoverflow.com/a/33113820
+        /// </remarks>
+        static byte[] Base64UrlDecode(string arg)
+        { 
+            return Convert.FromBase64String(s); // Standard base64 decoder
+        }
+
+        static long ToUnixTime(DateTime dateTime)
+        {
+            return (int)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        }
+````
+
+
 
 #### Notes:
 1- JDash will call userToken function when it needs a new token (initial token request or renewal of expired JWT).
