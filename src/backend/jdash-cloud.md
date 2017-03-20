@@ -114,9 +114,11 @@ We will show you how to implement JWT for Jose-JWT Nuget Package.
 
 First install Jose-JWT 
 
-    Install-Package jose-jwt
+     Install-Package jose-jwt
 
-```C
+
+```csharp
+
        using Jose;
 
         
@@ -155,7 +157,8 @@ First install Jose-JWT
         {
             return (int)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         }
-````
+        
+```
 
 
 
