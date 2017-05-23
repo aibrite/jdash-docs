@@ -23,8 +23,6 @@ For persistance you can either use our own references for MySQL/MsSql or you can
 We made JDash pretty easy and configurable so that you can implement it easily. Mosft of your work done via javascript and this .Net Core libraries are used for persistance/authorization layer only.
 
 On your Startup.cs file :
-
-  // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
  
 ```c#
         //add below usings above code to your code
