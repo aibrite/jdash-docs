@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome\n\n\nWelcome to Jdash documentation.\n\n\nJdash provides javascript + backend platform for adding end user designable dashboards into your web application.\n\n\nEnd users can personalize your application better with Jdash. Users can;\n\n\n\n\nCreate their own dashboards\n\n\nShare dashboards/dashlets\n\n\nConfigure dashlets\n\n\n\n\nFeatures\n\n\nClient side features\n\n\n\n\nFully customizable user interface\n\n\nEasy dashlet development\n\n\nBuiltin themes for Bootstrap \n Material\n\n\nCustom themes\n\n\n\n\nServer side features\n\n\n\n\nEither use Jdash Cloud or install on your servers\n\n\nSupport for NodeJs, Asp.Net MVC and Net Core server\n\n\nSupport for MongoDB, MySQL and Microsoft SQL Server\n\n\n\n\nClient Development\n\n\nGetting Started\n\n\nBasic stuff to start using Jdash.\n\n\nWorking with dashboards\n\n\nArticles related about using dashboards. \n\n\nDashlet development\n\n\nArticles related about developing your dashlets. \n\n\nAdvanced Topics\n\n\nAdvanced topics i.e. authentication, advanced customization etc.\n\n\nServer Development\n\n\nGetting Started\n\n\nUsing Jdash Cloud\n\n\nNodeJs development\n\n\nAsp.Net MVC development\n\n\nNet Core development", 
+            "text": "Welcome\n\n\nWelcome to Jdash documentation.\n\n\nJdash provides javascript + backend platform for adding end user designable dashboards into your web application.\n\n\nEnd users can personalize your application better with Jdash. Users can;\n\n\n\n\nCreate their own dashboards\n\n\nShare dashboards/dashlets\n\n\nConfigure dashlets\n\n\n\n\nFeatures\n\n\nClient side features\n\n\n\n\nFully customizable user interface\n\n\nEasy dashlet development\n\n\nBuiltin themes for Bootstrap \n Material\n\n\nCustom themes\n\n\n\n\nPlease see \nClient Developoment Section\n to get more information.\n\n\nServer side features\n\n\n\n\nEither use Jdash Cloud or install on your servers\n\n\nSupport for NodeJs and Net Core \n\n\nSupport for MongoDB, MySQL and Microsoft SQL Server\n\n\n\n\nPlease see \nBackend Developoment Section\n to get more information.", 
             "title": "Home"
         }, 
         {
@@ -17,83 +17,48 @@
         }, 
         {
             "location": "/#client-side-features", 
-            "text": "Fully customizable user interface  Easy dashlet development  Builtin themes for Bootstrap   Material  Custom themes", 
+            "text": "Fully customizable user interface  Easy dashlet development  Builtin themes for Bootstrap   Material  Custom themes   Please see  Client Developoment Section  to get more information.", 
             "title": "Client side features"
         }, 
         {
             "location": "/#server-side-features", 
-            "text": "Either use Jdash Cloud or install on your servers  Support for NodeJs, Asp.Net MVC and Net Core server  Support for MongoDB, MySQL and Microsoft SQL Server", 
+            "text": "Either use Jdash Cloud or install on your servers  Support for NodeJs and Net Core   Support for MongoDB, MySQL and Microsoft SQL Server   Please see  Backend Developoment Section  to get more information.", 
             "title": "Server side features"
         }, 
         {
-            "location": "/#client-development", 
+            "location": "/client/", 
+            "text": "Client Development\n\n\nGetting Started\n\n\nTo start using Jdash in 5 minutes see \nGetting Started\n.\n\n\nBasic Concepts\n\n\nTo get more information about Jdash architecture and license models see \nBasic Concepts\n.\n\n\nProviders\n\n\nTo get more information about client providers see \nProviders\n.\n\n\nDashboards\n\n\nTo get more information about using dashboards see \nDashboards\n.\n\n\nDashlet Development\n\n\nTo get more information about developing dashlets see \nDashlet Development\n.", 
+            "title": "Client Home"
+        }, 
+        {
+            "location": "/client/#client-development", 
             "text": "", 
             "title": "Client Development"
         }, 
         {
-            "location": "/#getting-started", 
-            "text": "Basic stuff to start using Jdash.", 
-            "title": "Getting Started"
-        }, 
-        {
-            "location": "/#working-with-dashboards", 
-            "text": "Articles related about using dashboards.", 
-            "title": "Working with dashboards"
-        }, 
-        {
-            "location": "/#dashlet-development", 
-            "text": "Articles related about developing your dashlets.", 
-            "title": "Dashlet development"
-        }, 
-        {
-            "location": "/#advanced-topics", 
-            "text": "Advanced topics i.e. authentication, advanced customization etc.", 
-            "title": "Advanced Topics"
-        }, 
-        {
-            "location": "/#server-development", 
-            "text": "", 
-            "title": "Server Development"
-        }, 
-        {
-            "location": "/#getting-started_1", 
-            "text": "", 
-            "title": "Getting Started"
-        }, 
-        {
-            "location": "/#using-jdash-cloud", 
-            "text": "", 
-            "title": "Using Jdash Cloud"
-        }, 
-        {
-            "location": "/#nodejs-development", 
-            "text": "", 
-            "title": "NodeJs development"
-        }, 
-        {
-            "location": "/#aspnet-mvc-development", 
-            "text": "", 
-            "title": "Asp.Net MVC development"
-        }, 
-        {
-            "location": "/#net-core-development", 
-            "text": "", 
-            "title": "Net Core development"
-        }, 
-        {
-            "location": "/client/", 
-            "text": "Client\n\n\nGetting Started", 
-            "title": "Client Home"
-        }, 
-        {
-            "location": "/client/#client", 
-            "text": "", 
-            "title": "Client"
-        }, 
-        {
             "location": "/client/#getting-started", 
-            "text": "", 
+            "text": "To start using Jdash in 5 minutes see  Getting Started .", 
             "title": "Getting Started"
+        }, 
+        {
+            "location": "/client/#basic-concepts", 
+            "text": "To get more information about Jdash architecture and license models see  Basic Concepts .", 
+            "title": "Basic Concepts"
+        }, 
+        {
+            "location": "/client/#providers", 
+            "text": "To get more information about client providers see  Providers .", 
+            "title": "Providers"
+        }, 
+        {
+            "location": "/client/#dashboards", 
+            "text": "To get more information about using dashboards see  Dashboards .", 
+            "title": "Dashboards"
+        }, 
+        {
+            "location": "/client/#dashlet-development", 
+            "text": "To get more information about developing dashlets see  Dashlet Development .", 
+            "title": "Dashlet Development"
         }, 
         {
             "location": "/client/getting-started/", 
@@ -147,7 +112,7 @@
         }, 
         {
             "location": "/client/basic-concepts/", 
-            "text": "Basic Concepts\n\n\nUsing Jdash you can add drag-drop end user designable dashboards to your application.\n\n\nFeatures\n\n\nLicense Models\n\n\nThere are two license models.\n\n\nJDash Cloud\n\nYou can use \nJDash Cloud\n to store dashboard \n dashlet related data. \n\n\nIf you have a cloud based application and don't want to integrate Jdash backend platform into your server application this is an ideal, cheap and fast solution to get you up.\n\n\nOn Premise\n\nIf you are a developer/company which develop applications for other customers or if you have a product which you want to embed Jdash this is the right license type for you.\n\n\nYou can integrate Jdash backend platform into your server application easily.\n\n\n\n\nIf you are using NodeJs, we support it with MongoDB and MySQL.\n\n\nIf you are using Asp.Net MVC 5+, we support it with MySQL and MSSQL.\n\n\nIf you are using Net Core, we support it with MySQL and MSSQL.\n\n\n\n\nIf you need other platforms/database servers just drop us an e-mail (hello@jdash.io).\n\n\nCustom elements\n\n\nJdash uses W3C custom elements spec for dashlet development. \n\n\nOn top of this spec we developed a component framework to make dashlet development easier.\n\n\nHere is a sample dashlet.\n\n\nj-dashlet id=\nhello-world\n title=\nHello world!\n\n    \ntemplate\n\n        \n!-- This will be the HTML content of your dashlet  --\n\n        \n!-- Think template as user interface layer of your dashlet --\n\n        \nh1\n/h1\n\n    \n/template\n\n    \nscript\n\n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n    \n/script\n\n\n/j-dashlet\n\n\n\n\n\nAbove code snippet defines \nhello-world\n custom element which inherits from \njdash.Dashlet\n class.\n\n\nYou can also use this element directly inside yout HTML.\n\n\nhello-world\n/hello-world\n\n\n\n\n\nKey elements\n\n\nBelow table shows key elements and descriptions.\n\n\n\n\n\n\n\n\nElement\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nj-dashboard\n\n\nDisplays dashboard\n\n\n\n\n\n\nj-dashlet\n\n\nDefines a new dashlet element\n\n\n\n\n\n\nj-grid-layout\n\n\nMulti column/row layout\n\n\n\n\n\n\n\n\nDashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.\n\n\nIt is also possible to develop new layout elements by inheriting \njdash.DashboardLayout\n class. Currently Jdash framework contains one layout element: \nj-grid-layout\n. In future", 
+            "text": "Basic Concepts\n\n\nUsing Jdash you can add drag-drop end user designable dashboards to your application.\n\n\nFeatures\n\n\nLicense Models\n\n\nThere are two license models.\n\n\nJDash Cloud\n\nYou can use \nJDash Cloud\n to store dashboard \n dashlet related data. \n\n\nIf you have a cloud based application and don't want to integrate Jdash backend platform into your server application this is an ideal, cheap and fast solution to get you up.\n\n\nOn Premise\n\nIf you are a developer/company which develop applications for other customers or if you have a product which you want to embed Jdash this is the right license type for you.\n\n\nYou can integrate Jdash backend platform into your server application easily.\n\n\n\n\nIf you are using NodeJs, we support it with MongoDB and MySQL.\n\n\nIf you are using Asp.Net MVC 5+, we support it with MySQL and MSSQL.\n\n\nIf you are using Net Core, we support it with MySQL and MSSQL.\n\n\n\n\nIf you need other platforms/database servers just drop us an e-mail (hello@jdash.io).\n\n\nCustom elements\n\n\nJdash uses W3C custom elements spec for dashlet development. \n\n\nOn top of this spec we developed a component framework to make dashlet development easier.\n\n\nHere is a sample dashlet.\n\n\nj-dashlet id=\nhello-world\n title=\nHello world!\n\n    \ntemplate\n\n        \n!-- This will be the HTML content of your dashlet  --\n\n        \n!-- Think template as user interface layer of your dashlet --\n\n        \nh1\n/h1\n\n    \n/template\n\n    \nscript\n\n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n    \n/script\n\n\n/j-dashlet\n\n\n\n\n\nAbove code snippet defines \nhello-world\n custom element which inherits from \njdash.Dashlet\n class.\n\n\nYou can also use this element directly inside your HTML.\n\n\nhello-world\n/hello-world\n\n\n\n\n\nKey elements\n\n\nBelow table shows key elements and descriptions.\n\n\n\n\n\n\n\n\nElement\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nj-dashboard\n\n\nDisplays dashboard\n\n\n\n\n\n\nj-dashlet\n\n\nDefines a new dashlet element\n\n\n\n\n\n\nj-grid-layout\n\n\nMulti column/row layout\n\n\n\n\n\n\n\n\nDashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.\n\n\nIt is also possible to develop new layout elements by inheriting \njdash.DashboardLayout\n class. Currently Jdash framework contains one layout element: \nj-grid-layout\n. In future", 
             "title": "Basic Concepts"
         }, 
         {
@@ -167,7 +132,7 @@
         }, 
         {
             "location": "/client/basic-concepts/#custom-elements", 
-            "text": "Jdash uses W3C custom elements spec for dashlet development.   On top of this spec we developed a component framework to make dashlet development easier.  Here is a sample dashlet.  j-dashlet id= hello-world  title= Hello world! \n     template \n         !-- This will be the HTML content of your dashlet  -- \n         !-- Think template as user interface layer of your dashlet -- \n         h1 /h1 \n     /template \n     script \n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n     /script  /j-dashlet   Above code snippet defines  hello-world  custom element which inherits from  jdash.Dashlet  class.  You can also use this element directly inside yout HTML.  hello-world /hello-world", 
+            "text": "Jdash uses W3C custom elements spec for dashlet development.   On top of this spec we developed a component framework to make dashlet development easier.  Here is a sample dashlet.  j-dashlet id= hello-world  title= Hello world! \n     template \n         !-- This will be the HTML content of your dashlet  -- \n         !-- Think template as user interface layer of your dashlet -- \n         h1 /h1 \n     /template \n     script \n\n        // An optional javascript function allows you implement\n        // your business logic.\n        jdash.define(function () {\n\n            this.initialized = function () {\n                // Dom is ready!\n                var h1 = this.querySelector('h1')\n                h1.textContent = 'Hello World!';\n            }\n        })\n     /script  /j-dashlet   Above code snippet defines  hello-world  custom element which inherits from  jdash.Dashlet  class.  You can also use this element directly inside your HTML.  hello-world /hello-world", 
             "title": "Custom elements"
         }, 
         {
@@ -297,7 +262,7 @@
         }, 
         {
             "location": "/backend/", 
-            "text": "Backend Development\n\n\nGetting Started", 
+            "text": "Backend Development\n\n\nUsing JDash Cloud\n\n\nTo get more information about Jdash Cloud and authentication see \nJdash Cloud\n.\n\n\nNodeJS\n\n\nTo use Jdash on your own servers with your NodeJs application see \nNodeJs Development\n.\n\n\nNet Core\n\n\nTo use Jdash on your own servers with your Net Core application see \nNetCore Development\n.", 
             "title": "Backend Home"
         }, 
         {
@@ -306,24 +271,94 @@
             "title": "Backend Development"
         }, 
         {
-            "location": "/backend/#getting-started", 
-            "text": "", 
-            "title": "Getting Started"
+            "location": "/backend/#using-jdash-cloud", 
+            "text": "To get more information about Jdash Cloud and authentication see  Jdash Cloud .", 
+            "title": "Using JDash Cloud"
+        }, 
+        {
+            "location": "/backend/#nodejs", 
+            "text": "To use Jdash on your own servers with your NodeJs application see  NodeJs Development .", 
+            "title": "NodeJS"
+        }, 
+        {
+            "location": "/backend/#net-core", 
+            "text": "To use Jdash on your own servers with your Net Core application see  NetCore Development .", 
+            "title": "Net Core"
         }, 
         {
             "location": "/backend/jdash-cloud/", 
+            "text": "JDash Cloud\n\n\nWhat is JDash Cloud?\n\n\nJDash Cloud is an api service which keeps all of your dashboard and dashlet configurations of your users. This allows you, as a developer, focus on dashlet development and user experience.\n\n\nHow Can I Use JDash Cloud Services?\n\n\nTo use JDash Cloud \nregister as a new user\n. After registration you will get an api key and test user token. \n\n\nApi key uniquely identifies your application. Usertoken is used to authenticate end user. \n\n\nAuthenticating users\n\n\nWe use Json Web Token(JTW) standard for authenticating your users for our Jdash Cloud. For more information about Json Web Token go to \nhttps://jwt.io\n.\n\n\nFor your JWT Payload we need 2 Claims :\n     \n\n        \n\n            Subject (sub)\n            \n\n                Your API Key will go here.\n            \n\n        \n\n        \n\n            Data (data)\n            \n\n                Your extra data will go here. This Data Property Must have a \"user\" property defines your user issued with this token.\n            \n\n        \n\n    \n\n\nWith these claims you will also need to sign token with your secret key that you have got from \nJDash Cloud Applications Page\n.\n\n\nYour JWT Payload should look like:\n\n\n{\n    data: {\n        user: \nUSERNAME OR USERID\n\n    },\n    sub: \nYOUR API KEY\n\n}\n\n\n\n\nPlease see  \nNodeJS Development\n or \n.Net Core Development\n for examples.\n\n\nIntegrating your server application to JDash Cloud\n\n\nBefore proceeding here please read \nGetting Started\n section first.\n\n\nLets say you have successfully created your backend authorization code at uri : \"/jdashauth?user=user1\".\n\n\nOn jdash.Provider.init function of jdash you will have to make some changes like below\n\n\n     jdash.Provider.init({\n            apiKey: 'YOUR API KEY',\n            userToken: function(tokenCallback){\n                // make a XMLHttpRequest (aka Ajax call)\n                // you can use any ajax library ie $.ajax, we are just using basic stuff\n                var xhr = new XMLHttpRequest();\n                xhr.onreadystatechange = function() {\n                    if (xhr.readyState == 4 \n xhr.status == 200) {\n                        // response JWT text will be passed to the JDash Token Callback\n                        tokenCallback(xhr.responseText);\n                    }\n                }\n                xhr.open('GET', '/jdashauth?user=user1', true);\n                xhr.send();\n            }\n        })\n\n\n\n\nIf the response is a valid JWT, JDash will use this JWT for authentication unless it expires. \n\n\nNotes:\n\n\n1- JDash will call userToken function when it needs a new token (initial token request or renewal of expired JWT).\n\n\n2- JDash JWT must be signed with a symmetric algorithm (Preffered  \"HS256\" algorithm). \n\n\n3- You can use any other claims instead of Data property and its values.\n\n\n4- You can use any headers / any header values such as expiration time.", 
+            "title": "JDash Cloud"
+        }, 
+        {
+            "location": "/backend/jdash-cloud/#jdash-cloud", 
             "text": "", 
             "title": "JDash Cloud"
         }, 
         {
+            "location": "/backend/jdash-cloud/#what-is-jdash-cloud", 
+            "text": "JDash Cloud is an api service which keeps all of your dashboard and dashlet configurations of your users. This allows you, as a developer, focus on dashlet development and user experience.", 
+            "title": "What is JDash Cloud?"
+        }, 
+        {
+            "location": "/backend/jdash-cloud/#how-can-i-use-jdash-cloud-services", 
+            "text": "To use JDash Cloud  register as a new user . After registration you will get an api key and test user token.   Api key uniquely identifies your application. Usertoken is used to authenticate end user.", 
+            "title": "How Can I Use JDash Cloud Services?"
+        }, 
+        {
+            "location": "/backend/jdash-cloud/#authenticating-users", 
+            "text": "We use Json Web Token(JTW) standard for authenticating your users for our Jdash Cloud. For more information about Json Web Token go to  https://jwt.io .  For your JWT Payload we need 2 Claims :\n      \n         \n            Subject (sub)\n             \n                Your API Key will go here.\n             \n         \n         \n            Data (data)\n             \n                Your extra data will go here. This Data Property Must have a \"user\" property defines your user issued with this token.\n             \n         \n      With these claims you will also need to sign token with your secret key that you have got from  JDash Cloud Applications Page .  Your JWT Payload should look like:  {\n    data: {\n        user:  USERNAME OR USERID \n    },\n    sub:  YOUR API KEY \n}  Please see   NodeJS Development  or  .Net Core Development  for examples.", 
+            "title": "Authenticating users"
+        }, 
+        {
+            "location": "/backend/jdash-cloud/#integrating-your-server-application-to-jdash-cloud", 
+            "text": "Before proceeding here please read  Getting Started  section first.  Lets say you have successfully created your backend authorization code at uri : \"/jdashauth?user=user1\".  On jdash.Provider.init function of jdash you will have to make some changes like below       jdash.Provider.init({\n            apiKey: 'YOUR API KEY',\n            userToken: function(tokenCallback){\n                // make a XMLHttpRequest (aka Ajax call)\n                // you can use any ajax library ie $.ajax, we are just using basic stuff\n                var xhr = new XMLHttpRequest();\n                xhr.onreadystatechange = function() {\n                    if (xhr.readyState == 4   xhr.status == 200) {\n                        // response JWT text will be passed to the JDash Token Callback\n                        tokenCallback(xhr.responseText);\n                    }\n                }\n                xhr.open('GET', '/jdashauth?user=user1', true);\n                xhr.send();\n            }\n        })  If the response is a valid JWT, JDash will use this JWT for authentication unless it expires.", 
+            "title": "Integrating your server application to JDash Cloud"
+        }, 
+        {
+            "location": "/backend/jdash-cloud/#notes", 
+            "text": "1- JDash will call userToken function when it needs a new token (initial token request or renewal of expired JWT).  2- JDash JWT must be signed with a symmetric algorithm (Preffered  \"HS256\" algorithm).   3- You can use any other claims instead of Data property and its values.  4- You can use any headers / any header values such as expiration time.", 
+            "title": "Notes:"
+        }, 
+        {
             "location": "/backend/nodejs-dev/", 
-            "text": "", 
+            "text": "NodeJS Development\n\n\nThis article is about installing and using Jdash server libraries on your backend. If you decide to use Jdash Cloud you can skip this.\n\n\nIntegrate JDash server libraries into your existing NodeJs application is easy. \n\n\nStep 1: Install JDash-Express\n\n\nUse npm to install Jdash express library.\n\n\nnpm install jdash-express --save\n\n\n\n\nThis will create node_modules/jdash-express folder.\n\n\nNote: If this is the first time you use npm to add a package first execute npm init to create a package.json.\n\n\nStep 2: Attaching jdash-express middleware to your application\n\n\nIt is pretty easy to attach jdash your express application via jdash-express npm package. All you have to do is below\n\n\n// require jexpress and load the package\nvar jexpress = require('jdash-express'); \n\n// create a router for jdash\nvar jdashRoutes = express.Router();\n\n// jexpress acts as a middleware for specified route.\n// configura jexpress with router and user callback\n    jexpress({\n        principal: function (request) {\n            return {\n                user: request.user.id, // user identifier you must give this value unique per user\n                appid: request.app_id.toString() // if you have multiple applications you must give this value , otherwise just write your own application name.\n            }\n        },\n        provider: null // we will explain provider details below.\n    }).use(jdashRoutes);\n\n\n\n\nAbove code sample will attach jexpress api routes to the router you provided. Attach router to app?\n\n\nUsing providers\n\n\nCurrently Jdash supports MongoDB and MySQL to store and retreive dashboard data.\n\n\nYou can use \nprovider\n setting to configure \njdash-express\n library. \n\n\nUsing MongoDB\n\n\nvar mongoose = require('mongoose');\nvar jmongo = require('jdash-mongodb').default;\n\nvar connStr = 'Your connection string goes here'\nvar connection = mongoose.createConnection(connStr);\nconnection.on('connected',function()  {\n    jexpress({\n        principal: ....\n        provider: jmongo({\n            connection: connection\n        })\n    }).use(jdashRoutes);\n})\n\n\n\n\nUsing MySQL\n\n\nvar mysql = require('mysql');\nvar jmysql = require('jdash-mysqldb').default;\n\nvar connection = mysql.createPool({\n    connectionLimit: 100,\n    host: 'localhost',\n    port: 3306,\n    user: 'root',\n    password: '1234',\n    database: 'jdash_local'\n});\n\njexpress({\n        principal: ....\n        provider: jmysql({\n            connection: connection\n        })\n}).use(jdashRoutes);\n\n\n\n\n\nUsing jdash-auth-jwt for authorizing jdash-cloud requests.\n\n\n/// installation part for jdash-jwt\n\n\nYou must first install jsonwebtoken npm package \n\n\nnpm install jsonwebtoken --save\n\n/// install jdash-auth-jwt here\n\n\n\njdash-auth-jwt has interface below.\n\n\n    interface ITokenOptions {\n        secret: string;\n        apikey: string;\n        expirationInSeconds?: number;\n    }\n\n    userToken(user: string | Object, options: ITokenOptions): Promise\nstring\n;\n\n\n\n\nYou just require jdas-auth-jwt with default property. \n\n\n    var jdashAuth = require('jdash-auth-jwt').default;\n\n    var jwt = jdashAuth.userToken(user /* string or object */ , {\n        secret: /* your secret key */\n        apikey: /* your api key */,\n        expirationInSeconds: /* optional */\n    });\n\n\n\n\nJDash-Cloud will use this generated jwt for authorization of your users.\n\n\n(Please see  \nJDash Cloud\n for details.)", 
             "title": "NodeJS Development"
         }, 
         {
-            "location": "/backend/aspnet-mvc-dev/", 
-            "text": "", 
-            "title": "Asp.Net MVC Development"
+            "location": "/backend/nodejs-dev/#nodejs-development", 
+            "text": "This article is about installing and using Jdash server libraries on your backend. If you decide to use Jdash Cloud you can skip this.  Integrate JDash server libraries into your existing NodeJs application is easy.", 
+            "title": "NodeJS Development"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/#step-1-install-jdash-express", 
+            "text": "Use npm to install Jdash express library.  npm install jdash-express --save  This will create node_modules/jdash-express folder.  Note: If this is the first time you use npm to add a package first execute npm init to create a package.json.", 
+            "title": "Step 1: Install JDash-Express"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/#step-2-attaching-jdash-express-middleware-to-your-application", 
+            "text": "It is pretty easy to attach jdash your express application via jdash-express npm package. All you have to do is below  // require jexpress and load the package\nvar jexpress = require('jdash-express'); \n\n// create a router for jdash\nvar jdashRoutes = express.Router();\n\n// jexpress acts as a middleware for specified route.\n// configura jexpress with router and user callback\n    jexpress({\n        principal: function (request) {\n            return {\n                user: request.user.id, // user identifier you must give this value unique per user\n                appid: request.app_id.toString() // if you have multiple applications you must give this value , otherwise just write your own application name.\n            }\n        },\n        provider: null // we will explain provider details below.\n    }).use(jdashRoutes);  Above code sample will attach jexpress api routes to the router you provided. Attach router to app?", 
+            "title": "Step 2: Attaching jdash-express middleware to your application"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/#using-providers", 
+            "text": "Currently Jdash supports MongoDB and MySQL to store and retreive dashboard data.  You can use  provider  setting to configure  jdash-express  library.", 
+            "title": "Using providers"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/#using-mongodb", 
+            "text": "var mongoose = require('mongoose');\nvar jmongo = require('jdash-mongodb').default;\n\nvar connStr = 'Your connection string goes here'\nvar connection = mongoose.createConnection(connStr);\nconnection.on('connected',function()  {\n    jexpress({\n        principal: ....\n        provider: jmongo({\n            connection: connection\n        })\n    }).use(jdashRoutes);\n})", 
+            "title": "Using MongoDB"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/#using-mysql", 
+            "text": "var mysql = require('mysql');\nvar jmysql = require('jdash-mysqldb').default;\n\nvar connection = mysql.createPool({\n    connectionLimit: 100,\n    host: 'localhost',\n    port: 3306,\n    user: 'root',\n    password: '1234',\n    database: 'jdash_local'\n});\n\njexpress({\n        principal: ....\n        provider: jmysql({\n            connection: connection\n        })\n}).use(jdashRoutes);", 
+            "title": "Using MySQL"
+        }, 
+        {
+            "location": "/backend/nodejs-dev/#using-jdash-auth-jwt-for-authorizing-jdash-cloud-requests", 
+            "text": "/// installation part for jdash-jwt  You must first install jsonwebtoken npm package   npm install jsonwebtoken --save\n\n/// install jdash-auth-jwt here  jdash-auth-jwt has interface below.      interface ITokenOptions {\n        secret: string;\n        apikey: string;\n        expirationInSeconds?: number;\n    }\n\n    userToken(user: string | Object, options: ITokenOptions): Promise string ;  You just require jdas-auth-jwt with default property.       var jdashAuth = require('jdash-auth-jwt').default;\n\n    var jwt = jdashAuth.userToken(user /* string or object */ , {\n        secret: /* your secret key */\n        apikey: /* your api key */,\n        expirationInSeconds: /* optional */\n    });  JDash-Cloud will use this generated jwt for authorization of your users.  (Please see   JDash Cloud  for details.)", 
+            "title": "Using jdash-auth-jwt for authorizing jdash-cloud requests."
         }, 
         {
             "location": "/backend/net-core-dev/", 

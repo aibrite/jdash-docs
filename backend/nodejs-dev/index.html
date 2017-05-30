@@ -142,12 +142,6 @@
                         
                             
 <li >
-    <a href="../aspnet-mvc-dev/">Asp.Net MVC Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../net-core-dev/">Net Core Development</a>
 </li>
 
@@ -172,7 +166,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../aspnet-mvc-dev/">
+                        <a rel="prev" href="../net-core-dev/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -188,11 +182,126 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="first-level active"><a href="#nodejs-development">NodeJS Development</a></li>
+        
+            <li class="second-level"><a href="#step-1-install-jdash-express">Step 1: Install JDash-Express</a></li>
+            
+        
+            <li class="second-level"><a href="#step-2-attaching-jdash-express-middleware-to-your-application">Step 2: Attaching jdash-express middleware to your application</a></li>
+            
+                <li class="third-level"><a href="#using-providers">Using providers</a></li>
+            
+        
+            <li class="second-level"><a href="#using-jdash-auth-jwt-for-authorizing-jdash-cloud-requests">Using jdash-auth-jwt for authorizing jdash-cloud requests.</a></li>
+            
+        
+    
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<h1 id="nodejs-development">NodeJS Development</h1>
+<p>This article is about installing and using Jdash server libraries on your backend. If you decide to use Jdash Cloud you can skip this.</p>
+<p>Integrate JDash server libraries into your existing NodeJs application is easy. </p>
+<h2 id="step-1-install-jdash-express">Step 1: Install JDash-Express</h2>
+<p>Use npm to install Jdash express library.</p>
+<pre><code class="no-highlight">npm install jdash-express --save
+</code></pre>
+
+<p>This will create node_modules/jdash-express folder.</p>
+<p>Note: If this is the first time you use npm to add a package first execute npm init to create a package.json.</p>
+<h2 id="step-2-attaching-jdash-express-middleware-to-your-application">Step 2: Attaching jdash-express middleware to your application</h2>
+<p>It is pretty easy to attach jdash your express application via jdash-express npm package. All you have to do is below</p>
+<pre><code class="javascript">// require jexpress and load the package
+var jexpress = require('jdash-express'); 
+
+// create a router for jdash
+var jdashRoutes = express.Router();
+
+// jexpress acts as a middleware for specified route.
+// configura jexpress with router and user callback
+    jexpress({
+        principal: function (request) {
+            return {
+                user: request.user.id, // user identifier you must give this value unique per user
+                appid: request.app_id.toString() // if you have multiple applications you must give this value , otherwise just write your own application name.
+            }
+        },
+        provider: null // we will explain provider details below.
+    }).use(jdashRoutes);
+</code></pre>
+
+<p>Above code sample will attach jexpress api routes to the router you provided. Attach router to app?</p>
+<h3 id="using-providers">Using providers</h3>
+<p>Currently Jdash supports MongoDB and MySQL to store and retreive dashboard data.</p>
+<p>You can use <code>provider</code> setting to configure <code>jdash-express</code> library. </p>
+<h4 id="using-mongodb">Using MongoDB</h4>
+<pre><code class="typescript">var mongoose = require('mongoose');
+var jmongo = require('jdash-mongodb').default;
+
+var connStr = 'Your connection string goes here'
+var connection = mongoose.createConnection(connStr);
+connection.on('connected',function()  {
+    jexpress({
+        principal: ....
+        provider: jmongo({
+            connection: connection
+        })
+    }).use(jdashRoutes);
+})
+</code></pre>
+
+<h4 id="using-mysql">Using MySQL</h4>
+<pre><code class="typescript">var mysql = require('mysql');
+var jmysql = require('jdash-mysqldb').default;
+
+var connection = mysql.createPool({
+    connectionLimit: 100,
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '1234',
+    database: 'jdash_local'
+});
+
+jexpress({
+        principal: ....
+        provider: jmysql({
+            connection: connection
+        })
+}).use(jdashRoutes);
+
+</code></pre>
+
+<h2 id="using-jdash-auth-jwt-for-authorizing-jdash-cloud-requests">Using jdash-auth-jwt for authorizing jdash-cloud requests.</h2>
+<p>/// installation part for jdash-jwt</p>
+<p>You must first install jsonwebtoken npm package </p>
+<pre><code>npm install jsonwebtoken --save
+
+/// install jdash-auth-jwt here
+</code></pre>
+<p>jdash-auth-jwt has interface below.</p>
+<pre><code class="typescript">    interface ITokenOptions {
+        secret: string;
+        apikey: string;
+        expirationInSeconds?: number;
+    }
+
+    userToken(user: string | Object, options: ITokenOptions): Promise&lt;string&gt;;
+</code></pre>
+
+<p>You just require jdas-auth-jwt with default property. </p>
+<pre><code class="javascript">    var jdashAuth = require('jdash-auth-jwt').default;
+
+    var jwt = jdashAuth.userToken(user /* string or object */ , {
+        secret: /* your secret key */
+        apikey: /* your api key */,
+        expirationInSeconds: /* optional */
+    });
+</code></pre>
+
+<p>JDash-Cloud will use this generated jwt for authorization of your users.</p>
+<p>(Please see  <a href="../jdash-cloud/">JDash Cloud</a> for details.)</p></div>
         
     </div>
 

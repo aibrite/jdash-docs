@@ -142,12 +142,6 @@
                         
                             
 <li >
-    <a href="../aspnet-mvc-dev/">Asp.Net MVC Development</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../net-core-dev/">Net Core Development</a>
 </li>
 
@@ -188,11 +182,89 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="first-level active"><a href="#jdash-cloud">JDash Cloud</a></li>
+        
+            <li class="second-level"><a href="#what-is-jdash-cloud">What is JDash Cloud?</a></li>
+            
+        
+            <li class="second-level"><a href="#how-can-i-use-jdash-cloud-services">How Can I Use JDash Cloud Services?</a></li>
+            
+        
+            <li class="second-level"><a href="#authenticating-users">Authenticating users</a></li>
+            
+        
+            <li class="second-level"><a href="#integrating-your-server-application-to-jdash-cloud">Integrating your server application to JDash Cloud</a></li>
+            
+                <li class="third-level"><a href="#notes">Notes:</a></li>
+            
+        
+    
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<h1 id="jdash-cloud">JDash Cloud</h1>
+<h2 id="what-is-jdash-cloud">What is JDash Cloud?</h2>
+<p>JDash Cloud is an api service which keeps all of your dashboard and dashlet configurations of your users. This allows you, as a developer, focus on dashlet development and user experience.</p>
+<h2 id="how-can-i-use-jdash-cloud-services">How Can I Use JDash Cloud Services?</h2>
+<p>To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. </p>
+<p>Api key uniquely identifies your application. Usertoken is used to authenticate end user. </p>
+<h2 id="authenticating-users">Authenticating users</h2>
+<p>We use Json Web Token(JTW) standard for authenticating your users for our Jdash Cloud. For more information about Json Web Token go to <a href="https://jwt.io" target="_blank">https://jwt.io</a>.</p>
+<p>For your JWT Payload we need 2 Claims :
+     <ul>
+        <li>
+            Subject (sub)
+            <ul>
+                Your API Key will go here.
+            </ul>
+        </li>
+        <li>
+            Data (data)
+            <ul>
+                Your extra data will go here. This Data Property Must have a "user" property defines your user issued with this token.
+            </ul>
+        </li>
+    </ul></p>
+<p>With these claims you will also need to sign token with your secret key that you have got from <a href="http://app.jdash.io/#!/app/application/" target="_blank">JDash Cloud Applications Page</a>.</p>
+<p>Your JWT Payload should look like:</p>
+<pre><code class="javascript">{
+    data: {
+        user: &quot;USERNAME OR USERID&quot;
+    },
+    sub: &quot;YOUR API KEY&quot;
+}
+</code></pre>
+
+<p>Please see  <a href="../nodejs-dev/">NodeJS Development</a> or <a href="../net-core-dev/">.Net Core Development</a> for examples.</p>
+<h2 id="integrating-your-server-application-to-jdash-cloud">Integrating your server application to JDash Cloud</h2>
+<p>Before proceeding here please read <a href="../../client/getting-started/">Getting Started</a> section first.</small></p>
+<p>Lets say you have successfully created your backend authorization code at uri : "/jdashauth?user=user1".</p>
+<p>On jdash.Provider.init function of jdash you will have to make some changes like below</p>
+<pre><code class="javascript">     jdash.Provider.init({
+            apiKey: 'YOUR API KEY',
+            userToken: function(tokenCallback){
+                // make a XMLHttpRequest (aka Ajax call)
+                // you can use any ajax library ie $.ajax, we are just using basic stuff
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+                        // response JWT text will be passed to the JDash Token Callback
+                        tokenCallback(xhr.responseText);
+                    }
+                }
+                xhr.open('GET', '/jdashauth?user=user1', true);
+                xhr.send();
+            }
+        })
+</code></pre>
+
+<p>If the response is a valid JWT, JDash will use this JWT for authentication unless it expires. </p>
+<h4 id="notes">Notes:</h4>
+<p>1- JDash will call userToken function when it needs a new token (initial token request or renewal of expired JWT).</p>
+<p>2- JDash JWT must be signed with a symmetric algorithm (Preffered  "HS256" algorithm). </p>
+<p>3- You can use any other claims instead of Data property and its values.</p>
+<p>4- You can use any headers / any header values such as expiration time. </p></div>
         
     </div>
 
