@@ -48,11 +48,15 @@ You can use `provider` setting to configure `jdash-express` library.
 
 #### Using MongoDB
 
+```no-highlight
+npm install jdash-mongodb --save
+```
+
 ```typescript
 var mongoose = require('mongoose');
 var jmongo = require('jdash-mongodb').default;
 
-var connStr = 'Your connection string goes here'
+var connStr = 'Your connection string goes here';
 var connection = mongoose.createConnection(connStr);
 connection.on('connected',function()  {
     jexpress({
@@ -65,6 +69,11 @@ connection.on('connected',function()  {
 ```
 
 #### Using MySQL
+
+```no-highlight
+npm install jdash-mysqldb --save
+```
+
 ```typescript
 var mysql = require('mysql');
 var jmysql = require('jdash-mysqldb').default;
