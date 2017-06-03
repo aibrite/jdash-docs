@@ -324,3 +324,12 @@ url : '/jdash/api/v1'  is default route listener for your server. You need to co
     </script>
 
 ```
+
+
+## Step 4 : Run Your Application
+
+Now everything is ready, it is time to boot your application. Open your command prompt/bash  and just write 
+
+        dotnet run
+
+Now go to your http://localhost:{port}/dashboard  page and check your first JDash application.
