@@ -4,9 +4,18 @@ This article is about installing and using JDash server libraries on your backen
 
 Integrating JDash server libraties into your existing .Net Core Web Api/MVC application is easy.
 
+# Prerequisites
+
+You need to install .Net Core SDK on your server and development machine. For more information please take a look at 
+<a href="https://www.google.com.tr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjWxeiE1abUAhUCI1AKHbt-AwsQFggoMAA&url=https%3A%2F%2Fwww.microsoft.com%2Fnet%2Fcore&usg=AFQjCNF5LT5GJQX-gEcZ9hsYN4ls1aAsdA">Microsoft's .NET Core Installation Page.</a>
+
 # Preparing Your Server Side
 
 ## Step 1 : Add JDash.NetCore References To Your Project
+
+### If You Are Using Visual Studio
+
+Create new empty Asp.Net Core MVC Project (MVC chosen for client implementation, you can also use an empty project for only server sided - API calls).
 
 You need to add 2 basic references to your application to get JDash going
 
@@ -25,6 +34,27 @@ To Install MSSQL Provider :
 To Install MySQL Provider :
 
     Install-Package JDash.NetCore.Provider.MySQL
+
+If these providers wont fill your needs you can always implement your own provider via interface below:
+
+    JDash.NetCore.Models.IJDashPersistenceProvider
+
+
+### If You Are Using other IDE (Like VS Code, JetBrains Rider)
+
+Create a simple web application via 
+    
+    dotnet new web
+
+Add latest references trough your package manager from nuget
+
+     JDash.NetCore.Api
+
+Add presistence provider reference which suits your application 
+
+    JDash.NetCore.Provider.MsSQL
+    JDash.NetCore.Provider.MySQL
+
 
 If these providers wont fill your needs you can always implement your own provider via interface below:
 
@@ -85,7 +115,7 @@ With this class, we can give our configuration to JDash, it will also handle you
         }
 
 
-        public override JDashPrincipalResult GetJDashPrincipal(string authorizationHeader)
+        public override JDashPrincipal GetPrincipal(string authorizationHeader)
         {
             var context = this.HttpContext; // gets current context for http request of JDash.
             // You can use authorization header to check current user (see token authorization for JDash). If you are using cookies authentication, you can simply get username from 
@@ -93,10 +123,10 @@ With this class, we can give our configuration to JDash, it will also handle you
             // this.HttpContext.User.Identity.Name
 
             // appid is for multiple applications, if you have only 1 application, you can just write your application name there (appid must be filled).
-            return new JDashPrincipalResult() { appid = "application name", user = "current user name must be determined here" };
+            return new JDashPrincipal(user : "current user name must be determined here" );
         }
 
-        public override IJDashPersistenceProvider GetPersistanceProvider()
+        public override IJDashProvider GetProvider()
         {
             // Here we are using MsSqlProvider for JDash from package 
             // JDash.NetCore.Provider.MsSQL.JSQLProvider
@@ -108,11 +138,11 @@ With this class, we can give our configuration to JDash, it will also handle you
 
 ```
 
-### JDashPrincipalResult GetJDashPrincipal(string authorizationHeader)
+### JDashPrincipal GetPrincipal(string authorizationHeader)
 
         With this method, we will call it from our controller when we need a user information. You can either use the default this.HttpContext.User.Identity.Name (forms authentication) or implement your own authentication mechanic for JDash.
 
-### IJDashPersistenceProvider GetPersistanceProvider()
+### IJDashProvider GetProvider()
 
         With this method, we will need you to create a persistance provider instance that is implementing IJDashPersistenceProvider. 
 
@@ -121,7 +151,7 @@ With this class, we can give our configuration to JDash, it will also handle you
 
 Currently JDash supports MSSQL an MySQL to store and retrieve dashboard data.
 
-You can use the ``` BaseJDashConfigurator.GetPersistanceProvider() ``` method to determine the persistance provider you will use as the implementation details shown at "Step 2: Implementing JDash.NetCore To Your Application"
+You can use the ``` BaseJDashConfigurator.GetProvider() ``` method to determine the persistance provider you will use as the implementation details shown at "Step 2: Implementing JDash.NetCore To Your Application"
 
 You can use these built-in packages as reference for your application :
 
@@ -329,8 +359,10 @@ url : '/jdash/api/v1'  is default route listener for your server. You need to co
 
 ## Step 4 : Run Your Application
 
-Now everything is ready, it is time to boot your application. Open your command prompt/bash  and just write 
-
+Now everything is ready, it is time to boot your application. Open your command prompt/bash and just write 
+        dotnet restore
         dotnet run
+
+or if you have visual studio you can just start your application with F5.
 
 Now go to your http://localhost:{port}/dashboard  page and check your first JDash application.
