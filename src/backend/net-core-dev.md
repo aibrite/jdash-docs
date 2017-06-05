@@ -40,10 +40,6 @@ In your Startup.cs file :
         //add below usings above code to your code
         using JDash.NetCore.Api; 
         using JDash.NetCore.Models;
-
-        // also add below usings for persistance providers for your requirements
-        using JDash.NetCore.Provider.MsSQL; // JSQLProvider 
-        using JDash.NetCore.Provider.MySQL; // JMySQLProvider
 ```
 
 After adding these usings above, just add a single simple line below your "Configure" method.
@@ -73,6 +69,11 @@ Create a new class file with name JDashConfigurator and derive it from JDash.Net
 With this class, we can give our configuration to JDash, it will also handle your user authentication for jdash and also this is where you decide to use which Persistence provider you will use.
 
 ```c#
+        // add below usings for persistance providers for your requirements
+        using JDash.NetCore.Provider.MsSQL; // JSQLProvider 
+        using JDash.NetCore.Provider.MySQL; // JMySQLProvider
+
+
     public class JDashConfigurator : BaseJDashConfigurator
     { 
         public JDashConfigurator(HttpContext context)
@@ -142,9 +143,9 @@ Interface so that you can easily integrate your own provider yourself.
 This section of this guide is for .Net MVC. The purpose is to show you how to create a simple "Hello World" Dashlet with support by your backend.
 
 ## Step 1 : Install JDash Client
-Use npm to install Jdash client library.
+Use npm to install Jdash client library, inside your ``wwwroot`` folder.
 
-        npm install jdash-ui --save
+        npm install --save https://github.com/aibrite/jdash-ui.git
 
 This will create node_modules/jdash-ui folder.
 
