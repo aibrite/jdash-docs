@@ -168,35 +168,33 @@ If you want another data provider, you can also implement it yourself by using
 Interface so that you can easily integrate your own provider yourself.
 
 
-# Preparing Client Side
+# Using Jdash client UI with your backend
 
-This section of this guide is for .Net MVC. The purpose is to show you how to create a simple "Hello World" Dashlet with support by your backend.
+## Step 1: Install JDash UI package
+Use npm to install Jdash user interface package. Ensure you are inside ``wwwroot`` folder.
 
-## Step 1 : Install JDash Client
-Use npm to install Jdash client library, inside your ``wwwroot`` folder.
-
-        npm install --save https://github.com/aibrite/jdash-ui.git
-
-This will create node_modules/jdash-ui folder.
-
-Note: If this is the first time you use npm to add a package first execute npm init to create a package.json.
-
-## Step 2 : Create a Dashboard Controller And Its View
-
-The controller is as simple as this is :
-
-```c# 
-       public class DashboardController : Controller
-    { 
-        public IActionResult Index()
-        {
-            return View();
-        }
-    }
+```no-highlight
+cd wwwroot
+npm install jdash-ui --save
 ```
 
-Below we will add jdash js and our components to the view
-Your view (Dashboard/Index.cshtml) should be like : 
+Note: If this is the first time you use npm to add a package first execute `npm init` to create package.json file.
+
+## Step 2: Create a dashboard controller 
+
+To get static content add a controller to your app.
+
+```csharp
+public class DashboardController : Controller
+{ 
+    public IActionResult Index()
+    {
+        return View();
+    }
+}
+```
+
+Copy below HTML content inside your view (Dashboard/Index.cshtml). 
 
 ```html
 @{
@@ -226,27 +224,14 @@ Your view (Dashboard/Index.cshtml) should be like :
 
 ```
 
-## Step 3 : Write your "Hello-World" dashlet
+## Step 3: Develop "Hello-World" dashlet
 
-To start your first dashlet definition you can write your dashlet definition at the bottom of head section of your html like this, below code will add a simple hello world dashlet definition. The initialize method will be called for each instance of dashlet.
+Inside `<body>` use `j-dashlet` tag to define a simple dashlet.
+
 
 
 ```html 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>JDash Tutorial</title>
-
-    <!-- jdash client library -->
-    <script src="node_modules/jdash-ui/dist/jdash.min.js"></script>
-
-    <!-- jdash theme & elements -->
-    <link rel="import" href="node_modules/jdash-ui/dist/components/jdash.html">
-
+<body class="j-light-gray j-padding">
     <j-dashlet id="hello-world" title="Hello world!">
         <template>
             <!-- This will be the HTML content of your dashlet  -->
@@ -264,23 +249,16 @@ To start your first dashlet definition you can write your dashlet definition at 
             })
         </script>
     </j-dashlet>
-</head>
-
-<body class="j-light-gray j-padding">
-
 </body>
 
 </html>
 
 ```
+### Add some buttons 
 
-### Adding Your Buttons to control JDash
-
-Insert these lines to your html body 
-
+After defining your dashlet inside `body` add some buttons.
 
 ```html
-<body class="j-light-gray j-padding">
     <button id="createDashboardBtn">Create Dashboard</button>
     <button id="addDashletBtn">Add Dashlet</button>
     <div id="dashboardList"></div>
@@ -289,69 +267,63 @@ Insert these lines to your html body
 
 ### Binding events to jdash
 
-Add these srcripts at the bottom your body.
-
-For your OnPremise server provider , you need to add the below line for your application.
-
-     jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' });
-
-url : '/jdash/api/v1'  is default route listener for your server. You need to configure this on both here and server side (app.UseJDash<>()  takes a parameter for listening path ) to change this endpoint.
-
+After body tag add below javascript code.
 
 ```javascript 
  <script>
-        jdash.ready(function () {
-            var dashboardlist = document.getElementById("dashboardList"); 
-            var dashboard = document.getElementById("dashboard"); // our j-dashboard instance
-            dashboard.style.display = 'none'; // hide dashboard for initialization
+jdash.ready(function () {
+    var dashboardlist = document.getElementById("dashboardList"); 
+    var dashboard = document.getElementById("dashboard"); // our j-dashboard instance
+    dashboard.style.display = 'none'; // hide dashboard for initialization
 
-            jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // defining server provider
-            jdash.Provider.init({ // init function must be called
-                userToken: function (callback) {  // this method must be implemented and this will allow you to create your
-                // authorization header with "Bearer " prefix for jdash requests.
-                // You do not have to specify authorization if you are not using stateless http or cookie authentication
-                    callback(null, 'authorization token If Will Be Used'); // callback must be called with first parameter is error info (null if no error). Second parameter can be empty string or a server generated authorization token.
-                }
-            });
+    jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
 
-            jdash.Provider.getMyDashboards().then(function (dashboards) { // get dashboards of current user
+    jdash.Provider.init({ // init function must be called
+        userToken: function (callback) {  // this method must be implemented and this will allow you to create your
+        // authorization header with "Bearer " prefix for jdash requests.
+        // You do not have to specify authorization if you are not using stateless http or cookie authentication
+            callback(null, 'authorization token If Will Be Used'); // callback must be called with first parameter is error info (null if no error). Second parameter can be empty string or a server generated authorization token.
+        }
+    });
 
-                for (var i = 0; i < dashboards.data.length; i++) {
-                    var dashboardInfo = dashboards.data[i];
-                    var newButton = document.createElement("button");
-                    newButton.innerText = "Dashboard : " + dashboardInfo.title;
-                    newButton.onclick = (function (id) {
-                        return function () {
-                            dashboard.load(id); // load the dashboard
-                            dashboard.style.display = '';
-                        }
-                    })(dashboardInfo.id);
+    jdash.Provider.getMyDashboards().then(function (dashboards) { // get dashboards of current user
 
-                    dashboardlist.appendChild(newButton);
-
-                }
-            });
-
-            document.querySelector('#createDashboardBtn').addEventListener('click', function () {
-                var title = window.prompt('Set a title for new dashboard');
-
-                // Create a new dashboard
-                jdash.Provider.createDashboard({
-                    title: title
-                }).then(function (result) {
-                    console.log('Dashboard created with id:' + result.id);
-                    dashboard.load(result.id); // load created dashboard
+        for (var i = 0; i < dashboards.data.length; i++) {
+            var dashboardInfo = dashboards.data[i];
+            var newButton = document.createElement("button");
+            newButton.innerText = "Dashboard : " + dashboardInfo.title;
+            newButton.onclick = (function (id) {
+                return function () {
+                    dashboard.load(id); // load the dashboard
                     dashboard.style.display = '';
-                }).catch(function (err) {
-                    alert('There was an error creating dashboard: ' + err.message || err)
-                })
-            });
+                }
+            })(dashboardInfo.id);
 
-            // add hello world dashlet to dashboard
-            document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
-                dashboard.addDashlet('hello-world'); // add dashlet to both client and server persistence.
-            });
-        });
+            dashboardlist.appendChild(newButton);
+
+        }
+    });
+
+    document.querySelector('#createDashboardBtn').addEventListener('click', function () {
+        var title = window.prompt('Set a title for new dashboard');
+
+        // Create a new dashboard
+        jdash.Provider.createDashboard({
+            title: title
+        }).then(function (result) {
+            console.log('Dashboard created with id:' + result.id);
+            dashboard.load(result.id); // load created dashboard
+            dashboard.style.display = '';
+        }).catch(function (err) {
+            alert('There was an error creating dashboard: ' + err.message || err)
+        })
+    });
+
+    // add hello world dashlet to dashboard
+    document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
+        dashboard.addDashlet('hello-world'); // add dashlet to both client and server persistence.
+    });
+});
     </script>
 
 ```
