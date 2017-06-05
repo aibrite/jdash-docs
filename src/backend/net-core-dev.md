@@ -1,6 +1,6 @@
 # .Net Core Development
 
-This article is about installing and using JDash server libraries on your backend. If you decide to use JDash Cloud, you can skip this section.
+This article is about installing and using JDash server libraries on your backend. 
 
 Integrating JDash server libraties into your existing .Net Core Web Api/MVC application is easy.
 
@@ -36,7 +36,7 @@ We made JDash pretty easy and configurable so that you can implement it easily. 
 
 In your Startup.cs file :
  
-```c#
+```csharp
         //add below usings above code to your code
         using JDash.NetCore.Api; 
         using JDash.NetCore.Models;
@@ -44,7 +44,7 @@ In your Startup.cs file :
 
 After adding these usings above, just add a single simple line below your "Configure" method.
 
-```c#
+```csharp
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
              // .. removed redundant code 
@@ -68,7 +68,7 @@ Create a new class file with name JDashConfigurator and derive it from JDash.Net
 
 With this class, we can give our configuration to JDash, it will also handle your user authentication for jdash and also this is where you decide to use which Persistence provider you will use.
 
-```c#
+```csharp
         // add below usings for persistance providers for your requirements
         using JDash.NetCore.Provider.MsSQL; // JSQLProvider 
         using JDash.NetCore.Provider.MySQL; // JMySQLProvider
@@ -131,7 +131,7 @@ You can use these built-in packages as reference for your application :
 
 If you want another data provider, you can also implement it yourself by using 
 
-```c# 
+```csharp
         JDash.NetCore.Models.IJDashPersistenceProvider
 ```
 

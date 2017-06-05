@@ -27,33 +27,44 @@ var jexpress = require('jdash-express');
 var jdashRoutes = express.Router();
 
 // jexpress acts as a middleware for specified route.
-// configura jexpress with router and user callback
+// configure jexpress with router and user callback
     jexpress({
         principal: function (request) {
             return {
-                user: request.user.id, // user identifier you must give this value unique per user
-                appid: request.app_id.toString() // if you have multiple applications you must give this value , otherwise just write your own application name.
+                user: request.user.id, // user which makes this request
+                appid:  "myapp" 
             }
         },
         provider: null // we will explain provider details below.
     }).use(jdashRoutes);
 ```
 
-Above code sample will attach jexpress api routes to the router you provided. Attach router to app?
+Above code sample will attach jexpress api routes to the router you provided. 
+
+### Setting a principal and application name
+Use `principal` property of configuration object to set a user name for current request. This value is used to get the user which makes Jdash api request.
+
+You also need to provide an application name. Application name allows to use same database instance for different applications. 
 
 ### Using providers
-Currently Jdash supports MongoDB and MySQL to store and retreive dashboard data.
+Providers are NodeJs modules which allows to retrieve and persist dashboard data i.e. dashlet configurations, layouts and so on.
 
-You can use `provider` setting to configure `jdash-express` library. 
+Currently Jdash has two providers for MongoDB and MySQL.
 
-#### Using MongoDB
+#### Using MongoDB with Jdash 
+
+Use npm to install Jdash MongoDb provider.
+```no-highlight
+npm install jdash-mongodb --save
+```
 
 ```typescript
 var mongoose = require('mongoose');
 var jmongo = require('jdash-mongodb').default;
 
-var connStr = 'Your connection string goes here'
+var connStr = 'Your connection string goes here';
 var connection = mongoose.createConnection(connStr);
+
 connection.on('connected',function()  {
     jexpress({
         principal: ....
@@ -64,7 +75,12 @@ connection.on('connected',function()  {
 })
 ```
 
-#### Using MySQL
+#### Using MySQL with Jdash
+Use npm to install Jdash MySQL provider.
+```no-highlight
+npm install jdash-mysqldb --save
+```
+
 ```typescript
 var mysql = require('mysql');
 var jmysql = require('jdash-mysqldb').default;
@@ -86,3 +102,4 @@ jexpress({
 }).use(jdashRoutes);
 
 ```
+## Step 3: Configuring Jdash UI Provider
