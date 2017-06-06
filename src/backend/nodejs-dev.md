@@ -87,6 +87,10 @@ Use npm to install Jdash MongoDb provider.
 npm install jdash-mongodb --save
 ```
 
+```no-highlight
+npm install jdash-mongodb --save
+```
+
 ```typescript
 var mongoose = require('mongoose');
 var jmongo = require('jdash-mongodb').default;
@@ -113,6 +117,7 @@ connection.on('connected', function () {
 
 #### Using MySQL with Jdash
 Use npm to install Jdash MySQL provider.
+
 ```no-highlight
 npm install jdash-mysqldb --save
 ```

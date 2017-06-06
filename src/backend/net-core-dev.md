@@ -7,7 +7,7 @@ Integrating JDash server libraties into your existing .Net Core Web Api/MVC appl
 # Prerequisites
 
 You need to install .Net Core SDK on your server and development machine. For more information please take a look at 
-<a href="https://www.google.com.tr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjWxeiE1abUAhUCI1AKHbt-AwsQFggoMAA&url=https%3A%2F%2Fwww.microsoft.com%2Fnet%2Fcore&usg=AFQjCNF5LT5GJQX-gEcZ9hsYN4ls1aAsdA">Microsoft's .NET Core Installation Page.</a>
+<a href="https://www.microsoft.com/net/core">Microsoft's .NET Core Installation Page.</a>
 
 # Preparing Your Server Side
 
