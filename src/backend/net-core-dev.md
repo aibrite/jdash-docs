@@ -13,7 +13,7 @@ You need to install .Net Core SDK on your server and development machine. For mo
 
 ## Step 1 : Add JDash.NetCore References To Your Project
 
-### If You Are Using Visual Studio
+#### If You Are Using Visual Studio
 
 Create new empty Asp.Net Core MVC Project (MVC chosen for client implementation, you can also use an empty project for only server sided - API calls).
 
@@ -40,7 +40,7 @@ If these providers wont fill your needs you can always implement your own provid
     JDash.NetCore.Models.IJDashPersistenceProvider
 
 
-### If You Are Using other IDE (Like VS Code, JetBrains Rider)
+#### If You Are Using other IDE (Like VS Code, JetBrains Rider)
 
 Create a simple web application via 
     
@@ -78,13 +78,10 @@ After adding these usings above, just add a single simple line below your "Confi
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
              // .. removed redundant code 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
 
+            app.UseDefaultFiles(); // to serve a static index.html file.
+            app.UseStaticFiles();
+        
             app.UseJDash<JDashConfigurator>(); // add this line to your application
         }
 
@@ -180,26 +177,15 @@ npm install jdash-ui --save
 
 Note: If this is the first time you use npm to add a package first execute `npm init` to create package.json file.
 
-## Step 2: Create a dashboard controller 
+## Step 2: Create a new index.html file inside your ``wwwroot`` folder
 
-To get static content add a controller to your app.
+As we are only interested in server side on this section of tutorial. We will give a static html file sample. You can use mvc/razor to generate dynamic content to suit your needs.
 
-```csharp
-public class DashboardController : Controller
-{ 
-    public IActionResult Index()
-    {
-        return View();
-    }
-}
-```
+Copy below HTML content inside your index.html file. 
 
-Copy below HTML content inside your view (Dashboard/Index.cshtml). 
+To learn more about client side development is, please see [Client Development](../client/index.md) for examples.
 
 ```html
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -214,28 +200,12 @@ Copy below HTML content inside your view (Dashboard/Index.cshtml).
 
     <!-- jdash theme & elements -->
     <link rel="import" href="node_modules/jdash-ui/dist/components/jdash.html">
-</head>
 
-<body class="j-light-gray j-padding">
-
-</body>
-
-</html>
-
-```
-
-## Step 3: Develop "Hello-World" dashlet
-
-Inside `<body>` use `j-dashlet` tag to define a simple dashlet.
-
-
-
-```html 
-<body class="j-light-gray j-padding">
     <j-dashlet id="hello-world" title="Hello world!">
         <template>
             <!-- This will be the HTML content of your dashlet  -->
             <h1></h1>
+            <div>Naber</div>
         </template>
         <script>
             jdash.define(function () {
@@ -249,85 +219,84 @@ Inside `<body>` use `j-dashlet` tag to define a simple dashlet.
             })
         </script>
     </j-dashlet>
+
+</head>
+
+<body class="j-light-gray j-padding">
+    <button id="createDashboardBtn">Create Dashboard</button>
+    <button id="addDashletBtn">Add Dashlet</button>
+    <div id="dashboardList"></div>
+
+    <j-dashboard id="dashboard" j-view-mode="dashletedit">
+        <h2 j-bind="title"></h2>
+    </j-dashboard>
+
+    <script>
+        jdash.ready(function () {
+            jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // this line here binds your server to client.
+
+            var dashboardlist = document.getElementById("dashboardList");
+            var dashboard = document.getElementById("dashboard");
+            dashboard.style.display = 'none';
+
+            jdash.Provider.init({
+                userToken: function (callback) {
+                    callback(null, 'authorizationToken If Will Be Used');
+                }
+            });
+
+            jdash.Provider.getMyDashboards().then(function (dashboards) {
+
+                for (var i = 0; i < dashboards.data.length; i++) {
+                    var dashboardInfo = dashboards.data[i];
+                    var newButton = document.createElement("button");
+                    newButton.innerText = "Dashboard : " + dashboardInfo.title;
+                    newButton.onclick = (function (id) {
+                        return function () {
+                            dashboard.load(id);
+                            dashboard.style.display = '';
+                        }
+                    })(dashboardInfo.id);
+
+                    dashboardlist.appendChild(newButton);
+
+                }
+            });
+
+            document.querySelector('#createDashboardBtn').addEventListener('click', function () {
+                var title = window.prompt('Set a title for new dashboard');
+
+                // Create a new dashboard
+                jdash.Provider.createDashboard({
+                    title: title
+                }).then(function (result) {
+                    console.log('Dashboard created with id:' + result.id);
+                    dashboard.load(result.id);
+                    dashboard.style.display = '';
+                }).catch(function (err) {
+                    alert('There was an error creating dashboard: ' + err.message || err)
+                })
+            });
+
+            // add hello world dashlet to dashboard
+            document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
+                dashboard.addDashlet('hello-world');
+            });
+        });
+    </script>
 </body>
 
 </html>
 
 ```
-### Add some buttons 
-
-After defining your dashlet inside `body` add some buttons.
-
-```html
-    <button id="createDashboardBtn">Create Dashboard</button>
-    <button id="addDashletBtn">Add Dashlet</button>
-    <div id="dashboardList"></div>
-</body>
-```
 
 ### Binding events to jdash
 
-After body tag add below javascript code.
-
-```javascript 
- <script>
-jdash.ready(function () {
-    var dashboardlist = document.getElementById("dashboardList"); 
-    var dashboard = document.getElementById("dashboard"); // our j-dashboard instance
-    dashboard.style.display = 'none'; // hide dashboard for initialization
-
-    jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
-
-    jdash.Provider.init({ // init function must be called
-        userToken: function (callback) {  // this method must be implemented and this will allow you to create your
-        // authorization header with "Bearer " prefix for jdash requests.
-        // You do not have to specify authorization if you are not using stateless http or cookie authentication
-            callback(null, 'authorization token If Will Be Used'); // callback must be called with first parameter is error info (null if no error). Second parameter can be empty string or a server generated authorization token.
-        }
-    });
-
-    jdash.Provider.getMyDashboards().then(function (dashboards) { // get dashboards of current user
-
-        for (var i = 0; i < dashboards.data.length; i++) {
-            var dashboardInfo = dashboards.data[i];
-            var newButton = document.createElement("button");
-            newButton.innerText = "Dashboard : " + dashboardInfo.title;
-            newButton.onclick = (function (id) {
-                return function () {
-                    dashboard.load(id); // load the dashboard
-                    dashboard.style.display = '';
-                }
-            })(dashboardInfo.id);
-
-            dashboardlist.appendChild(newButton);
-
-        }
-    });
-
-    document.querySelector('#createDashboardBtn').addEventListener('click', function () {
-        var title = window.prompt('Set a title for new dashboard');
-
-        // Create a new dashboard
-        jdash.Provider.createDashboard({
-            title: title
-        }).then(function (result) {
-            console.log('Dashboard created with id:' + result.id);
-            dashboard.load(result.id); // load created dashboard
-            dashboard.style.display = '';
-        }).catch(function (err) {
-            alert('There was an error creating dashboard: ' + err.message || err)
-        })
-    });
-
-    // add hello world dashlet to dashboard
-    document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
-        dashboard.addDashlet('hello-world'); // add dashlet to both client and server persistence.
-    });
-});
-    </script>
-
-```
-
+For js client to know about your backend endpoint, you just have to write 1 line of javascript code at the beginning of jdash.ready event like below, this will make client provider work with your backend instead of default cloud provider.
+ 
+     jdash.ready(function () {
+            jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // this line here binds your 
+     });
 
 ## Step 4 : Run Your Application
 
@@ -337,4 +306,4 @@ Now everything is ready, it is time to boot your application. Open your command 
 
 or if you have visual studio you can just start your application with F5.
 
-Now go to your http://localhost:{port}/dashboard  page and check your first JDash application.
+Now go to your http://localhost:{port}/dashboard  page and check your first JDash application. 
