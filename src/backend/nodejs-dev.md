@@ -32,8 +32,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname));
 
 
-// Start listening port 3000
-app.listen(3000, function () {
+// Start listening port 3001
+app.listen(3001, function () {
 
 })
 ```
@@ -61,7 +61,7 @@ jexpress({
 // Use this router
 app.use('/jdash/api/v1', jdashRoutes);
 
-app.listen(3000, function () {
+app.listen(3001, function () {
 
 })
 ```
