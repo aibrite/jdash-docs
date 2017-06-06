@@ -1,8 +1,8 @@
 # NodeJS Development
 
-This article is about installing and using Jdash NodeJs modules on your backend. 
+This article is about installing and using Jdash NodeJs packages on your backend. 
 
-If you want to use Jdash Cloud for storing dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
+If you want to use Jdash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
 
 ## Step 1: Initial setup

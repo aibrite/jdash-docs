@@ -1,173 +1,149 @@
 # .Net Core Development
 
-This article is about installing and using JDash server libraries on your backend. 
+This article is about installing and using Jdash NetCore libraries on your backend. 
 
-Integrating JDash server libraties into your existing .Net Core Web Api/MVC application is easy.
+If you want to use Jdash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
-# Prerequisites
+## Prerequisites
 
-You need to install .Net Core SDK on your server and development machine. For more information please take a look at 
-<a href="https://www.microsoft.com/net/core">Microsoft's .NET Core Installation Page.</a>
+Before preceding this tutorial ensure you have installed .Net Core SDK on your development machine. For more information see
+<a target="_blank" href="https://www.microsoft.com/net/core">Microsoft's .NET Core Installation Page.</a>
 
-# Preparing Your Server Side
+## Step 1 : Add JDash.NetCore references 
 
-## Step 1 : Add JDash.NetCore References To Your Project
+### If you are using Visual Studio
 
-#### If You Are Using Visual Studio
+Use File | New Project | Asp.Net Core Web Application menu to create an empty project.
 
-Create new empty Asp.Net Core MVC Project (MVC chosen for client implementation, you can also use an empty project for only server sided - API calls).
+Use Nuget Package Manager Console window to add Jdash NetCore library references to your project.  
 
-You need to add 2 basic references to your application to get JDash going
+```no-highlight
+Install-Package JDash.NetCore.Api
+Install-Package JDash.NetCore.Provider.MsSQL
+Install-Package JDash.NetCore.Provider.MySQL
+Install-Package Microsoft.AspNetCore.StaticFiles
+```
 
-    1- JDash.NetCore.Api
+### If you are using code editors
+If you are using Vs Code or similar code editors you can use ``dotnet`` command to create a basic web application structure.
 
-To Install JDash.NetCore.Api, all you have to do is installing a nuget package from your nuget package manager console : 
+```no-highlight
+dotnet new web
+```
 
-    Install-Package JDash.NetCore.Api
+This will create an application with default configuration.
 
-For persistence, we have 2 default providers you can use : 
+Open .csproj file and add Jdash references.
 
-To Install MSSQL Provider :
-
-    Install-Package JDash.NetCore.Provider.MsSQL
-     
-To Install MySQL Provider :
-
-    Install-Package JDash.NetCore.Provider.MySQL
-
-If these providers wont fill your needs you can always implement your own provider via interface below:
-
-    JDash.NetCore.Models.IJDashPersistenceProvider
-
-
-#### If You Are Using other IDE (Like VS Code, JetBrains Rider)
-
-Create a simple web application via 
+```xml
+<ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     
-    dotnet new web
+    <!-- Add below references -->
+    <PackageReference Include="JDash.NetCore.Api" Version="*" />
+    <PackageReference Include="JDash.NetCore.Provider.MsSQL" Version="*" />
+    <PackageReference Include="JDash.NetCore.Provider.MySQL" Version="*" />
 
-Add latest references trough your package manager from nuget
+    <!-- We also need this assembly to serve static files for this tutorial -->    
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
 
-     JDash.NetCore.Api
+</ItemGroup>
+```
+## Step 2: Implement configuration class
+Jdash NetCore uses a configuration class to configure authentication and provider settings. 
 
-Add presistence provider reference which suits your application 
+Below is a sample configuration class.
 
-    JDash.NetCore.Provider.MsSQL
-    JDash.NetCore.Provider.MySQL
-
-
-If these providers wont fill your needs you can always implement your own provider via interface below:
-
-    JDash.NetCore.Models.IJDashPersistenceProvider
-
-## Step 2 : Implementing JDash.NetCore To Your Application
-
-We made JDash pretty easy and configurable so that you can implement it easily. Mosft of your work done via javascript and this .Net Core libraries are used for persistance and/if needed authorization layer only.
-
-In your Startup.cs file :
- 
 ```csharp
-//add below usings above code to your code
+
+public class JDashConfig: BaseJDashConfigurator {
+
+    public JDashConfigurator(HttpContext context) : base(context)
+    {
+    }
+
+    // Use this method to get current user for current request.
+    public override JDashPrincipal GetPrincipal()
+    {            
+        return new JDashPrincipal("current-user");
+    }
+
+    // Jdash NetCore library calls this method 
+    // to get a provider instance.
+    public override IJDashProvider GetProvider()
+    {
+         // Ensure you have a valid database.
+         
+        string connectionString = "Your SQL Server connection string";
+        return new JSQLProvider(connectionString);
+
+        // if you are using MySql uncomment below lines.
+        // string mySqlConnStr = "Server=127.0.01;Database=jdash;Uid=root;Pwd=1;";
+        // return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+    }
+}
+
+```
+
+## Step 3: Registering Jdash Api end points
+Open Startup.cs and paste below namespaces first. This will add extension methods.
+
+```csharp
 using JDash.NetCore.Api; 
 using JDash.NetCore.Models;
 ```
 
-After adding these usings above, just add a single simple line below your "Configure" method.
+Locate ``Configure`` method of your ``Startup`` class and replace it as below.
 
 ```csharp
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-             // .. removed redundant code 
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
 
-            app.UseDefaultFiles(); // to serve a static index.html file.
-            app.UseStaticFiles();
-        
-            app.UseJDash<JDashConfigurator>(); // add this line to your application
-        }
-
-```
-
-## Step 3 : Implementing Configurator and Setting Provider and Autharization System
-
-At step 2, we added this simple line : `app.UseJDash<JDashConfigurator>();` , Now it is time to implement our JDashConfigurator class.
-
-Create a new class file with name JDashConfigurator and derive it from JDash.NetCore.Api.BaseJDashConfigurator
-
-With this class, we can give our configuration to JDash, it will also handle your user authentication for jdash and also this is where you decide to use which Persistence provider you will use.
-
-```csharp
-        // add below usings for persistance providers for your requirements
-        using JDash.NetCore.Provider.MsSQL; // JSQLProvider 
-        using JDash.NetCore.Provider.MySQL; // JMySQLProvider
-
-
-    public class JDashConfigurator : BaseJDashConfigurator
-    { 
-        public JDashConfigurator(HttpContext context)
-         : base(context)
-        {
-            this.EnsureTablesCreated = true; // defaults to true.. It will check whether tables are created,
-                                             // if not creates them. 
-            // You can disable this feature by setting this property false;                                             
-        }
-
-
-        public override JDashPrincipal GetPrincipal(string authorizationHeader)
-        {
-            var context = this.HttpContext; // gets current context for http request of JDash.
-            // You can use authorization header to check current user (see token authorization for JDash). If you are using cookies authentication, you can simply get username from 
-            
-            // this.HttpContext.User.Identity.Name
-
-            // appid is for multiple applications, if you have only 1 application, you can just write your application name there (appid must be filled).
-            return new JDashPrincipal(user : "current user name must be determined here" );
-        }
-
-        public override IJDashProvider GetProvider()
-        {
-            // Here we are using MsSqlProvider for JDash from package 
-            // JDash.NetCore.Provider.MsSQL.JSQLProvider
-
-            var provider = new JSQLProvider(connectionString: "some connection string");
-            return provider;
-        }
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
     }
 
+    // use index.html as default.
+    app.UseDefaultFiles(); 
+
+    // serve static content.
+    app.UseStaticFiles(); 
+
+    // register Jdash routes.
+    app.UseJDash<JDashConfig>(); 
+}
+
 ```
-
-### JDashPrincipal GetPrincipal(string authorizationHeader)
-
-        With this method, we will call it from our controller when we need a user information. You can either use the default this.HttpContext.User.Identity.Name (forms authentication) or implement your own authentication mechanic for JDash.
-
-### IJDashProvider GetProvider()
-
-        With this method, we will need you to create a persistance provider instance that is implementing IJDashPersistenceProvider. 
-
-
-### Using providers
-
-Currently JDash supports MSSQL an MySQL to store and retrieve dashboard data.
-
-You can use the ``` BaseJDashConfigurator.GetProvider() ``` method to determine the persistance provider you will use as the implementation details shown at "Step 2: Implementing JDash.NetCore To Your Application"
-
-You can use these built-in packages as reference for your application :
-
-    1- JDash.NetCore.Provider.MsSQL 
-    2- JDash.NetCore.Provider.MySQL 
-
-
-If you want another data provider, you can also implement it yourself by using 
+Also call AddMvc extension method inside ConfigureServices.
 
 ```csharp
-        JDash.NetCore.Models.IJDashPersistenceProvider
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+} 
 ```
 
-Interface so that you can easily integrate your own provider yourself.
+## Step 4: Restoring packages and test run
 
+Use ``dotnet restore`` command to restore project references. After succesfully restoring references use ``dotnet run`` to run your project. 
 
-# Using Jdash client UI with your backend
+```no-highlight
+dotnet restore
+dotnet run
+```
 
-## Step 1: Install JDash UI package
+Now you should see an  output as below.
+
+```no-highlight
+Hosting environment: Production
+Content root path: /Users/aibrite/project/jdash/jdash-netcore-tutorial
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+```
+
+## Step 5: Client side development
 Use npm to install Jdash user interface package. Ensure you are inside ``wwwroot`` folder.
 
 ```no-highlight
@@ -177,16 +153,11 @@ npm install jdash-ui --save
 
 Note: If this is the first time you use npm to add a package first execute `npm init` to create package.json file.
 
-## Step 2: Create a new index.html file inside your ``wwwroot`` folder
+This will create wwwroot/node_modules/jdash-ui folder.
 
-As we are only interested in server side on this section of tutorial. We will give a static html file sample. You can use mvc/razor to generate dynamic content to suit your needs.
-
-Copy below HTML content inside your index.html file. 
-
-To learn more about client side development is, please see [Client Development](../client/index.md) for examples.
+Create index.html inside wwwroot folder and paste below code.
 
 ```html
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -200,29 +171,49 @@ To learn more about client side development is, please see [Client Development](
 
     <!-- jdash theme & elements -->
     <link rel="import" href="node_modules/jdash-ui/dist/components/jdash.html">
-
-    <j-dashlet id="hello-world" title="Hello world!">
-        <template>
-            <!-- This will be the HTML content of your dashlet  -->
-            <h1></h1>
-            <div>Naber</div>
-        </template>
-        <script>
-            jdash.define(function () {
-
-                this.initialized = function () {
-                    // Dom is ready!
-                    var h1 = this.querySelector('h1')
-                    h1.textContent = 'Hello World!';
-                }
-
-            })
-        </script>
-    </j-dashlet>
-
 </head>
 
 <body class="j-light-gray j-padding">
+
+</body>
+
+</html>
+```
+
+### Step 6: Develop your first dashlet
+You use `j-dashlet` element to define a dashlet. 
+
+Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. An optional `script` element inside `j-dashlet` can be used to execute javascript for this dashlet. 
+
+Copy the following code inside body tag. 
+
+```html
+<!-- Define <hello-world> dashlet -->
+<j-dashlet id="hello-world" title="Hello world!">
+    <template>
+        <!-- This will be the HTML content of your dashlet  -->
+        <h1></h1>
+    </template>
+    <script>
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+                var h1 = this.querySelector('h1')
+                h1.textContent = 'Hello World!';
+            }
+
+        })
+    </script>
+</j-dashlet>
+```
+
+### Step 7: Create and display dashboard
+Use `j-dashboard` element to display a dashboard. 
+
+Inside `body` tag add following code.
+
+```html
     <button id="createDashboardBtn">Create Dashboard</button>
     <button id="addDashletBtn">Add Dashlet</button>
     <div id="dashboardList"></div>
@@ -230,80 +221,80 @@ To learn more about client side development is, please see [Client Development](
     <j-dashboard id="dashboard" j-view-mode="dashletedit">
         <h2 j-bind="title"></h2>
     </j-dashboard>
-
-    <script>
-        jdash.ready(function () {
-            jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // this line here binds your server to client.
-
-            var dashboardlist = document.getElementById("dashboardList");
-            var dashboard = document.getElementById("dashboard");
-            dashboard.style.display = 'none';
-
-            jdash.Provider.init({
-                userToken: function (callback) {
-                    callback(null, 'authorizationToken If Will Be Used');
-                }
-            });
-
-            jdash.Provider.getMyDashboards().then(function (dashboards) {
-
-                for (var i = 0; i < dashboards.data.length; i++) {
-                    var dashboardInfo = dashboards.data[i];
-                    var newButton = document.createElement("button");
-                    newButton.innerText = "Dashboard : " + dashboardInfo.title;
-                    newButton.onclick = (function (id) {
-                        return function () {
-                            dashboard.load(id);
-                            dashboard.style.display = '';
-                        }
-                    })(dashboardInfo.id);
-
-                    dashboardlist.appendChild(newButton);
-
-                }
-            });
-
-            document.querySelector('#createDashboardBtn').addEventListener('click', function () {
-                var title = window.prompt('Set a title for new dashboard');
-
-                // Create a new dashboard
-                jdash.Provider.createDashboard({
-                    title: title
-                }).then(function (result) {
-                    console.log('Dashboard created with id:' + result.id);
-                    dashboard.load(result.id);
-                    dashboard.style.display = '';
-                }).catch(function (err) {
-                    alert('There was an error creating dashboard: ' + err.message || err)
-                })
-            });
-
-            // add hello world dashlet to dashboard
-            document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
-                dashboard.addDashlet('hello-world');
-            });
-        });
-    </script>
 </body>
-
-</html>
-
 ```
 
-### Binding events to jdash
+Add a `script` element after `body` and paste below code.
 
-For js client to know about your backend endpoint, you just have to write 1 line of javascript code at the beginning of jdash.ready event like below, this will make client provider work with your backend instead of default cloud provider.
+```html
+<script>
+    jdash.ready(function () {
+
+        // Set provider
+        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
+
+        // createDashboardList();
+        document.querySelector('#createDashboardBtn').addEventListener('click', function () {
+            var title = window.prompt('Set a title for new dashboard');
  
-     jdash.ready(function () {
-            jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // this line here binds your 
-     });
+            // Create a new dashboard
+            jdash.Provider.createDashboard({
+                title: title
+            }).then(function (result) {
+                console.log('Dashboard created with id:' + result.id);
+                dashboard.load(result.id);
+                //createDashboardList();
+            }).catch(function (err) {
+                alert('There was an error creating dashboard: ' + err.message || err)
+            })
+        })
 
-## Step 4 : Run Your Application
+        // add hello world dashlet to dashboard
+        document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
+            dashboard.addDashlet('hello-world');
+        })
+    })
+</script>
+</body>
+```
 
-Now everything is ready, it is time to boot your application. Open your command prompt/bash and just write 
-        dotnet restore
-        dotnet run
+### Step 8: View dashboards
+As last step we will implement creating buttons to view existing dashboards.
 
-or if you have visual studio you can just start your application with F5.
+`jdash.Provider.getMyDashboards` method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for `userToken` param for `jdash.Provider.init` method.
 
-Now go to your http://localhost:{port}/dashboard  page and check your first JDash application. 
+Add following function inside `script` element.
+
+```javascript
+function createDashboardList() {
+    var container = document.querySelector('#dashboardList');
+
+    // clear existing buttons.
+    container.innerHTML = '';
+    return jdash.Provider.getMyDashboards().then(function (result) {
+
+        // for each dashboard create a button
+        for (var i = 0; i < result.data.length; i++) {
+            var btn = document.createElement('button');
+            btn.textContent = result.data[i].title;
+            btn.id = result.data[i].id;
+            container.appendChild(btn);
+            btn.addEventListener('click', function (e) {
+                var idToLoad = e.target.id;
+                dashboard.load(idToLoad);
+            })
+        }
+    })
+}
+```
+Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.
+
+## Step 9: Run your application
+
+Now go to your http://localhost:5000 and enjoy JDash. 
+
+### Step 10: Download source code
+Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-netcore-tutorial).
+
+
+
