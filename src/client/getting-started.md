@@ -4,7 +4,7 @@
 The aim of this article is to get you up and running with Jdash in 5 minutes.
 
 ### Step 1: Install JDash Client
-Use npm to install Jdash client library.
+Use npm to install Jdash UI package.
 
 ```no-highlight
 npm install jdash-ui --save
@@ -93,7 +93,7 @@ userToken
 :  A string value or function to authenticate your end user to Jdash cloud.
 
 ### Step 5: Create and display dashboard
-You use `j-dashboard` element to display a dashboard. 
+Use `j-dashboard` element to display a dashboard. 
 
 Inside `body` tag, before `<script>` element add following code.
 

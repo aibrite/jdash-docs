@@ -67,9 +67,9 @@ We made JDash pretty easy and configurable so that you can implement it easily. 
 In your Startup.cs file :
  
 ```csharp
-        //add below usings above code to your code
-        using JDash.NetCore.Api; 
-        using JDash.NetCore.Models;
+//add below usings above code to your code
+using JDash.NetCore.Api; 
+using JDash.NetCore.Models;
 ```
 
 After adding these usings above, just add a single simple line below your "Configure" method.
