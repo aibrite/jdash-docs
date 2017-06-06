@@ -1,11 +1,11 @@
 # Dashlet Development
 
-## About dashlets
+## About Dashlets
 In JDash, *Dashlet* means a custom element which consists of Html dom elements and optional business layer.
 
 JDash includes component based custom element development framework. This framework allows you to develop and register custom elements easily.
 
-## Defining dashlets
+## Defining Dashlets
 
 ```html
 <!-- Define <hello-world> element -->
@@ -74,7 +74,7 @@ jdash.define('hello-world', function () {
 </script>
 ```
 
-## Dashlet lifecycle
+## Dashlet Lifecycle
 
 Since JDash uses custom elements as dashlets, same rules for custom elements apply for dashlets.
 
@@ -104,9 +104,9 @@ See <a href=" https://www.w3.org/TR/custom-elements/" target="_blank">W3C Custom
 
 Note: For backward compability we used ES5 style dashlet definition in this document. JDash also supports ES6 and you can use `class` keyword and inherit from `Dashlet` to define your dashlet.
 
-## Configurable dashlets
+## Configurable Dashlets
 
-### Defining editor element
+### Defining Editor Element
 
 Use `j-dashlet-editor` element to define a dashlet editor. Same rules (templates, script, lifecycle etc.) are valid for dashlet editors since they are developed with JDash component framework.
 
@@ -137,7 +137,7 @@ You can override this behaviour by explicitly setting a value to `j-editor` attr
 <j-dashlet id="hello-world" j-editor="my-editor" title="Hello world!"></j-dashlet>
 <j-dashlet-editor id="my-editor"></j-dashlet-editor>
 ```
-### Loading configuration
+### Loading Configuration
 You can set and retrieve configuration values for dashlets. Configuration values are automatically converted to Json and stored on JDash Cloud or on your backend.
 
 ```html

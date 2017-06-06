@@ -1,6 +1,6 @@
 # Working with Dashboards
 
-## j-dashboard element
+## j-dashboard Element
 Use `j-dashboard`element to display an existing dashboard.
 
 ```html
@@ -9,7 +9,7 @@ Use `j-dashboard`element to display an existing dashboard.
 </j-dashboard>
 ```
 
-## Viewing dashboard
+## Viewing Dashboard
 Use `load` method to load (display) a dashboard.
 
 ```typescript
@@ -18,12 +18,12 @@ load(id: string | DashboardModel): Promise<DashboardModel>;
 
 `load`method returns a promise and you can use dashboard id or `DashboardModel`.
 
-As a common scenario you can use jdash.Provider.getMyDashboards method to get a list of dashboard for current user. After a click for a dashboard use `load`method to display selected dashboard.
+As a common scenario, you can use ``jdash.Provider.getMyDashboards`` method to get a list of dashboard for the current user. After a click on a dashboard, use `load` method to display selected dashboard.
 
-Refer to Getting Started for sample usage of `load`method.
+Refer to Getting Started for the sample usage of `load` method.
 
-### About View modes
-A dashboard may have one of the following view modes.
+### About View Modes
+A dashboard may have one of the following view modes:
 
 | View mode       | Description                   |
 | -------------   | -------------------------     |
@@ -39,18 +39,18 @@ Set initialize dashboard view mode use `j-view-mode` attribute of `j-dashboard` 
 </j-dashboard>
 ```
 
-You can also use HTMLElement.setAttribute method to change it later.
+You can also use ``HTMLElement.setAttribute`` method to change it later.
 ```javascript
 var dashboard = document.querySelector('#dashboard');
 dashboard.setAttribute('j-view-mode', 'readonly');
 ```
 
-## Adding dashlets
+## Adding Dashlets
 
 ### Getting a list of available dashlets
-Use jdash.DashletModule.getModules method to get a list of available dashlet elements. Refer to Dashlet Development (next section) for more information about defining dashlets.
+Use ``jdash.DashletModule.getModule`` method to get a list of available dashlet elements. Refer to Dashlet Development (next section) for more information on defining dashlets.
 
-You can use `title`attribute to display a dashlet to user. `id` attribute can be used to create an instance.
+You can use `title` attribute to display a dashlet to user. `id` attribute can be used to create an instance.
 
 ```javascript
 var dashletElements = jdash.DashletModule.getModules();

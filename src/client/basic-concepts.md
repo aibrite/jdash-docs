@@ -4,9 +4,9 @@ Using JDash you can add drag-drop end user designable dashboards to your applica
 
 ## Features
 
-### License Models
+### Licensing Models
 
-There are two license models.
+There are two licensing models.
 
 **JDash Cloud**
 You can use [JDash Cloud](https://app.jdash.io) to store dashboard & dashlet related data. 
@@ -53,7 +53,7 @@ Here is a sample dashlet.
     </script>
 </j-dashlet>
 ```
-Above code snippet defines `hello-world` custom element which inherits from `jdash.Dashlet` class.
+Above code snippet defines `hello-world` custom element, which inherits from `jdash.Dashlet` class.
 
 You can also use this element directly inside your HTML.
 
@@ -74,5 +74,5 @@ Below table shows key elements and descriptions.
 
 Dashboard element contains one layout element and many dashlets inside that layout element. Layout is responsible for managing drag-drop, resizing and saving/loading dashlet positions.
 
-It is also possible to develop new layout elements by inheriting `jdash.DashboardLayout` class. Currently JDash framework contains one layout element: `j-grid-layout`. In future 
+It is also possible to develop new layout elements by inheriting `jdash.DashboardLayout` class. Currently JDash framework contains one layout element: `j-grid-layout`.
 
