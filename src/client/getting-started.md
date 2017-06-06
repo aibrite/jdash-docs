@@ -41,11 +41,13 @@ Create index.html and paste below code inside.
 ```
 
 ### Step 3: Develop your first dashlet
-You use `j-dashlet` element to define a dashlet. 
+Use `j-dashlet` element to define a dashlet. 
 
-Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. An optional `script` element inside `j-dashlet` can be used to execute javascript for this dashlet. That simple & clear!
+Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. 
 
-Copy the following code inside body tag. 
+An optional `script` element inside `j-dashlet` can be used to execute javascript for this dashlet. That simple & clear!
+
+Copy the following code inside `body` tag. 
 
 ```html
 <!-- Define <hello-world> dashlet -->
@@ -58,7 +60,7 @@ Copy the following code inside body tag.
         jdash.define(function () {
 
             this.initialized = function () {
-                // Dom is ready!
+                // Dom is ready! this refers to actual element instance.
                 var h1 = this.querySelector('h1')
                 h1.textContent = 'Hello World!';
             }
@@ -69,9 +71,9 @@ Copy the following code inside body tag.
 ```
 
 ### Step 4: Get a free api key
-JDash cloud can save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.
+JDash cloud can persist and retrieve dashboard data i.e. dashboards, layouts, dashlet configurations and positions.
 
-To use Jdash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. Use them to initialize authentication.
+To use Jdash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. Use them to configure  authentication.
 
 Todo so, add a `script` element just before `</body>` tag.
 
@@ -87,29 +89,28 @@ Todo so, add a `script` element just before `</body>` tag.
 </body>
 ```
 apikey
-:  A string value which identifies your application.
+:  Identifies your application.
 
 userToken
-:  A string value or function to authenticate your end user to Jdash cloud.
+:  A string value or function to identify your end user to Jdash cloud.
 
 ### Step 5: Create and display dashboard
 Use `j-dashboard` element to display a dashboard. 
 
-Inside `body` tag, before `<script>` element add following code.
+Append following code inside `body` tag.
 
 ```html
-<button id="createDashboardBtn">Create Dashboard</button>
-<button id="addDashletBtn">Add Dashlet</button>
-<div id="dashboardList"></div>
+    <button id="createDashboardBtn">Create Dashboard</button>
+    <button id="addDashletBtn">Add Dashlet</button>
+    <div id="dashboardList"></div>
 
-<j-dashboard id="dashboard" j-view-mode="dashletedit">
-    <h2 j-bind="title"></h2>
-</j-dashboard>
+    <j-dashboard id="dashboard" j-view-mode="dashletedit">
+        <h2 j-bind="title"></h2>
+    </j-dashboard>
+</body>
 ```
 
-We also added some buttons to create dashboard and adding dashlets.
-
-Now and event handlers inside `jdash.ready` handler.
+Set event handlers inside `jdash.ready` handler.
 
 ```html
 <script>
@@ -120,6 +121,8 @@ Now and event handlers inside `jdash.ready` handler.
             userToken: 'USER TOKEN'
         })
 
+        // createDashboardList();
+
         document.querySelector('#createDashboardBtn').addEventListener('click', function () {
             var title = window.prompt('Set a title for new dashboard');
  
@@ -128,6 +131,7 @@ Now and event handlers inside `jdash.ready` handler.
                 title: title
             }).then(function (result) {
                 console.log('Dashboard created with id:' + result.id);
+                //createDashboardList();
                 dashboard.load(result.id);
             }).catch(function (err) {
                 alert('There was an error creating dashboard: ' + err.message || err)
@@ -172,7 +176,7 @@ function createDashboardList() {
     })
 }
 ```
-Call this function when page loads or user creates a new dashboard.
+Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.
 
 ### Step 7: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-tutorial).

@@ -1,45 +1,46 @@
 # JDash Cloud
 
 ## What is JDash Cloud?
-JDash Cloud is an api service which keeps all of your dashboard and dashlet configurations of your users. This allows you, as a developer, focus on dashlet development and user experience.
+JDash Cloud is an api service which safely keeps dashboard and dashlet data of your users. This allows you, as a developer, to focus on dashlet development and user experience instead of backend configuration and security.
 
 ## How Can I Use JDash Cloud Services?
-To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. 
+To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and secret. 
 
-Api key uniquely identifies your application. Usertoken is used to authenticate end user. 
+``Api key`` uniquely identifies your application. ``secret`` value is used to encrypt data between your application and Jdash Cloud.
 
-## Authenticating users
-We use Json Web Token(JTW) standard for authenticating your users for our Jdash Cloud. For more information about Json Web Token go to <a href="https://jwt.io" target="_blank">https://jwt.io</a>.
+## Integrating Jdash Cloud into your application
+Jdash uses Json Web Token(JTW) standard for authentication of your application and users. For more information about Json Web Token go to <a href="https://jwt.io" target="_blank">https://jwt.io</a>.
 
-For your JWT Payload we need 2 Claims :
-     <ul>
-        <li>
-            Subject (sub)
-            <ul>
-                Your API Key will go here.
-            </ul>
-        </li>
-        <li>
-            Data (data)
-            <ul>
-                Your extra data will go here. This Data Property Must have a "user" property defines your user issued with this token.
-            </ul>
-        </li>
-    </ul>
+Integrating is pretty easy and just requires of sending ``api key`` and ``user`` values encrypted by using ``secret`. 
 
-With these claims you will also need to sign token with your secret key that you have got from <a href="http://app.jdash.io/#!/app/application/" target="_blank">JDash Cloud Applications Page</a>.
-
-Your JWT Payload should look like:
+A sample JWT Payload should look like:
 ```javascript        
 {
     data: {
-        user: "USERNAME OR USERID"
+        user: "USERNAME OR USERID of your end user"
     },
-    sub: "YOUR API KEY"
+    sub: "API KEY of your application"
 }
 ```
 
-Please see  [NodeJS Development](./nodejs-dev.md) or [.Net Core Development](./net-core-dev.md) for examples.
+As a general design pattern;
+
+On server side:
+
+1. Provide an end point for getting JWT token i.e. ``/auth/jwt``.
+2. Get the authenticated user of this request using your current authentication mechanism (i.e. cookie).
+3. Create a JWT payload and sign this payload with your application's secret value which you got from JDash Cloud.
+
+On client side;
+
+1. Make a request to your JWT end point (i.e. ``/auth/jwt``).
+2. Use Jdash provider callback with the data you got from your athentication end point.
+
+### NodeJs implementation
+
+
+### .Net Core implementation
+
 
 ## Integrating your server application to JDash Cloud
 
