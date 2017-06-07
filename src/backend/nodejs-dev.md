@@ -67,18 +67,18 @@ app.listen(3001, function () {
 ```
 
 ### Setting a principal and application name
-Use `principal` property of `jexpress` configuration object to get user from current request. This value is used to set the user name property of dashboards and dashlets inside database so that each user can have their own dashboards and dashlets.
+Use `principal` property of `jexpress` configuration object to get user from current request. This value is used to set the user name property of dashboards and dashlets inside database, so that each user can have their own dashboards and dashlets.
 
 You also need to provide an application name. Application name allows to use same database instance for different applications. 
 
 ### Using providers
 Providers are NodeJs packages which allows to retrieve and persist dashboard data i.e. dashlet configurations, layouts and so on.
 
-Currently Jdash has two builtin NodeJs packages for MongoDB and MySQL.
+Currently JDash has two built-in NodeJs packages for MongoDB and MySQL.
 
 #### Using MongoDB with Jdash 
 
-Use npm to install Jdash MongoDb NodeJs package.
+Use npm to install JDash MongoDb for NodeJs package.
 
 ```no-highlight
 npm install jdash-mongodb --save
@@ -111,7 +111,7 @@ connection.on('connected', function () {
 ```
 
 #### Using MySQL with Jdash
-Use npm to install Jdash MySQL provider.
+Use npm to install JDash MySQL Provider.
 
 ```no-highlight
 npm install jdash-mysqldb --save
@@ -145,13 +145,13 @@ jexpress({
 ```
 
 ## Step 3: Client side development
-Use npm to install Jdash UI package.
+Use npm to install JDash UI package.
 
 ```no-highlight
 npm install jdash-ui --save
 ```
 
-This will create node_modules/jdash-ui folder.
+This will create ``node_modules/jdash-ui`` folder.
 
 Create index.html inside your project root and paste below code.
 

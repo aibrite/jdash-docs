@@ -6,7 +6,7 @@ If you want to use JDash Cloud to store and manage dashboard related data you ca
 
 ## Prerequisites
 
-Before preceding this tutorial ensure you have installed .Net Core SDK on your development machine. For more information see
+Before proceeding with this tutorial ensure you have installed .Net Core SDK on your development machine. For more information see
 <a target="_blank" href="https://www.microsoft.com/net/core">Microsoft's .NET Core Installation Page.</a>
 
 ## Step 1 : Add JDash.NetCore references 
@@ -291,7 +291,7 @@ Uncomment this function when page loads / user creates a new dashboard so that d
 
 ## Step 9: Run your application
 
-Now go to your http://localhost:5000 and enjoy JDash. 
+Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> and enjoy JDash. 
 
 ### Step 10: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-netcore-tutorial).
