@@ -9,7 +9,9 @@ To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target
 ``Api key`` uniquely identifies your application. ``secret`` value is used to encrypt data between your application and Jdash Cloud.
 
 ## Integrating Jdash Cloud into your application
-Jdash uses Json Web Token(JTW) standard for authentication of your application and users. For more information about Json Web Token go to <a href="https://jwt.io" target="_blank">https://jwt.io</a>.
+Jdash uses Json Web Token (JWT) standard for authentication of your application and users. 
+
+JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties. For more information about Json Web Token go to <a href="https://jwt.io" target="_blank">https://jwt.io</a>.
 
 Integrating is pretty easy and just requires of sending ``api key`` and ``user`` values encrypted by using ``secret`. 
 
@@ -38,76 +40,68 @@ On client side;
 
 ### NodeJs implementation
 
+#### Step 1: Install Json Web Token package
+JWT.IO allows you to decode, verify and generate JWT.
 
-### .Net Core implementation
+```no-highlight
+npm install jsonwebtoken --save
+```
 
-
-## Integrating your server application to JDash Cloud
-
-Before proceeding here please read [Getting Started](../client/getting-started.md) section first.</small>
-
-Lets say you have successfully created your backend authorization code at uri : "/jdashController/authorize".
-
-On jdash.Provider.init function of jdash you will have to make some changes like below
+#### Step 2: Implement JWT end point
+Below NodeJS code demonstrates a sample implementation.
 
 ```javascript
+app.get('/auth/jwt', function (req, res, next) {
+    // Get end user from request based on your 
+    // application's authentication mechanism
+    var enduser = req.user;
+    var jwt = require('jsonwebtoken');
+    jwt.sign({
+        data: {
+            user: enduser /* current user of request */
+        }
+        //}, 'TODO: REPLACE WITH SECRET', {
+    }, 'a9f26c2daeb4e0af693eab1c59d5e9b0', {
+            algorithm: 'HS256',
+            subject: 'TODO: REPLACE WITH APIKEY',
+            subject: '4f20f93e-5004-4daf-a629-76af8f4f9b95',
+            expiresIn: "2h" /* optional but recommended */
+        }, (err, token) => {
+            if (err) {
+                next(new Error(err))
+            } else {
+                res.send(token);
+            }
+        });
+});
+```
+#### Step 3: Use end point on client side
+Inside ``jdash.ready``handler call aboe end point to get a secure JWT token for your end user.
 
-     jdash.Provider.init({
-            apiKey: 'YOUR API KEY',
-            userToken: function(tokenCallback){
-                // make a XMLHttpRequest (aka Ajax call)
-                // you can use any ajax library ie $.ajax, we are just using basic stuff
-
-                jdash.Http.get('jdashController/authorize').then(function(result){
-                    // response must be a jwt string that will be filled to the result.data property.
-                    // response JWT text will be passed to the JDash Token Callback
-                    tokenCallback(result.data);
+```javascript
+jdash.ready(function () {
+        jdash.Provider.init({
+            apiKey: 'API KEY',           
+            userToken: function (tokenCallback) {
+                // make a XMLHttpRequest (aka Ajax call) to your end point
+                // you can use any ajax library ie $.ajax, we are just using axios
+                // response must be a jwt string.
+                jdash.Http.get('auth/jwt').then(function (result) {
+                    // securely set end user
+                    tokenCallback(null, result.data);
+                }, function (err) {
+                    tokenCallback(err);
                 });
             }
         })
+}
 ```
 
-If the response is a valid JWT, JDash will use this JWT for authentication unless it expires. 
-
-## Integration JWT Mechanizm for Backend
-
-Jdash Cloud Supports all backends for authorization, however we are providing node-js and .Net samples here 
-
-### Node-JS JWT Mechanizm
-
-You must first install jsonwebtoken npm package 
-
-    npm install jsonwebtoken --save
-
-This will install jsonwebtoken package for your application.
-
-On your router (express application) you can define your own api path. We simple put sample url "/jdashController/authorize" for the example.
-```javascript
-    router.get('/jdashController/authorize', function(req,res,next){
-        var username = getCurrentUserName();
-        var jwt = require('jsonwebtoken');
-        jwt.sign({
-             data: {
-                 user : username /* your active user */
-             }
-        }, 'YOUR API SECRET', {
-            algorithm: 'HS256',
-            subject: 'YOUR API KEY',
-            expiresIn:  "2h" /* optional but recommended */
-        }, (err, token) => {
-            if(err){
-                next(new Error(err)) 
-            }else { 
-                res.send(token); 
-            }
-        });
-    });
-```
-
-You can find detailed information for jsonwebtoken package <a href="https://github.com/auth0/node-jsonwebtoken" target="_blank">here</a>.
+### Step 4: Download source code
+Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-nodejs-cloud-tutorial).
 
 
-### .Net (C#) JWT Mechanizm 
+### .Net Core implementation
 
 You can use `Jwt.Net` NuGet package <a href="https://www.nuget.org/packages/jose-jwt/" target="_blank" > here </a> or you can find source code on git <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank"> here</a>.  Or you can chose any .Net Libraries listed on <a href="https://jwt.io/#libraries-io">https://jwt.io/#libraries-io</a> 
 
