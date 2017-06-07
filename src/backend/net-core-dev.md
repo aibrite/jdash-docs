@@ -1,8 +1,8 @@
 # .Net Core Development
 
-This article is about installing and using Jdash NetCore libraries on your backend. 
+This article is about installing and using JDash .NetCore libraries on your backend. 
 
-If you want to use Jdash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
+If you want to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ Before preceding this tutorial ensure you have installed .Net Core SDK on your d
 
 Use File | New Project | Asp.Net Core Web Application menu to create an empty project.
 
-Use Nuget Package Manager Console window to add Jdash NetCore library references to your project.  
+Use NuGet Package Manager Console window to add JDash .NetCore library references to your project.  
 
 ```no-highlight
 Install-Package JDash.NetCore.Api
@@ -25,15 +25,15 @@ Install-Package Microsoft.AspNetCore.StaticFiles
 ```
 
 ### If you are using code editors
-If you are using Vs Code or similar code editors you can use ``dotnet`` command to create a basic web application structure.
+If you are using Vs Code or similar code editors, you can use ``dotnet`` command to create a basic web application structure.
 
 ```no-highlight
 dotnet new web
 ```
 
-This will create an application with default configuration.
+This will create an application with the default configuration.
 
-Open .csproj file and add Jdash references.
+Open ``.csproj`` file and add JDash references.
 
 ```xml
 <ItemGroup>
@@ -50,7 +50,7 @@ Open .csproj file and add Jdash references.
 </ItemGroup>
 ```
 ## Step 2: Implement configuration class
-Jdash NetCore uses a configuration class to configure authentication and provider settings. 
+JDash .NetCore uses a configuration class, in order to configure authentication and provider settings. 
 
 Below is a sample configuration class.
 
@@ -86,7 +86,7 @@ public class JDashConfig: BaseJDashConfigurator {
 ```
 
 ## Step 3: Registering Jdash Api end points
-Open Startup.cs and paste below namespaces first. This will add extension methods.
+Open ``Startup.cs`` and paste below namespaces first. This will add extension methods.
 
 ```csharp
 using JDash.NetCore.Api; 
@@ -116,7 +116,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 }
 
 ```
-Also call AddMvc extension method inside ConfigureServices.
+Also call ``AddMvc`` extension method inside ConfigureServices.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -127,14 +127,14 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Step 4: Restoring packages and test run
 
-Use ``dotnet restore`` command to restore project references. After succesfully restoring references use ``dotnet run`` to run your project. 
+Use ``dotnet restore`` command to restore project references. After succesfully restoring references, use ``dotnet run`` to run your project. 
 
 ```no-highlight
 dotnet restore
 dotnet run
 ```
 
-Now you should see an  output as below.
+Now you should see an output as below.
 
 ```no-highlight
 Hosting environment: Production
@@ -144,16 +144,16 @@ Application started. Press Ctrl+C to shut down.
 ```
 
 ## Step 5: Client side development
-Use npm to install Jdash user interface package. Ensure you are inside ``wwwroot`` folder.
+Use ``npm`` to install JDash User Interface package. Ensure you are inside ``wwwroot`` folder.
 
 ```no-highlight
 cd wwwroot
 npm install jdash-ui --save
 ```
 
-Note: If this is the first time you use npm to add a package first execute `npm init` to create package.json file.
+Note: If this is the first time you use npm to add a package, first execute `npm init` to create ``package.json`` file.
 
-This will create wwwroot/node_modules/jdash-ui folder.
+This will create ``wwwroot/node_modules/jdash-ui`` folder.
 
 Create index.html inside wwwroot folder and paste below code.
 
@@ -183,7 +183,7 @@ Create index.html inside wwwroot folder and paste below code.
 ### Step 6: Develop your first dashlet
 You use `j-dashlet` element to define a dashlet. 
 
-Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. An optional `script` element inside `j-dashlet` can be used to execute javascript for this dashlet. 
+Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. An optional `script` element inside `j-dashlet` can be used to execute Javascript for this dashlet. 
 
 Copy the following code inside body tag. 
 
@@ -259,7 +259,7 @@ Add a `script` element after `body` and paste below code.
 ```
 
 ### Step 8: View dashboards
-As last step we will implement creating buttons to view existing dashboards.
+As the last step, we will implement the code to view existing dashboards.
 
 `jdash.Provider.getMyDashboards` method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for `userToken` param for `jdash.Provider.init` method.
 

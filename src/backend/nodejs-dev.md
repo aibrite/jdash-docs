@@ -1,24 +1,24 @@
 # NodeJS Development
 
-This article is about installing and using Jdash NodeJs packages on your backend. 
+This article is about installing and using JDash NodeJs packages on your backend. 
 
-If you want to use Jdash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
+If you want to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
 
 ## Step 1: Initial setup
-Use npm to install Jdash NodeJs packages.
+Use npm to install JDash NodeJs packages.
 
 ```no-highlight
 npm install jdash-express --save
 ```
 
-Note: If this is the first time you use npm to add a package first execute `npm init` to create a package.json.
+Note: If this is the first time you use npm to add a package, first execute `npm init` to create a ``package.json``.
 
 Jdash uses <a target="_blank" href="http://expressjs.com">Express</a>. Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
 ### Basic server application
 
-Below code snippet creates a simple NodeJs application which serves static files from root folder.
+Below code snippet creates a simple NodeJs application, which serves static files from root folder.
 
 ```javascript
 var express = require('express');
@@ -257,7 +257,7 @@ Add a `script` element after `body` and paste below code.
 ```
 
 ### Step 6: View dashboards
-As last step we will implement creating buttons to view existing dashboards.
+As the last step, we will implement the code to view existing dashboards.
 
 `jdash.Provider.getMyDashboards` method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for `userToken` param for `jdash.Provider.init` method.
 
@@ -290,4 +290,4 @@ Uncomment this function when page loads / user creates a new dashboard so that d
 ### Step 7: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-nodejs-tutorial).
 
-If you enjoy Jdash you can continue from Basic Concepts.
+If you enjoy JDash you can continue from Basic Concepts.
