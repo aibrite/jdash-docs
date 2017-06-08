@@ -98,7 +98,7 @@ var connection = mongoose.createConnection(connStr);
 
 // Configure JDash when database connection is ready.
 connection.on('connected', function () {
-    console.log('Connected to the Demo Database.')
+    console.log('Connected to the JDash Demo Mongo Database.')
     jexpress({
         principal: function (request) {
             return {
