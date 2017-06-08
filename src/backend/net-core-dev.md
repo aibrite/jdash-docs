@@ -68,7 +68,7 @@ public class JDashConfig: BaseJDashConfigurator {
         return new JDashPrincipal("current-user");
     }
 
-    // Jdash NetCore library calls this method 
+    // JDash .NetCore library calls this method 
     // to get a provider instance.
     public override IJDashProvider GetProvider()
     {
@@ -85,7 +85,7 @@ public class JDashConfig: BaseJDashConfigurator {
 
 ```
 
-## Step 3: Registering Jdash Api end points
+## Step 3: Registering JDash Api endpoints
 Open ``Startup.cs`` and paste below namespaces first. This will add extension methods.
 
 ```csharp
@@ -111,7 +111,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
     // serve static content.
     app.UseStaticFiles(); 
 
-    // register Jdash routes.
+    // register JDash routes.
     app.UseJDash<JDashConfig>(); 
 }
 
@@ -231,7 +231,7 @@ Add a `script` element after `body` and paste below code.
     jdash.ready(function () {
 
         // Set provider
-        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
+        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your endpoint
 
         // createDashboardList();
         document.querySelector('#createDashboardBtn').addEventListener('click', function () {

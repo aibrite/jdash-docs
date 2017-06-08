@@ -237,7 +237,7 @@ Add a `script` element after `body` and paste below code.
     jdash.ready(function () {
 
         // Set provider
-        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
+        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your endpoint
 
         // createDashboardList();
         document.querySelector('#createDashboardBtn').addEventListener('click', function () {

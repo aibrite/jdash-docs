@@ -31,15 +31,15 @@ As a general design pattern,
 
 On server side:
 
-1. Set up an end point for retrieving JWT token on your application, i.e. ``/auth/jwt``.
+1. Set up an endpoint for retrieving JWT token on your application, i.e. ``/auth/jwt``.
 2. Get the authenticated user of this request using your current authentication mechanism (i.e. cookie).
 3. Create a JWT payload and sign this payload with your application's ``secret`` value, which you received from JDash Cloud.
 4. Send the response to the client side.
 
 On client side:
 
-1. Make a request to your JWT end point (i.e. ``/auth/jwt``).
-2. Use JDash Provider callback with the data you got from your athentication end point.
+1. Make a request to your JWT endpoint (i.e. ``/auth/jwt``).
+2. Use JDash Provider callback with the data you got from your athentication endpoint.
 
 ### NodeJs Implementation
 
@@ -50,7 +50,7 @@ JWT.IO allows you to decode, verify and generate JWT.
 npm install JSONwebtoken --save
 ```
 
-#### Step 2: Implement JWT end point
+#### Step 2: Implement JWT endpoint
 Below NodeJS code demonstrates a sample implementation.
 
 ```javascript
@@ -77,8 +77,8 @@ app.get('/auth/jwt', function (req, res, next) {
         });
 });
 ```
-#### Step 3: Use end point on client side
-Inside ``jdash.ready`` handler, make a call to the above end point to get a secure JWT Token for your end-user.
+#### Step 3: Use endpoint on client side
+Inside ``jdash.ready`` handler, make a call to the above endpoint to get a secure JWT Token for your end-user.
 
 Note that ``jdash.ready`` is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.
 
@@ -87,7 +87,7 @@ jdash.ready(function () {
         jdash.Provider.init({
             apiKey: 'API KEY',           
             userToken: function (tokenCallback) {
-                // make a XMLHttpRequest (aka Ajax call) to your end point
+                // make a XMLHttpRequest (aka Ajax call) to your endpoint
                 // you can use any ajax library ie $.ajax, we are just using axios
                 // response must be a jwt string.
                 jdash.Http.get('auth/jwt').then(function (result) {
