@@ -130,12 +130,6 @@
                         
                             
 <li >
-    <a href="../jdash-cloud/">JDash Cloud</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../nodejs-dev/">NodeJS Development</a>
 </li>
 
@@ -143,6 +137,12 @@
                             
 <li class="active">
     <a href="./">Net Core Development</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../jdash-cloud/">JDash Cloud</a>
 </li>
 
                         
@@ -165,8 +165,8 @@
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="prev" >
+                    <li >
+                        <a rel="prev" href="../jdash-cloud/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -182,11 +182,295 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="first-level active"><a href="#net-core-development">.Net Core Development</a></li>
+        
+            <li class="second-level"><a href="#prerequisites">Prerequisites</a></li>
+            
+        
+            <li class="second-level"><a href="#step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</a></li>
+            
+                <li class="third-level"><a href="#if-you-are-using-visual-studio">If you are using Visual Studio</a></li>
+            
+                <li class="third-level"><a href="#if-you-are-using-code-editors">If you are using code editors</a></li>
+            
+        
+            <li class="second-level"><a href="#step-2-implement-configuration-class">Step 2: Implement configuration class</a></li>
+            
+        
+            <li class="second-level"><a href="#step-3-registering-jdash-api-end-points">Step 3: Registering Jdash Api end points</a></li>
+            
+        
+            <li class="second-level"><a href="#step-4-restoring-packages-and-test-run">Step 4: Restoring packages and test run</a></li>
+            
+        
+            <li class="second-level"><a href="#step-5-client-side-development">Step 5: Client side development</a></li>
+            
+                <li class="third-level"><a href="#step-6-develop-your-first-dashlet">Step 6: Develop your first dashlet</a></li>
+            
+                <li class="third-level"><a href="#step-7-create-and-display-dashboard">Step 7: Create and display dashboard</a></li>
+            
+                <li class="third-level"><a href="#step-8-view-dashboards">Step 8: View dashboards</a></li>
+            
+        
+            <li class="second-level"><a href="#step-9-run-your-application">Step 9: Run your application</a></li>
+            
+                <li class="third-level"><a href="#step-10-download-source-code">Step 10: Download source code</a></li>
+            
+        
+    
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<h1 id="net-core-development">.Net Core Development</h1>
+<p>This article is about installing and using JDash .NetCore libraries on your backend. </p>
+<p>If you want to use JDash Cloud to store and manage dashboard related data you can continue from <a href="../../client/getting-started/">Getting Started</a> section.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before proceeding with this tutorial ensure you have installed .Net Core SDK on your development machine. For more information see
+<a target="_blank" href="https://www.microsoft.com/net/core">Microsoft's .NET Core Installation Page.</a></p>
+<h2 id="step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</h2>
+<h3 id="if-you-are-using-visual-studio">If you are using Visual Studio</h3>
+<p>Use File | New Project | Asp.Net Core Web Application menu to create an empty project.</p>
+<p>Use NuGet Package Manager Console window to add JDash .NetCore library references to your project.  </p>
+<pre><code class="no-highlight">Install-Package JDash.NetCore.Api
+Install-Package JDash.NetCore.Provider.MsSQL
+Install-Package JDash.NetCore.Provider.MySQL
+Install-Package Microsoft.AspNetCore.StaticFiles
+</code></pre>
+
+<h3 id="if-you-are-using-code-editors">If you are using code editors</h3>
+<p>If you are using Vs Code or similar code editors, you can use <code>dotnet</code> command to create a basic web application structure.</p>
+<pre><code class="no-highlight">dotnet new web
+</code></pre>
+
+<p>This will create an application with the default configuration.</p>
+<p>Open <code>.csproj</code> file and add JDash references.</p>
+<pre><code class="xml">&lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore&quot; Version=&quot;1.1.2&quot; /&gt;
+
+    &lt;!-- Add below references --&gt;
+    &lt;PackageReference Include=&quot;JDash.NetCore.Api&quot; Version=&quot;*&quot; /&gt;
+    &lt;PackageReference Include=&quot;JDash.NetCore.Provider.MsSQL&quot; Version=&quot;*&quot; /&gt;
+    &lt;PackageReference Include=&quot;JDash.NetCore.Provider.MySQL&quot; Version=&quot;*&quot; /&gt;
+
+    &lt;!-- We also need this assembly to serve static files for this tutorial --&gt;    
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.StaticFiles&quot; Version=&quot;1.1.2&quot; /&gt;
+
+&lt;/ItemGroup&gt;
+</code></pre>
+
+<h2 id="step-2-implement-configuration-class">Step 2: Implement configuration class</h2>
+<p>JDash .NetCore uses a configuration class, in order to configure authentication and provider settings. </p>
+<p>Below is a sample configuration class.</p>
+<pre><code class="csharp">
+public class JDashConfig: BaseJDashConfigurator {
+
+    public JDashConfigurator(HttpContext context) : base(context)
+    {
+    }
+
+    // Use this method to get current user for current request.
+    public override JDashPrincipal GetPrincipal()
+    {            
+        return new JDashPrincipal(&quot;current-user&quot;);
+    }
+
+    // Jdash NetCore library calls this method 
+    // to get a provider instance.
+    public override IJDashProvider GetProvider()
+    {
+         // Ensure you have a valid database.
+
+        string connectionString = &quot;Your SQL Server connection string&quot;;
+        return new JSQLProvider(connectionString);
+
+        // if you are using MySql uncomment below lines.
+        // string mySqlConnStr = &quot;Server=127.0.01;Database=jdash;Uid=root;Pwd=1;&quot;;
+        // return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+    }
+}
+
+</code></pre>
+
+<h2 id="step-3-registering-jdash-api-end-points">Step 3: Registering Jdash Api end points</h2>
+<p>Open <code>Startup.cs</code> and paste below namespaces first. This will add extension methods.</p>
+<pre><code class="csharp">using JDash.NetCore.Api; 
+using JDash.NetCore.Models;
+</code></pre>
+
+<p>Locate <code>Configure</code> method of your <code>Startup</code> class and replace it as below.</p>
+<pre><code class="csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+
+    // use index.html as default.
+    app.UseDefaultFiles(); 
+
+    // serve static content.
+    app.UseStaticFiles(); 
+
+    // register Jdash routes.
+    app.UseJDash&lt;JDashConfig&gt;(); 
+}
+
+</code></pre>
+
+<p>Also call <code>AddMvc</code> extension method inside ConfigureServices.</p>
+<pre><code class="csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+} 
+</code></pre>
+
+<h2 id="step-4-restoring-packages-and-test-run">Step 4: Restoring packages and test run</h2>
+<p>Use <code>dotnet restore</code> command to restore project references. After succesfully restoring references, use <code>dotnet run</code> to run your project. </p>
+<pre><code class="no-highlight">dotnet restore
+dotnet run
+</code></pre>
+
+<p>Now you should see an output as below.</p>
+<pre><code class="no-highlight">Hosting environment: Production
+Content root path: /Users/aibrite/project/jdash/jdash-netcore-tutorial
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+</code></pre>
+
+<h2 id="step-5-client-side-development">Step 5: Client side development</h2>
+<p>Use <code>npm</code> to install JDash User Interface package. Ensure you are inside <code>wwwroot</code> folder.</p>
+<pre><code class="no-highlight">cd wwwroot
+npm install jdash-ui --save
+</code></pre>
+
+<p>Note: If this is the first time you use npm to add a package, first execute <code>npm init</code> to create <code>package.json</code> file.</p>
+<p>This will create <code>wwwroot/node_modules/jdash-ui</code> folder.</p>
+<p>Create index.html inside wwwroot folder and paste below code.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=1, user-scalable=no&quot; /&gt;
+    &lt;title&gt;JDash Tutorial&lt;/title&gt;
+
+    &lt;!-- jdash client library --&gt;
+    &lt;script src=&quot;node_modules/jdash-ui/dist/jdash.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jdash theme &amp; elements --&gt;
+    &lt;link rel=&quot;import&quot; href=&quot;node_modules/jdash-ui/dist/components/jdash.html&quot;&gt;
+&lt;/head&gt;
+
+&lt;body class=&quot;j-light-gray j-padding&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="step-6-develop-your-first-dashlet">Step 6: Develop your first dashlet</h3>
+<p>You use <code>j-dashlet</code> element to define a dashlet. </p>
+<p>Content of <code>j-dashlet</code> can include <code>template</code> element which can be used to define dom (innerHTML) of your dashlet. An optional <code>script</code> element inside <code>j-dashlet</code> can be used to execute Javascript for this dashlet. </p>
+<p>Copy the following code inside body tag. </p>
+<pre><code class="html">&lt;!-- Define &lt;hello-world&gt; dashlet --&gt;
+&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+    &lt;template&gt;
+        &lt;!-- This will be the HTML content of your dashlet  --&gt;
+        &lt;h1&gt;&lt;/h1&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+                var h1 = this.querySelector('h1')
+                h1.textContent = 'Hello World!';
+            }
+
+        })
+    &lt;/script&gt;
+&lt;/j-dashlet&gt;
+</code></pre>
+
+<h3 id="step-7-create-and-display-dashboard">Step 7: Create and display dashboard</h3>
+<p>Use <code>j-dashboard</code> element to display a dashboard. </p>
+<p>Inside <code>body</code> tag add following code.</p>
+<pre><code class="html">    &lt;button id=&quot;createDashboardBtn&quot;&gt;Create Dashboard&lt;/button&gt;
+    &lt;button id=&quot;addDashletBtn&quot;&gt;Add Dashlet&lt;/button&gt;
+    &lt;div id=&quot;dashboardList&quot;&gt;&lt;/div&gt;
+
+    &lt;j-dashboard id=&quot;dashboard&quot; j-view-mode=&quot;dashletedit&quot;&gt;
+        &lt;h2 j-bind=&quot;title&quot;&gt;&lt;/h2&gt;
+    &lt;/j-dashboard&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>Add a <code>script</code> element after <code>body</code> and paste below code.</p>
+<pre><code class="html">&lt;script&gt;
+    jdash.ready(function () {
+
+        // Set provider
+        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
+
+        // createDashboardList();
+        document.querySelector('#createDashboardBtn').addEventListener('click', function () {
+            var title = window.prompt('Set a title for new dashboard');
+
+            // Create a new dashboard
+            jdash.Provider.createDashboard({
+                title: title
+            }).then(function (result) {
+                console.log('Dashboard created with id:' + result.id);
+                dashboard.load(result.id);
+                //createDashboardList();
+            }).catch(function (err) {
+                alert('There was an error creating dashboard: ' + err.message || err)
+            })
+        })
+
+        // add hello world dashlet to dashboard
+        document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
+            dashboard.addDashlet('hello-world');
+        })
+    })
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h3 id="step-8-view-dashboards">Step 8: View dashboards</h3>
+<p>As the last step, we will implement the code to view existing dashboards.</p>
+<p><code>jdash.Provider.getMyDashboards</code> method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for <code>userToken</code> param for <code>jdash.Provider.init</code> method.</p>
+<p>Add following function inside <code>script</code> element.</p>
+<pre><code class="javascript">function createDashboardList() {
+    var container = document.querySelector('#dashboardList');
+
+    // clear existing buttons.
+    container.innerHTML = '';
+    return jdash.Provider.getMyDashboards().then(function (result) {
+
+        // for each dashboard create a button
+        for (var i = 0; i &lt; result.data.length; i++) {
+            var btn = document.createElement('button');
+            btn.textContent = result.data[i].title;
+            btn.id = result.data[i].id;
+            container.appendChild(btn);
+            btn.addEventListener('click', function (e) {
+                var idToLoad = e.target.id;
+                dashboard.load(idToLoad);
+            })
+        }
+    })
+}
+</code></pre>
+
+<p>Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.</p>
+<h2 id="step-9-run-your-application">Step 9: Run your application</h2>
+<p>Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> and enjoy JDash. </p>
+<h3 id="step-10-download-source-code">Step 10: Download source code</h3>
+<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-netcore-tutorial">GitHub Repo</a>.</p></div>
         
     </div>
 

@@ -129,12 +129,6 @@
 
                         
                             
-<li >
-    <a href="../jdash-cloud/">JDash Cloud</a>
-</li>
-
-                        
-                            
 <li class="active">
     <a href="./">NodeJS Development</a>
 </li>
@@ -143,6 +137,12 @@
                             
 <li >
     <a href="../net-core-dev/">Net Core Development</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../jdash-cloud/">JDash Cloud</a>
 </li>
 
                         
@@ -161,7 +161,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../jdash-cloud/">
+                        <a rel="next" href="../">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -184,15 +184,27 @@
     
         <li class="first-level active"><a href="#nodejs-development">NodeJS Development</a></li>
         
-            <li class="second-level"><a href="#step-1-install-jdash-express">Step 1: Install JDash-Express</a></li>
+            <li class="second-level"><a href="#step-1-initial-setup">Step 1: Initial setup</a></li>
+            
+                <li class="third-level"><a href="#basic-server-application">Basic server application</a></li>
             
         
             <li class="second-level"><a href="#step-2-attaching-jdash-express-middleware-to-your-application">Step 2: Attaching jdash-express middleware to your application</a></li>
             
+                <li class="third-level"><a href="#setting-a-principal-and-application-name">Setting a principal and application name</a></li>
+            
                 <li class="third-level"><a href="#using-providers">Using providers</a></li>
             
         
-            <li class="second-level"><a href="#using-jdash-auth-jwt-for-authorizing-jdash-cloud-requests">Using jdash-auth-jwt for authorizing jdash-cloud requests.</a></li>
+            <li class="second-level"><a href="#step-3-client-side-development">Step 3: Client side development</a></li>
+            
+                <li class="third-level"><a href="#step-4-develop-your-first-dashlet">Step 4: Develop your first dashlet</a></li>
+            
+                <li class="third-level"><a href="#step-5-create-and-display-dashboard">Step 5: Create and display dashboard</a></li>
+            
+                <li class="third-level"><a href="#step-6-view-dashboards">Step 6: View dashboards</a></li>
+            
+                <li class="third-level"><a href="#step-7-download-source-code">Step 7: Download source code</a></li>
             
         
     
@@ -201,49 +213,89 @@
         <div class="col-md-9" role="main">
 
 <h1 id="nodejs-development">NodeJS Development</h1>
-<p>This article is about installing and using Jdash server libraries on your backend. If you decide to use Jdash Cloud you can skip this.</p>
-<p>Integrate JDash server libraries into your existing NodeJs application is easy. </p>
-<h2 id="step-1-install-jdash-express">Step 1: Install JDash-Express</h2>
-<p>Use npm to install Jdash express library.</p>
+<p>This article is about installing and using JDash NodeJs packages on your backend. </p>
+<p>If you want to use JDash Cloud to store and manage dashboard related data you can continue from <a href="../../client/getting-started/">Getting Started</a> section.</p>
+<h2 id="step-1-initial-setup">Step 1: Initial setup</h2>
+<p>Use npm to install JDash NodeJs packages.</p>
 <pre><code class="no-highlight">npm install jdash-express --save
 </code></pre>
 
-<p>This will create node_modules/jdash-express folder.</p>
-<p>Note: If this is the first time you use npm to add a package first execute npm init to create a package.json.</p>
+<p>Note: If this is the first time you use npm to add a package, first execute <code>npm init</code> to create a <code>package.json</code>.</p>
+<p>Jdash uses <a target="_blank" href="http://expressjs.com">Express</a>. Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>
+<h3 id="basic-server-application">Basic server application</h3>
+<p>Below code snippet creates a simple NodeJs application, which serves static files from root folder.</p>
+<pre><code class="javascript">var express = require('express');
+var bodyParser = require('body-parser');
+
+// Create an app
+var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname));
+
+
+// Start listening port 3001
+app.listen(3001, function () {
+
+})
+</code></pre>
+
 <h2 id="step-2-attaching-jdash-express-middleware-to-your-application">Step 2: Attaching jdash-express middleware to your application</h2>
-<p>It is pretty easy to attach jdash your express application via jdash-express npm package. All you have to do is below</p>
-<pre><code class="javascript">// require jexpress and load the package
-var jexpress = require('jdash-express'); 
+<pre><code class="javascript">var jexpress = require('jdash-express').default;
 
 // create a router for jdash
 var jdashRoutes = express.Router();
 
 // jexpress acts as a middleware for specified route.
-// configura jexpress with router and user callback
-    jexpress({
-        principal: function (request) {
-            return {
-                user: request.user.id, // user identifier you must give this value unique per user
-                appid: request.app_id.toString() // if you have multiple applications you must give this value , otherwise just write your own application name.
-            }
-        },
-        provider: null // we will explain provider details below.
-    }).use(jdashRoutes);
+// configure jexpress with router and user callback
+jexpress({
+    principal: function (request) {
+        return {
+            user: &quot;current-user&quot;, // username which makes this request
+            appid: &quot;myapp&quot; // application id of this app
+        }
+    },
+    provider: null // we will explain provider details later.
+}).use(jdashRoutes);
+
+// Use this router
+app.use('/jdash/api/v1', jdashRoutes);
+
+app.listen(3001, function () {
+
+})
 </code></pre>
 
-<p>Above code sample will attach jexpress api routes to the router you provided. Attach router to app?</p>
+<h3 id="setting-a-principal-and-application-name">Setting a principal and application name</h3>
+<p>Use <code>principal</code> property of <code>jexpress</code> configuration object to get user from current request. This value is used to set the user name property of dashboards and dashlets inside database, so that each user can have their own dashboards and dashlets.</p>
+<p>You also need to provide an application name. Application name allows to use same database instance for different applications. </p>
 <h3 id="using-providers">Using providers</h3>
-<p>Currently Jdash supports MongoDB and MySQL to store and retreive dashboard data.</p>
-<p>You can use <code>provider</code> setting to configure <code>jdash-express</code> library. </p>
-<h4 id="using-mongodb">Using MongoDB</h4>
+<p>Providers are NodeJs packages which allows to retrieve and persist dashboard data i.e. dashlet configurations, layouts and so on.</p>
+<p>Currently JDash has two built-in NodeJs packages for MongoDB and MySQL.</p>
+<h4 id="using-mongodb-with-jdash">Using MongoDB with Jdash</h4>
+<p>Use npm to install JDash MongoDb for NodeJs package.</p>
+<pre><code class="no-highlight">npm install jdash-mongodb --save
+</code></pre>
+
 <pre><code class="typescript">var mongoose = require('mongoose');
 var jmongo = require('jdash-mongodb').default;
 
-var connStr = 'Your connection string goes here'
+var connStr = 'Your connection string goes here';
+
+// Create a database connection
 var connection = mongoose.createConnection(connStr);
-connection.on('connected',function()  {
+
+// Configure Jdash when database connection is ready.
+connection.on('connected', function () {
     jexpress({
-        principal: ....
+        principal: function (request) {
+            return {
+                user: &quot;current-user&quot;, 
+                appid: &quot;myapp&quot; 
+            }
+        },
+        // Set provider
         provider: jmongo({
             connection: connection
         })
@@ -251,10 +303,15 @@ connection.on('connected',function()  {
 })
 </code></pre>
 
-<h4 id="using-mysql">Using MySQL</h4>
+<h4 id="using-mysql-with-jdash">Using MySQL with Jdash</h4>
+<p>Use npm to install JDash MySQL Provider.</p>
+<pre><code class="no-highlight">npm install jdash-mysqldb --save
+</code></pre>
+
 <pre><code class="typescript">var mysql = require('mysql');
 var jmysql = require('jdash-mysqldb').default;
 
+// Create a database connection
 var connection = mysql.createPool({
     connectionLimit: 100,
     host: 'localhost',
@@ -265,43 +322,146 @@ var connection = mysql.createPool({
 });
 
 jexpress({
-        principal: ....
+        principal: function (request) {
+            return {
+                user: &quot;current-user&quot;, 
+                appid: &quot;myapp&quot; 
+            }
+        },
         provider: jmysql({
             connection: connection
         })
 }).use(jdashRoutes);
-
 </code></pre>
 
-<h2 id="using-jdash-auth-jwt-for-authorizing-jdash-cloud-requests">Using jdash-auth-jwt for authorizing jdash-cloud requests.</h2>
-<p>/// installation part for jdash-jwt</p>
-<p>You must first install jsonwebtoken npm package </p>
-<pre><code>npm install jsonwebtoken --save
-
-/// install jdash-auth-jwt here
-</code></pre>
-<p>jdash-auth-jwt has interface below.</p>
-<pre><code class="typescript">    interface ITokenOptions {
-        secret: string;
-        apikey: string;
-        expirationInSeconds?: number;
-    }
-
-    userToken(user: string | Object, options: ITokenOptions): Promise&lt;string&gt;;
+<h2 id="step-3-client-side-development">Step 3: Client side development</h2>
+<p>Use npm to install JDash UI package.</p>
+<pre><code class="no-highlight">npm install jdash-ui --save
 </code></pre>
 
-<p>You just require jdas-auth-jwt with default property. </p>
-<pre><code class="javascript">    var jdashAuth = require('jdash-auth-jwt').default;
+<p>This will create <code>node_modules/jdash-ui</code> folder.</p>
+<p>Create index.html inside your project root and paste below code.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
-    var jwt = jdashAuth.userToken(user /* string or object */ , {
-        secret: /* your secret key */
-        apikey: /* your api key */,
-        expirationInSeconds: /* optional */
-    });
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=1, user-scalable=no&quot; /&gt;
+    &lt;title&gt;JDash Tutorial&lt;/title&gt;
+
+    &lt;!-- jdash client library --&gt;
+    &lt;script src=&quot;node_modules/jdash-ui/dist/jdash.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jdash theme &amp; elements --&gt;
+    &lt;link rel=&quot;import&quot; href=&quot;node_modules/jdash-ui/dist/components/jdash.html&quot;&gt;
+&lt;/head&gt;
+
+&lt;body class=&quot;j-light-gray j-padding&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
 </code></pre>
 
-<p>JDash-Cloud will use this generated jwt for authorization of your users.</p>
-<p>(Please see  <a href="../jdash-cloud/">JDash Cloud</a> for details.)</p></div>
+<h3 id="step-4-develop-your-first-dashlet">Step 4: Develop your first dashlet</h3>
+<p>You use <code>j-dashlet</code> element to define a dashlet. </p>
+<p>Content of <code>j-dashlet</code> can include <code>template</code> element which can be used to define dom (innerHTML) of your dashlet. An optional <code>script</code> element inside <code>j-dashlet</code> can be used to execute javascript for this dashlet. </p>
+<p>Copy the following code inside body tag. </p>
+<pre><code class="html">&lt;!-- Define &lt;hello-world&gt; dashlet --&gt;
+&lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
+    &lt;template&gt;
+        &lt;!-- This will be the HTML content of your dashlet  --&gt;
+        &lt;h1&gt;&lt;/h1&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+        jdash.define(function () {
+
+            this.initialized = function () {
+                // Dom is ready!
+                var h1 = this.querySelector('h1')
+                h1.textContent = 'Hello World!';
+            }
+
+        })
+    &lt;/script&gt;
+&lt;/j-dashlet&gt;
+</code></pre>
+
+<h3 id="step-5-create-and-display-dashboard">Step 5: Create and display dashboard</h3>
+<p>Use <code>j-dashboard</code> element to display a dashboard. </p>
+<p>Inside <code>body</code> tag add following code.</p>
+<pre><code class="html">    &lt;button id=&quot;createDashboardBtn&quot;&gt;Create Dashboard&lt;/button&gt;
+    &lt;button id=&quot;addDashletBtn&quot;&gt;Add Dashlet&lt;/button&gt;
+    &lt;div id=&quot;dashboardList&quot;&gt;&lt;/div&gt;
+
+    &lt;j-dashboard id=&quot;dashboard&quot; j-view-mode=&quot;dashletedit&quot;&gt;
+        &lt;h2 j-bind=&quot;title&quot;&gt;&lt;/h2&gt;
+    &lt;/j-dashboard&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>Add a <code>script</code> element after <code>body</code> and paste below code.</p>
+<pre><code class="html">&lt;script&gt;
+    jdash.ready(function () {
+
+        // Set provider
+        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your end point
+
+        // createDashboardList();
+        document.querySelector('#createDashboardBtn').addEventListener('click', function () {
+            var title = window.prompt('Set a title for new dashboard');
+
+            // Create a new dashboard
+            jdash.Provider.createDashboard({
+                title: title
+            }).then(function (result) {
+                console.log('Dashboard created with id:' + result.id);
+                dashboard.load(result.id);
+                //createDashboardList();
+            }).catch(function (err) {
+                alert('There was an error creating dashboard: ' + err.message || err)
+            })
+        })
+
+        // add hello world dashlet to dashboard
+        document.querySelector('#addDashletBtn').addEventListener('click', function (e) {
+            dashboard.addDashlet('hello-world');
+        })
+    })
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h3 id="step-6-view-dashboards">Step 6: View dashboards</h3>
+<p>As the last step, we will implement the code to view existing dashboards.</p>
+<p><code>jdash.Provider.getMyDashboards</code> method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for <code>userToken</code> param for <code>jdash.Provider.init</code> method.</p>
+<p>Add following function inside <code>script</code> element.</p>
+<pre><code class="javascript">function createDashboardList() {
+    var container = document.querySelector('#dashboardList');
+
+    // clear existing buttons.
+    container.innerHTML = '';
+    return jdash.Provider.getMyDashboards().then(function (result) {
+
+        // for each dashboard create a button
+        for (var i = 0; i &lt; result.data.length; i++) {
+            var btn = document.createElement('button');
+            btn.textContent = result.data[i].title;
+            btn.id = result.data[i].id;
+            container.appendChild(btn);
+            btn.addEventListener('click', function (e) {
+                var idToLoad = e.target.id;
+                dashboard.load(idToLoad);
+            })
+        }
+    })
+}
+</code></pre>
+
+<p>Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.</p>
+<h3 id="step-7-download-source-code">Step 7: Download source code</h3>
+<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-nodejs-tutorial">GitHub Repo</a>.</p>
+<p>If you enjoy JDash you can continue from Basic Concepts.</p></div>
         
     </div>
 

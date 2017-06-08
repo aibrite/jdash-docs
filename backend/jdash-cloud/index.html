@@ -129,12 +129,6 @@
 
                         
                             
-<li class="active">
-    <a href="./">JDash Cloud</a>
-</li>
-
-                        
-                            
 <li >
     <a href="../nodejs-dev/">NodeJS Development</a>
 </li>
@@ -143,6 +137,12 @@
                             
 <li >
     <a href="../net-core-dev/">Net Core Development</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">JDash Cloud</a>
 </li>
 
                         
@@ -161,12 +161,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../">
+                        <a rel="next" href="../net-core-dev/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="prev" href="../nodejs-dev/">
+                    <li class="disabled">
+                        <a rel="prev" >
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -190,12 +190,13 @@
             <li class="second-level"><a href="#how-can-i-use-jdash-cloud-services">How Can I Use JDash Cloud Services?</a></li>
             
         
-            <li class="second-level"><a href="#authenticating-users">Authenticating users</a></li>
+            <li class="second-level"><a href="#integrating-jdash-cloud-into-your-application">Integrating JDash Cloud into Your Application</a></li>
             
-        
-            <li class="second-level"><a href="#integrating-your-server-application-to-jdash-cloud">Integrating your server application to JDash Cloud</a></li>
+                <li class="third-level"><a href="#nodejs-implementation">NodeJs Implementation</a></li>
             
-                <li class="third-level"><a href="#notes">Notes:</a></li>
+                <li class="third-level"><a href="#step-4-download-source-code">Step 4: Download source code</a></li>
+            
+                <li class="third-level"><a href="#net-core-implementation">.Net Core implementation</a></li>
             
         
     
@@ -205,65 +206,146 @@
 
 <h1 id="jdash-cloud">JDash Cloud</h1>
 <h2 id="what-is-jdash-cloud">What is JDash Cloud?</h2>
-<p>JDash Cloud is an api service which keeps all of your dashboard and dashlet configurations of your users. This allows you, as a developer, focus on dashlet development and user experience.</p>
+<p>JDash Cloud is an api service, which safely keeps dashboard and dashlet data of your users. This allows you, as a developer, to focus on dashlet development and user experience instead of backend configuration and security.</p>
 <h2 id="how-can-i-use-jdash-cloud-services">How Can I Use JDash Cloud Services?</h2>
-<p>To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. </p>
-<p>Api key uniquely identifies your application. Usertoken is used to authenticate end user. </p>
-<h2 id="authenticating-users">Authenticating users</h2>
-<p>We use Json Web Token(JTW) standard for authenticating your users for our Jdash Cloud. For more information about Json Web Token go to <a href="https://jwt.io" target="_blank">https://jwt.io</a>.</p>
-<p>For your JWT Payload we need 2 Claims :
-     <ul>
-        <li>
-            Subject (sub)
-            <ul>
-                Your API Key will go here.
-            </ul>
-        </li>
-        <li>
-            Data (data)
-            <ul>
-                Your extra data will go here. This Data Property Must have a "user" property defines your user issued with this token.
-            </ul>
-        </li>
-    </ul></p>
-<p>With these claims you will also need to sign token with your secret key that you have got from <a href="http://app.jdash.io/#!/app/application/" target="_blank">JDash Cloud Applications Page</a>.</p>
-<p>Your JWT Payload should look like:</p>
+<p>In order to use JDash Cloud, <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an Api Key and Secret for your first application.</p>
+<p><code>Api Key</code> uniquely identifies your application. The <code>secret</code> value is used to encrypt data between your application and JDash Cloud.</p>
+<p>Please remember that you can always access the Api Key and the Secret of your selected application(s), at the Settings Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.</p>
+<h2 id="integrating-jdash-cloud-into-your-application">Integrating JDash Cloud into Your Application</h2>
+<p>JDash uses JSON Web Token (JWT) standard for authentication of your application and associated users. </p>
+<p>JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties. For more information about JSON Web Token, visit <a href="https://jwt.io" target="_blank">https://jwt.io</a>.</p>
+<p>Integrating is pretty easy and requires only sending <code>api key</code> and <code>user</code> values, that are encrypted by the <code>`secret</code>. </p>
+<p>A sample JWT Payload should look like:</p>
 <pre><code class="javascript">{
     data: {
-        user: &quot;USERNAME OR USERID&quot;
+        user: &quot;USERNAME OR USERID of your end user&quot;
     },
-    sub: &quot;YOUR API KEY&quot;
+    sub: &quot;API KEY of your application&quot;
 }
 </code></pre>
 
-<p>Please see  <a href="../nodejs-dev/">NodeJS Development</a> or <a href="../net-core-dev/">.Net Core Development</a> for examples.</p>
-<h2 id="integrating-your-server-application-to-jdash-cloud">Integrating your server application to JDash Cloud</h2>
-<p>Before proceeding here please read <a href="../../client/getting-started/">Getting Started</a> section first.</small></p>
-<p>Lets say you have successfully created your backend authorization code at uri : "/jdashauth?user=user1".</p>
-<p>On jdash.Provider.init function of jdash you will have to make some changes like below</p>
-<pre><code class="javascript">     jdash.Provider.init({
-            apiKey: 'YOUR API KEY',
-            userToken: function(tokenCallback){
-                // make a XMLHttpRequest (aka Ajax call)
-                // you can use any ajax library ie $.ajax, we are just using basic stuff
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
-                        // response JWT text will be passed to the JDash Token Callback
-                        tokenCallback(xhr.responseText);
-                    }
-                }
-                xhr.open('GET', '/jdashauth?user=user1', true);
-                xhr.send();
-            }
-        })
+<p>As a general design pattern,</p>
+<p>On server side:</p>
+<ol>
+<li>Set up an end point for retrieving JWT token on your application, i.e. <code>/auth/jwt</code>.</li>
+<li>Get the authenticated user of this request using your current authentication mechanism (i.e. cookie).</li>
+<li>Create a JWT payload and sign this payload with your application's <code>secret</code> value, which you received from JDash Cloud.</li>
+<li>Send the response to the client side.</li>
+</ol>
+<p>On client side:</p>
+<ol>
+<li>Make a request to your JWT end point (i.e. <code>/auth/jwt</code>).</li>
+<li>Use JDash Provider callback with the data you got from your athentication end point.</li>
+</ol>
+<h3 id="nodejs-implementation">NodeJs Implementation</h3>
+<h4 id="step-1-install-json-web-token-package-via-npm">Step 1: Install JSON Web Token package via npm</h4>
+<p>JWT.IO allows you to decode, verify and generate JWT.</p>
+<pre><code class="no-highlight">npm install JSONwebtoken --save
 </code></pre>
 
-<p>If the response is a valid JWT, JDash will use this JWT for authentication unless it expires. </p>
+<h4 id="step-2-implement-jwt-end-point">Step 2: Implement JWT end point</h4>
+<p>Below NodeJS code demonstrates a sample implementation.</p>
+<pre><code class="javascript">app.get('/auth/jwt', function (req, res, next) {
+    // Get end user from request based on your 
+    // application's authentication mechanism
+    var enduser = req.user;
+    var jwt = require('JSONwebtoken');
+    jwt.sign({
+        data: {
+            user: enduser /* current user of request */
+        }
+        //}, 'TODO: REPLACE WITH SECRET', {
+    }, 'a9f26c2daeb4e0af693eab1c59d5e9b0', {
+            algorithm: 'HS256',
+            subject: 'TODO: REPLACE WITH APIKEY',
+            subject: '4f20f93e-5004-4daf-a629-76af8f4f9b95',
+            expiresIn: &quot;2h&quot; /* optional but recommended */
+        }, (err, token) =&gt; {
+            if (err) {
+                next(new Error(err))
+            } else {
+                res.send(token);
+            }
+        });
+});
+</code></pre>
+
+<h4 id="step-3-use-end-point-on-client-side">Step 3: Use end point on client side</h4>
+<p>Inside <code>jdash.ready</code> handler, make a call to the above end point to get a secure JWT Token for your end user.</p>
+<p>Note that <code>jdash.ready</code> is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.</p>
+<pre><code class="javascript">jdash.ready(function () {
+        jdash.Provider.init({
+            apiKey: 'API KEY',           
+            userToken: function (tokenCallback) {
+                // make a XMLHttpRequest (aka Ajax call) to your end point
+                // you can use any ajax library ie $.ajax, we are just using axios
+                // response must be a jwt string.
+                jdash.Http.get('auth/jwt').then(function (result) {
+                    // securely set end user
+                    tokenCallback(null, result.data);
+                }, function (err) {
+                    tokenCallback(err);
+                });
+            }
+        })
+}
+</code></pre>
+
+<p>Keep in mind that JDash Cloud User Panel also allows you to create a Test User Token.</p>
+<h3 id="step-4-download-source-code">Step 4: Download source code</h3>
+<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-nodejs-cloud-tutorial">GitHub Repo</a>.</p>
+<h3 id="net-core-implementation">.Net Core implementation</h3>
+<p>You can use <code>Jwt.Net</code> NuGet package <a href="https://www.nuget.org/packages/jose-jwt/" target="_blank" > here </a> or you can find source code on git <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank"> here</a>.  Or you can chose any .Net Libraries listed on <a href="https://jwt.io/#libraries-io">https://jwt.io/#libraries-io</a> </p>
+<p>We will show you how to implement JWT for Jose-JWT Nuget Package.</p>
+<p>First install Jose-JWT </p>
+<pre><code> Install-Package jose-jwt
+</code></pre>
+<pre><code class="csharp">
+       using Jose;
+
+
+       static void Main(string[] args)
+        {
+          var token = CreateToken();
+          // you can use this token for any client authorization request.
+        }
+
+        static string CreateToken()
+        { 
+            DateTime issued = DateTime.Now;
+            DateTime expire = DateTime.Now.AddHours(10);
+
+            var payload = new Dictionary&lt;string, object&gt;()
+            {
+                { &quot;data&quot; , new { user = &quot;CURRENT USER NAME/ID&quot; } }
+                {&quot;sub&quot;, &quot;YOUR API KEY&quot;},
+                {&quot;iat&quot;, ToUnixTime(issued).ToString()},
+                {&quot;exp&quot;, ToUnixTime(expire).ToString()} // optional(recommended)
+            };
+
+            string token = JWT.Encode(payload, &quot;YOUR SECRET KEY HERE&quot;, JwsAlgorithm.HS256);
+            return token;
+        }
+
+        /// &lt;remarks&gt;
+        /// Take a look at http://stackoverflow.com/a/33113820
+        /// &lt;/remarks&gt;
+        static byte[] Base64UrlDecode(string arg)
+        { 
+            return Convert.FromBase64String(s); // Standard base64 decoder
+        }
+
+        static long ToUnixTime(DateTime dateTime)
+        {
+            return (int)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        }
+
+</code></pre>
+
 <h4 id="notes">Notes:</h4>
-<p>1- JDash will call userToken function when it needs a new token (initial token request or renewal of expired JWT).</p>
-<p>2- JDash JWT must be signed with a symmetric algorithm (Preffered  "HS256" algorithm). </p>
-<p>3- You can use any other claims instead of Data property and its values.</p>
+<p>1- JDash will call <code>userToken</code> function when it needs a new token (as initial token request or for the renewal of expired JWT).</p>
+<p>2- JDash JWT must be signed with a symmetric algorithm (Preferably "HS256" algorithm). </p>
+<p>3- You can use any other claims instead of <code>Data</code> property and its values.</p>
 <p>4- You can use any headers / any header values such as expiration time. </p></div>
         
     </div>

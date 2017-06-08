@@ -130,12 +130,6 @@
                         
                             
 <li >
-    <a href="../../backend/jdash-cloud/">JDash Cloud</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../backend/nodejs-dev/">NodeJS Development</a>
 </li>
 
@@ -143,6 +137,12 @@
                             
 <li >
     <a href="../../backend/net-core-dev/">Net Core Development</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../backend/jdash-cloud/">JDash Cloud</a>
 </li>
 
                         
@@ -184,13 +184,13 @@
     
         <li class="first-level active"><a href="#working-with-provider">Working with Provider</a></li>
         
-            <li class="second-level"><a href="#provider-basics">Provider basics</a></li>
+            <li class="second-level"><a href="#provider-basics">Provider Basics</a></li>
             
-                <li class="third-level"><a href="#initializing-provider">İnitializing provider</a></li>
+                <li class="third-level"><a href="#initializing-provider">Initializing Provider</a></li>
             
-                <li class="third-level"><a href="#user-based-design">User based design</a></li>
+                <li class="third-level"><a href="#user-based-design">User Based Design</a></li>
             
-                <li class="third-level"><a href="#methods-and-samples">Methods and samples</a></li>
+                <li class="third-level"><a href="#methods-and-samples">Methods and Samples</a></li>
             
                 <li class="third-level"><a href="#key-interfaces">Key interfaces</a></li>
             
@@ -201,12 +201,12 @@
         <div class="col-md-9" role="main">
 
 <h1 id="working-with-provider">Working with Provider</h1>
-<h2 id="provider-basics">Provider basics</h2>
-<p>Jdash uses <code>jdash.Provider</code> methods to create, save and delete dashboards and dashlets.</p>
-<p>Provider should be initialized before using any methods of the below methods. </p>
-<h3 id="initializing-provider">İnitializing provider</h3>
-<p>If you are using Jdash Cloud initializing means setting a valid api key and user token.</p>
-<p>After <a href="https://app.jdash.io/#!/app/account/register" target="_blank">registering as a new user</a> you will get an api key and test user token. Use them to initialize provider.</p>
+<h2 id="provider-basics">Provider Basics</h2>
+<p>JDash uses <code>jdash.Provider</code> methods to create, save and delete dashboards and dashlets.</p>
+<p>Provider should be initialized before using any of the below methods. </p>
+<h3 id="initializing-provider">Initializing Provider</h3>
+<p>If you are using JDash Cloud, initializing means setting a valid Api Key and User Token.</p>
+<p>After <a href="https://app.jdash.io/#!/app/account/register" target="_blank">registering as a new user</a>, you will get an Api Key and a Test User Token. Use these data to initialize provider.</p>
 <pre><code class="javascript">jdash.ready(function () {
     jdash.Provider.init({
         apiKey: 'YOUR API KEY',
@@ -215,11 +215,11 @@
 })
 </code></pre>
 
-<h3 id="user-based-design">User based design</h3>
-<p>In Jdash, a dashboard belongs to a user. A user may have many dashboards and a dashboard contains dashlets.</p>
+<h3 id="user-based-design">User Based Design</h3>
+<p>In JDash, a dashboard belongs to a user. A user may have many dashboards and a dashboard contains dashlets.</p>
 <p>This allows your users to create and design their own dashboards.</p>
-<p>When you initialize provider, <code>apiKey</code> represents your application in Jdash cloud. <code>userToken</code> allows you to set a security token for current user. Methods like <code>createDashboard</code> uses this token to assign dashboard to current user. </p>
-<h3 id="methods-and-samples">Methods and samples</h3>
+<p>When you initialize provider, <code>apiKey</code> represents your application in JDash Cloud. <code>userToken</code> allows you to set a security token for the current user. Methods like <code>createDashboard</code> uses this token to assign dashboard to the current user. </p>
+<h3 id="methods-and-samples">Methods and Samples</h3>
 <p>Use <code>getDashboard</code> method to get dashboard model with dashboard id.</p>
 <pre><code class="javascript">jdash.Provider.getDashboard('58b72f14421b57354bf58cc5').then(function(model) { 
         console.log(model)
@@ -240,13 +240,13 @@
 })
 </code></pre>
 
-<p>Note that the user which creates the dashboard is autoımatically retreived from the user token.</p>
-<p>Use <code>getMyDashboards</code> method to get a list of dashboards which belongs to current user.</p>
-<p>Use <code>searchDashboards</code>method to search for dashboards.</p>
-<p>Use <code>deleteDashboard</code> method to delete a dashboard. When a dashboard is deleted all dashlets inside that dashboard are automatically deleted.</p>
+<p>Note that the user, who creates the dashboard is automatically retreived from the User Token.</p>
+<p>Use <code>getMyDashboards</code> method to get a list of dashboards, which belongs to the current user.</p>
+<p>Use <code>searchDashboards</code> method to search for dashboards.</p>
+<p>Use <code>deleteDashboard</code> method to delete a dashboard. When a dashboard is deleted, all dashlets inside that dashboard are also automatically deleted.</p>
 <p>Use <code>saveDashboard</code> to update a dashboard.</p>
-<p>Provider also has CRUD methods for dashlets. Although you can use these methods directly it's better to use methods of <code>j-dashboard</code> element to create, remove or save dashlets.</p>
-<p>Below table is a summary of methods for dashlets.</p>
+<p>Provider also has CRUD methods for dashlets. Although you can use these methods directly, it's a better practice to use the methods of <code>j-dashboard</code> element to create, remove or save dashlets.</p>
+<p>Below table is a summary of methods for dashlets:</p>
 <table>
 <thead>
 <tr>
@@ -270,7 +270,7 @@
 </tbody>
 </table>
 <h3 id="key-interfaces">Key interfaces</h3>
-<p><code>jdash.Provider</code> implements <code>IClientProvider</code>interface.</p>
+<p><code>jdash.Provider</code> implements <code>IClientProvider</code> interface.</p>
 <pre><code class="typescript">interface IClientProvider {
     getDashboard(id: string): Promise&lt;GetDashboardResult&gt;;
     createDashboard(model: DashboardCreateModel): Promise&lt;CreateResult&gt;;

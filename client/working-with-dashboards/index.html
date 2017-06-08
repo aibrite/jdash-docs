@@ -130,12 +130,6 @@
                         
                             
 <li >
-    <a href="../../backend/jdash-cloud/">JDash Cloud</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../backend/nodejs-dev/">NodeJS Development</a>
 </li>
 
@@ -143,6 +137,12 @@
                             
 <li >
     <a href="../../backend/net-core-dev/">Net Core Development</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../backend/jdash-cloud/">JDash Cloud</a>
 </li>
 
                         
@@ -184,15 +184,15 @@
     
         <li class="first-level active"><a href="#working-with-dashboards">Working with Dashboards</a></li>
         
-            <li class="second-level"><a href="#j-dashboard-element">j-dashboard element</a></li>
+            <li class="second-level"><a href="#j-dashboard-element">j-dashboard Element</a></li>
             
         
-            <li class="second-level"><a href="#viewing-dashboard">Viewing dashboard</a></li>
+            <li class="second-level"><a href="#viewing-dashboard">Viewing Dashboard</a></li>
             
-                <li class="third-level"><a href="#about-view-modes">About View modes</a></li>
+                <li class="third-level"><a href="#about-view-modes">About View Modes</a></li>
             
         
-            <li class="second-level"><a href="#adding-dashlets">Adding dashlets</a></li>
+            <li class="second-level"><a href="#adding-dashlets">Adding Dashlets</a></li>
             
                 <li class="third-level"><a href="#getting-a-list-of-available-dashlets">Getting a list of available dashlets</a></li>
             
@@ -207,23 +207,23 @@
         <div class="col-md-9" role="main">
 
 <h1 id="working-with-dashboards">Working with Dashboards</h1>
-<h2 id="j-dashboard-element">j-dashboard element</h2>
+<h2 id="j-dashboard-element">j-dashboard Element</h2>
 <p>Use <code>j-dashboard</code>element to display an existing dashboard.</p>
 <pre><code class="html">&lt;j-dashboard id=&quot;dashboard&quot;&gt;
     &lt;h2 j-bind=&quot;title&quot;&gt;&lt;/h2&gt;
 &lt;/j-dashboard&gt;
 </code></pre>
 
-<h2 id="viewing-dashboard">Viewing dashboard</h2>
+<h2 id="viewing-dashboard">Viewing Dashboard</h2>
 <p>Use <code>load</code> method to load (display) a dashboard.</p>
 <pre><code class="typescript">load(id: string | DashboardModel): Promise&lt;DashboardModel&gt;;
 </code></pre>
 
 <p><code>load</code>method returns a promise and you can use dashboard id or <code>DashboardModel</code>.</p>
-<p>As a common scenario you can use jdash.Provider.getMyDashboards method to get a list of dashboard for current user. After a click for a dashboard use <code>load</code>method to display selected dashboard.</p>
-<p>Refer to Getting Started for sample usage of <code>load</code>method.</p>
-<h3 id="about-view-modes">About View modes</h3>
-<p>A dashboard may have one of the following view modes.</p>
+<p>As a common scenario, you can use <code>jdash.Provider.getMyDashboards</code> method to get a list of dashboard for the current user. After a click on a dashboard, use <code>load</code> method to display selected dashboard.</p>
+<p>Refer to Getting Started for the sample usage of <code>load</code> method.</p>
+<h3 id="about-view-modes">About View Modes</h3>
+<p>A dashboard may have one of the following view modes:</p>
 <table>
 <thead>
 <tr>
@@ -252,15 +252,15 @@
 &lt;/j-dashboard&gt;
 </code></pre>
 
-<p>You can also use HTMLElement.setAttribute method to change it later.</p>
+<p>You can also use <code>HTMLElement.setAttribute</code> method to change it later.</p>
 <pre><code class="javascript">var dashboard = document.querySelector('#dashboard');
 dashboard.setAttribute('j-view-mode', 'readonly');
 </code></pre>
 
-<h2 id="adding-dashlets">Adding dashlets</h2>
+<h2 id="adding-dashlets">Adding Dashlets</h2>
 <h3 id="getting-a-list-of-available-dashlets">Getting a list of available dashlets</h3>
-<p>Use jdash.DashletModule.getModules method to get a list of available dashlet elements. Refer to Dashlet Development (next section) for more information about defining dashlets.</p>
-<p>You can use <code>title</code>attribute to display a dashlet to user. <code>id</code> attribute can be used to create an instance.</p>
+<p>Use <code>jdash.DashletModule.getModule</code> method to get a list of available dashlet elements. Refer to Dashlet Development (next section) for more information on defining dashlets.</p>
+<p>You can use <code>title</code> attribute to display a dashlet to user. <code>id</code> attribute can be used to create an instance.</p>
 <pre><code class="javascript">var dashletElements = jdash.DashletModule.getModules();
 for(var i = 0; i &lt; dashletElements.length;i++) 
     console.log(dashletElements[i].title, ',', dashletElements[i].id)
