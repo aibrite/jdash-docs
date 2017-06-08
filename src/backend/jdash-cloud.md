@@ -4,24 +4,24 @@
 JDash Cloud is an api service, which safely keeps dashboard and dashlet data of your users. This allows you, as a developer, to focus on dashlet development and user experience instead of backend configuration and security.
 
 ## How Can I Use JDash Cloud Services?
-In order to use JDash Cloud, <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an Api Key and Secret for your first application.
+In order to use JDash Cloud, <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an ``Api Key`` and ``Secret`` for your first application. You can use these data to configure the authentication.
 
 ``Api Key`` uniquely identifies your application. The ``secret`` value is used to encrypt data between your application and JDash Cloud.
 
-Please remember that you can always access the Api Key and the Secret of your selected application(s), at the Settings Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.
+Please remember that you can always access the Api Key and the Secret of your selected application(s), at the Applications Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.
 
 ## Integrating JDash Cloud into Your Application
 JDash uses JSON Web Token (JWT) standard for authentication of your application and associated users. 
 
 JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties. For more information about JSON Web Token, visit <a href="https://jwt.io" target="_blank">https://jwt.io</a>.
 
-Integrating is pretty easy and requires only sending ``api key`` and ``user`` values, that are encrypted by the ``secret`. 
+Integrating is pretty easy and requires only sending ``api key`` and ``user`` values, that are encrypted by the ``secret``. 
 
 A sample JWT Payload should look like:
 ```javascript        
 {
     data: {
-        user: "USERNAME OR USERID of your end user"
+        user: "USERNAME OR USERID of your end-user"
     },
     sub: "API KEY of your application"
 }
@@ -55,7 +55,7 @@ Below NodeJS code demonstrates a sample implementation.
 
 ```javascript
 app.get('/auth/jwt', function (req, res, next) {
-    // Get end user from request based on your 
+    // Get end-user from request based on your 
     // application's authentication mechanism
     var enduser = req.user;
     var jwt = require('JSONwebtoken');
@@ -78,7 +78,7 @@ app.get('/auth/jwt', function (req, res, next) {
 });
 ```
 #### Step 3: Use end point on client side
-Inside ``jdash.ready`` handler, make a call to the above end point to get a secure JWT Token for your end user.
+Inside ``jdash.ready`` handler, make a call to the above end point to get a secure JWT Token for your end-user.
 
 Note that ``jdash.ready`` is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.
 
@@ -91,7 +91,7 @@ jdash.ready(function () {
                 // you can use any ajax library ie $.ajax, we are just using axios
                 // response must be a jwt string.
                 jdash.Http.get('auth/jwt').then(function (result) {
-                    // securely set end user
+                    // securely set end-user
                     tokenCallback(null, result.data);
                 }, function (err) {
                     tokenCallback(err);

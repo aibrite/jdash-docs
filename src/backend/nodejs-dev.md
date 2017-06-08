@@ -293,7 +293,7 @@ function createDashboardList() {
     })
 }
 ```
-Note that this function is commented on Step 5. Uncomment this, when page loads / user creates a new dashboard, so that the dashboard list is updated.
+Note that the ``createDashboardList()`` function is commented on Step 5. Uncomment this function after Step 6, so that the when page loads / user creates a new dashboard, dashboard list is updated.
 
 ### Step 7: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-nodejs-tutorial).

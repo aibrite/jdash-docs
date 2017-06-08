@@ -73,9 +73,11 @@ Copy the following code inside `body` tag.
 ### Step 4: Get a free Api Key
 JDash Cloud can persist and retrieve dashboard data, i.e. dashboards, layouts, dashlet configurations and positions.
 
-To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will get an Api Key and Test User Token. Use these data to configure authentication.
+In order to use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an ``Api Key`` and ``Secret`` for your first application. You can use these data to configure the authentication.
 
-Todo so, add a `script` element just before `</body>` tag.
+Please remember that you can always access the ``Api Key`` and the ``Secret`` of your selected application(s) and generate ``Test User Token``, at the Applications Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.
+
+To perform the authentication, add a `script` element just before `</body>` tag.
 
 ```html
     <script>
@@ -88,10 +90,10 @@ Todo so, add a `script` element just before `</body>` tag.
     </script>
 </body>
 ```
-apikey
-:  Identifies your application.
+`apikey`
+:  Uniquely identifies your application.
 
-userToken
+`userToken`
 :  A string value or function to identify your end-user to JDash Cloud.
 
 ### Step 5: Create and display dashboard
@@ -176,7 +178,7 @@ function createDashboardList() {
     })
 }
 ```
-Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.
+Note that the ``createDashboardList()`` function is commented on Step 5. Uncomment this function after Step 6, so that the when page loads / user creates a new dashboard, dashboard list is updated.
 
 ### Step 7: Download Source Code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-tutorial).

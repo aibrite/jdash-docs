@@ -1,6 +1,6 @@
 # Basic Concepts
 
-Using JDash you can add drag-drop end user designable dashboards to your application.
+Using JDash you can add drag & drop, end-user designable dashboards to your application.
 
 ## Features
 

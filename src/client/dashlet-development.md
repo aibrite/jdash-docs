@@ -42,7 +42,7 @@ or add to a dashboard.
 ```javascript
 dashboard.addDashlet('hello-world');
 ```
-JDash also supports placing dashlet definition inside another file.
+JDash also supports placing dashlet definitions inside another file.
 
 ```html
 <link rel="import" href="dashlets/helloworld.html">
@@ -102,7 +102,7 @@ jdash.define('hello-world', function () {
 
 See <a href=" https://www.w3.org/TR/custom-elements/" target="_blank">W3C Custom Elements</a> document to get more information about custom elements.
 
-Note: For backward compability we used ES5 style dashlet definition in this document. JDash also supports ES6 and you can use `class` keyword and inherit from `Dashlet` to define your dashlet.
+Note: For backward compability, we used ES5 style dashlet definition in this document. JDash also supports ES6 and you can use `class` keyword and inherit from `Dashlet` to define your dashlet.
 
 ## Configurable Dashlets
 
@@ -191,5 +191,5 @@ If you attach a function named `loadConfig` to your dashlet, JDash automatically
 
 </j-dashlet-editor>
 ``` 
-Add an event listener for `setconfig` event so that you can set new values for configuration.
+Add an event listener for `setconfig` event, so that you can set new values for configuration.
 

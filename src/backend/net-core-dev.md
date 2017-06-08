@@ -2,7 +2,7 @@
 
 This article is about installing and using JDash .NetCore libraries on your backend. 
 
-If you want to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
+If you would like to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
 ## Prerequisites
 
@@ -287,7 +287,8 @@ function createDashboardList() {
     })
 }
 ```
-Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.
+Note that the ``createDashboardList()`` function is commented on Step 7. Uncomment this function after Step 8, so that the when page loads / user creates a new dashboard, dashboard list is updated.
+
 
 ## Step 9: Run your application
 
