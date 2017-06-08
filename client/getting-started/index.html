@@ -136,7 +136,7 @@
                         
                             
 <li >
-    <a href="../../backend/net-core-dev/">Net Core Development</a>
+    <a href="../../backend/net-core-dev/">.Net Core Development</a>
 </li>
 
                         
@@ -267,8 +267,9 @@
 
 <h3 id="step-4-get-a-free-api-key">Step 4: Get a free Api Key</h3>
 <p>JDash Cloud can persist and retrieve dashboard data, i.e. dashboards, layouts, dashlet configurations and positions.</p>
-<p>To use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will get an Api Key and Test User Token. Use these data to configure authentication.</p>
-<p>Todo so, add a <code>script</code> element just before <code>&lt;/body&gt;</code> tag.</p>
+<p>In order to use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an <code>Api Key</code> and <code>Secret</code> for your first application. You can use these data to configure the authentication.</p>
+<p>Please remember that you can always access the <code>Api Key</code> and the <code>Secret</code> of your selected application(s) and generate <code>Test User Token</code>, at the Applications Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.</p>
+<p>To perform the authentication, add a <code>script</code> element just before <code>&lt;/body&gt;</code> tag.</p>
 <pre><code class="html">    &lt;script&gt;
         jdash.ready(function () {
             jdash.Provider.init({
@@ -280,9 +281,9 @@
 &lt;/body&gt;
 </code></pre>
 
-<p>apikey
-:  Identifies your application.</p>
-<p>userToken
+<p><code>apikey</code>
+:  Uniquely identifies your application.</p>
+<p><code>userToken</code>
 :  A string value or function to identify your end-user to JDash Cloud.</p>
 <h3 id="step-5-create-and-display-dashboard">Step 5: Create and display dashboard</h3>
 <p>Use <code>j-dashboard</code> element to display a dashboard. </p>
@@ -358,7 +359,7 @@
 }
 </code></pre>
 
-<p>Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.</p>
+<p>Note that the <code>createDashboardList()</code> function is commented on Step 5. Uncomment this function after Step 6, so that the when page loads / user creates a new dashboard, dashboard list is updated.</p>
 <h3 id="step-7-download-source-code">Step 7: Download Source Code</h3>
 <p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-tutorial">GitHub Repo</a>.</p>
 <p>If you enjoy JDash, you can continue from Basic Concepts.</p></div>

@@ -136,7 +136,7 @@
                         
                             
 <li >
-    <a href="../net-core-dev/">Net Core Development</a>
+    <a href="../net-core-dev/">.Net Core Development</a>
 </li>
 
                         
@@ -208,17 +208,17 @@
 <h2 id="what-is-jdash-cloud">What is JDash Cloud?</h2>
 <p>JDash Cloud is an api service, which safely keeps dashboard and dashlet data of your users. This allows you, as a developer, to focus on dashlet development and user experience instead of backend configuration and security.</p>
 <h2 id="how-can-i-use-jdash-cloud-services">How Can I Use JDash Cloud Services?</h2>
-<p>In order to use JDash Cloud, <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an Api Key and Secret for your first application.</p>
+<p>In order to use JDash Cloud, <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an <code>Api Key</code> and <code>Secret</code> for your first application. You can use these data to configure the authentication.</p>
 <p><code>Api Key</code> uniquely identifies your application. The <code>secret</code> value is used to encrypt data between your application and JDash Cloud.</p>
-<p>Please remember that you can always access the Api Key and the Secret of your selected application(s), at the Settings Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.</p>
+<p>Please remember that you can always access the Api Key and the Secret of your selected application(s), at the Applications Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.</p>
 <h2 id="integrating-jdash-cloud-into-your-application">Integrating JDash Cloud into Your Application</h2>
 <p>JDash uses JSON Web Token (JWT) standard for authentication of your application and associated users. </p>
 <p>JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties. For more information about JSON Web Token, visit <a href="https://jwt.io" target="_blank">https://jwt.io</a>.</p>
-<p>Integrating is pretty easy and requires only sending <code>api key</code> and <code>user</code> values, that are encrypted by the <code>`secret</code>. </p>
+<p>Integrating is pretty easy and requires only sending <code>api key</code> and <code>user</code> values, that are encrypted by the <code>secret</code>. </p>
 <p>A sample JWT Payload should look like:</p>
 <pre><code class="javascript">{
     data: {
-        user: &quot;USERNAME OR USERID of your end user&quot;
+        user: &quot;USERNAME OR USERID of your end-user&quot;
     },
     sub: &quot;API KEY of your application&quot;
 }
@@ -227,26 +227,35 @@
 <p>As a general design pattern,</p>
 <p>On server side:</p>
 <ol>
-<li>Set up an end point for retrieving JWT token on your application, i.e. <code>/auth/jwt</code>.</li>
+<li>Set up an endpoint for retrieving JWT token on your application, i.e. <code>/auth/jwt</code>.</li>
 <li>Get the authenticated user of this request using your current authentication mechanism (i.e. cookie).</li>
 <li>Create a JWT payload and sign this payload with your application's <code>secret</code> value, which you received from JDash Cloud.</li>
 <li>Send the response to the client side.</li>
 </ol>
 <p>On client side:</p>
 <ol>
-<li>Make a request to your JWT end point (i.e. <code>/auth/jwt</code>).</li>
-<li>Use JDash Provider callback with the data you got from your athentication end point.</li>
+<li>Make a request to your JWT endpoint (i.e. <code>/auth/jwt</code>).</li>
+<li>Use JDash Provider callback with the data you got from your athentication endpoint.</li>
 </ol>
 <h3 id="nodejs-implementation">NodeJs Implementation</h3>
 <h4 id="step-1-install-json-web-token-package-via-npm">Step 1: Install JSON Web Token package via npm</h4>
 <p>JWT.IO allows you to decode, verify and generate JWT.</p>
-<pre><code class="no-highlight">npm install JSONwebtoken --save
+<pre><code class="javascript">            jdash.Http.get('jdashController/authorize').then(function(result){
+                // response must be a jwt string that will be filled to the result.data property.
+                // response JWT text will be passed to the JDash Token Callback
+                tokenCallback(null,result.data);
+            });
+        }
+    })
 </code></pre>
 
-<h4 id="step-2-implement-jwt-end-point">Step 2: Implement JWT end point</h4>
+<pre><code class="no-highlight">npm install JSONwebtoken --save 
+</code></pre>
+
+<h4 id="step-2-implement-jwt-endpoint">Step 2: Implement JWT endpoint</h4>
 <p>Below NodeJS code demonstrates a sample implementation.</p>
 <pre><code class="javascript">app.get('/auth/jwt', function (req, res, next) {
-    // Get end user from request based on your 
+    // Get end-user from request based on your 
     // application's authentication mechanism
     var enduser = req.user;
     var jwt = require('JSONwebtoken');
@@ -254,8 +263,7 @@
         data: {
             user: enduser /* current user of request */
         }
-        //}, 'TODO: REPLACE WITH SECRET', {
-    }, 'a9f26c2daeb4e0af693eab1c59d5e9b0', {
+        }, 'TODO: REPLACE WITH SECRET', {
             algorithm: 'HS256',
             subject: 'TODO: REPLACE WITH APIKEY',
             subject: '4f20f93e-5004-4daf-a629-76af8f4f9b95',
@@ -270,18 +278,18 @@
 });
 </code></pre>
 
-<h4 id="step-3-use-end-point-on-client-side">Step 3: Use end point on client side</h4>
-<p>Inside <code>jdash.ready</code> handler, make a call to the above end point to get a secure JWT Token for your end user.</p>
+<h4 id="step-3-use-endpoint-on-client-side">Step 3: Use endpoint on client side</h4>
+<p>Inside <code>jdash.ready</code> handler, make a call to the above endpoint to get a secure JWT Token for your end-user.</p>
 <p>Note that <code>jdash.ready</code> is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.</p>
 <pre><code class="javascript">jdash.ready(function () {
         jdash.Provider.init({
             apiKey: 'API KEY',           
             userToken: function (tokenCallback) {
-                // make a XMLHttpRequest (aka Ajax call) to your end point
+                // make a XMLHttpRequest (aka Ajax call) to your endpoint
                 // you can use any ajax library ie $.ajax, we are just using axios
                 // response must be a jwt string.
                 jdash.Http.get('auth/jwt').then(function (result) {
-                    // securely set end user
+                    // securely set end-user
                     tokenCallback(null, result.data);
                 }, function (err) {
                     tokenCallback(err);
@@ -300,30 +308,39 @@
 <p>First install Jose-JWT </p>
 <pre><code> Install-Package jose-jwt
 </code></pre>
-<pre><code class="csharp">
-       using Jose;
+<p>You can define a middleware that can be used for authorization purposes, here we demonstrate a code snippet that gives you a jwt response from http request of .Net Core</p>
+<pre><code class="csharp">       using Jose;
 
+ public class JDashAuthorizer
+    {
 
-       static void Main(string[] args)
+        public static void Register(IApplicationBuilder app, string endpoint)
         {
-          var token = CreateToken();
-          // you can use this token for any client authorization request.
+            app.Map(new PathString(endpoint), (appBuilder) =&gt;
+            {
+                appBuilder.Run(async (httpContext) =&gt;
+                {
+                    var jwtToken = CreateToken(httpContext);
+                    await httpContext.Response.WriteAsync(jwtToken);
+                });
+            });
         }
 
-        static string CreateToken()
-        { 
+
+        static string CreateToken(HttpContext context)
+        {
             DateTime issued = DateTime.Now;
-            DateTime expire = DateTime.Now.AddHours(10);
+            DateTime expire = DateTime.Now.AddHours(10); // this jwt will expire after 10 hours.
 
             var payload = new Dictionary&lt;string, object&gt;()
             {
-                { &quot;data&quot; , new { user = &quot;CURRENT USER NAME/ID&quot; } }
+                { &quot;data&quot; , new { user = &quot;CURRENT USER NAME/ID&quot; } },
                 {&quot;sub&quot;, &quot;YOUR API KEY&quot;},
                 {&quot;iat&quot;, ToUnixTime(issued).ToString()},
                 {&quot;exp&quot;, ToUnixTime(expire).ToString()} // optional(recommended)
             };
 
-            string token = JWT.Encode(payload, &quot;YOUR SECRET KEY HERE&quot;, JwsAlgorithm.HS256);
+            string token = JWT.Encode(payload, Encoding.UTF8.GetBytes(&quot;YOUR API SECRET&quot;), JwsAlgorithm.HS256);
             return token;
         }
 
@@ -331,17 +348,29 @@
         /// Take a look at http://stackoverflow.com/a/33113820
         /// &lt;/remarks&gt;
         static byte[] Base64UrlDecode(string arg)
-        { 
-            return Convert.FromBase64String(s); // Standard base64 decoder
+        {
+            return Convert.FromBase64String(arg); // Standard base64 decoder
         }
 
         static long ToUnixTime(DateTime dateTime)
         {
-            return (int)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            return (long)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         }
 
+    }
 </code></pre>
 
+<p>You can just simply bind an endpoint from <code>JDashAuthorizer.Register(IApplicationBuilder,string)</code> method at your <code>Startup.Configure(IApplicationBuilder, IHostingEnvironment, ILoggerFactory)</code> code like below :</p>
+<pre><code class="csharp">  public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            // .. removed redundant code
+
+            JDashAuthorizer.Register(app, &quot;/jdashController/authorize&quot;);
+
+        }
+</code></pre>
+
+<p>You can find detailed information for jose-jwt package <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank">here</a>.</p>
 <h4 id="notes">Notes:</h4>
 <p>1- JDash will call <code>userToken</code> function when it needs a new token (as initial token request or for the renewal of expired JWT).</p>
 <p>2- JDash JWT must be signed with a symmetric algorithm (Preferably "HS256" algorithm). </p>
