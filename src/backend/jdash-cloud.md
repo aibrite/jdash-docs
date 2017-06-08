@@ -46,8 +46,18 @@ On client side:
 #### Step 1: Install JSON Web Token package via npm
 JWT.IO allows you to decode, verify and generate JWT.
 
+<<<<<<< HEAD
+                jdash.Http.get('jdashController/authorize').then(function(result){
+                    // response must be a jwt string that will be filled to the result.data property.
+                    // response JWT text will be passed to the JDash Token Callback
+                    tokenCallback(null,result.data);
+                });
+            }
+        })
+=======
 ```no-highlight
 npm install JSONwebtoken --save
+>>>>>>> 4686c92f289f9afca6ced4baf98fa14356c1c717
 ```
 
 #### Step 2: Implement JWT endpoint
@@ -117,31 +127,41 @@ First install Jose-JWT
      Install-Package jose-jwt
 
 
-```csharp
+You can define a middleware that can be used for authorization purposes, here we demonstrate a code snippet that gives you a jwt response from http request of .Net Core
 
+```csharp
        using Jose;
 
-        
-       static void Main(string[] args)
+ public class JDashAuthorizer
+    {
+
+        public static void Register(IApplicationBuilder app, string endpoint)
         {
-          var token = CreateToken();
-          // you can use this token for any client authorization request.
+            app.Map(new PathString(endpoint), (appBuilder) =>
+            {
+                appBuilder.Run(async (httpContext) =>
+                {
+                    var jwtToken = CreateToken(httpContext);
+                    await httpContext.Response.WriteAsync(jwtToken);
+                });
+            });
         }
 
-        static string CreateToken()
-        { 
+
+        static string CreateToken(HttpContext context)
+        {
             DateTime issued = DateTime.Now;
-            DateTime expire = DateTime.Now.AddHours(10);
+            DateTime expire = DateTime.Now.AddHours(10); // this jwt will expire after 10 hours.
 
             var payload = new Dictionary<string, object>()
             {
-                { "data" , new { user = "CURRENT USER NAME/ID" } }
+                { "data" , new { user = "CURRENT USER NAME/ID" } },
                 {"sub", "YOUR API KEY"},
                 {"iat", ToUnixTime(issued).ToString()},
                 {"exp", ToUnixTime(expire).ToString()} // optional(recommended)
             };
-            
-            string token = JWT.Encode(payload, "YOUR SECRET KEY HERE", JwsAlgorithm.HS256);
+
+            string token = JWT.Encode(payload, Encoding.UTF8.GetBytes("YOUR API SECRET"), JwsAlgorithm.HS256);
             return token;
         }
 
@@ -149,18 +169,31 @@ First install Jose-JWT
         /// Take a look at http://stackoverflow.com/a/33113820
         /// </remarks>
         static byte[] Base64UrlDecode(string arg)
-        { 
-            return Convert.FromBase64String(s); // Standard base64 decoder
+        {
+            return Convert.FromBase64String(arg); // Standard base64 decoder
         }
 
         static long ToUnixTime(DateTime dateTime)
         {
-            return (int)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            return (long)(dateTime.ToUniversalTime().Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
         }
-        
+
+    }
 ```
 
+You can just simply bind an endpoint from ``JDashAuthorizer.Register(IApplicationBuilder,string)`` method at your ``Startup.Configure(IApplicationBuilder, IHostingEnvironment, ILoggerFactory)`` code like below :
 
+```csharp
+  public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            // .. removed redundant code
+
+            JDashAuthorizer.Register(app, "/jdashController/authorize");
+
+        }
+```
+
+You can find detailed information for jose-jwt package <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank">here</a>.
 
 #### Notes:
 1- JDash will call ``userToken`` function when it needs a new token (as initial token request or for the renewal of expired JWT).
