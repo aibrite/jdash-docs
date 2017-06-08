@@ -22,7 +22,7 @@ You can integrate JDash backend platform into your server application easily.
 * If you are using Asp.Net MVC 5+, we support it with MySQL and MSSQL.
 * If you are using .Net Core, we support it with MySQL and MSSQL.
 
-If you need other platforms/database servers just drop us an e-mail (hello@jdash.io).
+If you need to implement other platforms/database servers, just drop us an e-mail (hello@jdash.io).
 
 ### Custom elements
 JDash uses W3C custom elements spec for dashlet development. 
