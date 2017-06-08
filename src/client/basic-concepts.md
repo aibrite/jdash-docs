@@ -9,11 +9,13 @@ Using JDash you can add drag & drop, end-user designable dashboards to your appl
 There are two licensing models.
 
 **JDash Cloud**
+
 You can use [JDash Cloud](https://app.jdash.io) to store dashboard & dashlet related data. 
 
 If you have a cloud based application and don't want to integrate JDash backend platform into your server application, this is an ideal, cheap and fast solution to get you up.
 
 **On Premise**
+
 If you are a developer/company, who develops applications for other customers or if you have a product, into which you want to embed JDash, this is the right license type for you.
 
 You can integrate JDash backend platform into your server application easily.
