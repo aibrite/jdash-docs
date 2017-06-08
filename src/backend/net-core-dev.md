@@ -33,10 +33,9 @@ dotnet new web
 
 This will create an application with the default configuration.
 
-Open ``.csproj`` file and add JDash references.
+Open ``.csproj`` file (dotnettest.csproj - in case dotnet new web has been used) and add JDash references, just after ``<PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />``.
 
 ```xml
-<ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     
     <!-- Add below references -->
@@ -54,34 +53,42 @@ JDash .NetCore uses a configuration class, in order to configure authentication 
 
 Below is a sample configuration class.
 
+Create a new file called ``JDashConfig.cs`` and paste the below content inside.
+
 ```csharp
 
-public class JDashConfig: BaseJDashConfigurator {
+using JDash.NetCore.Api;
+using JDash.NetCore.Models;
+using Microsoft.AspNetCore.Http;
 
-    public JDashConfigurator(HttpContext context) : base(context)
+    public class JDashConfig : BaseJDashConfigurator
     {
-    }
 
-    // Use this method to get current user for current request.
-    public override JDashPrincipal GetPrincipal()
-    {            
-        return new JDashPrincipal("current-user");
-    }
+        public JDashConfig(HttpContext context) : base(context)
+        {
+        }
 
-    // JDash .NetCore library calls this method 
-    // to get a provider instance.
-    public override IJDashProvider GetProvider()
-    {
-         // Ensure you have a valid database.
-         
-        string connectionString = "Your SQL Server connection string";
-        return new JSQLProvider(connectionString);
+        // Use this method to get current user for current request.
+        public override JDashPrincipal GetPrincipal()
+        {
+            return new JDashPrincipal("user name");
+        }
 
-        // if you are using MySql uncomment below lines.
-        // string mySqlConnStr = "Server=127.0.01;Database=jdash;Uid=root;Pwd=1;";
-        // return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+        // Jdash NetCore library calls this method 
+        // to get a provider instance.
+        public override IJDashProvider GetProvider()
+        {
+            // Ensure you have a valid database.
+
+            //string msSqlConnStr = "Data Source=.;Initial Catalog=DemoJDash;Integrated Security=SSPI;";
+            //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
+
+            // if you are using MySql uncomment below lines.
+            string mySqlConnStr = "Server=127.0.01;Database=jdash;Uid=root;Pwd=1;";
+            return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+
+        }
     }
-}
 
 ```
 
