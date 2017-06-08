@@ -1,10 +1,10 @@
 # Welcome
 
-Welcome to Jdash documentation.
+Welcome to JDash Documentation.
 
-Jdash provides javascript + backend platform for adding end user designable dashboards into your web application.
+JDash provides Javascript + Backend Platform for adding end-user designable dashboards into your web application.
 
-End users can personalize your application better with Jdash. Users can;
+End-users can personalize your application better with JDash. Users can:
 
 * Create their own dashboards
 * Share dashboards/dashlets
@@ -12,7 +12,7 @@ End users can personalize your application better with Jdash. Users can;
 
 ## Features
 
-### Client side features
+### Client-Side Features
 * Fully customizable user interface
 * Easy dashlet development
 * Builtin themes for Bootstrap & Material
@@ -21,9 +21,9 @@ End users can personalize your application better with Jdash. Users can;
 Please see [Client Developoment Section](./client/index.md) to get more information.
 
 
-### Server side features
-* Either use Jdash Cloud or install on your servers
-* Support for NodeJs and Net Core 
+### Server-Side Features
+* Either use JDash Cloud or install on your servers
+* Support for NodeJs and .Net Core 
 * Support for MongoDB, MySQL and Microsoft SQL Server
 
 Please see [Backend Developoment Section](./backend/index.md) to get more information.

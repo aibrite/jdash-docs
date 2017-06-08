@@ -1,24 +1,24 @@
 # NodeJS Development
 
-This article is about installing and using Jdash NodeJs packages on your backend. 
+This article is about installing and using JDash NodeJs packages on your backend. 
 
-If you want to use Jdash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
+If you want to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
 
 ## Step 1: Initial setup
-Use npm to install Jdash NodeJs packages.
+Use npm to install JDash NodeJs packages.
 
 ```no-highlight
 npm install jdash-express --save
 ```
 
-Note: If this is the first time you use npm to add a package first execute `npm init` to create a package.json.
+Note: If this is the first time you use npm to add a package, first execute `npm init` to create a ``package.json``.
 
-Jdash uses <a target="_blank" href="http://expressjs.com">Express</a>. Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+JDash uses <a target="_blank" href="http://expressjs.com">Express</a>. Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
 ### Basic server application
 
-Below code snippet creates a simple NodeJs application which serves static files from root folder.
+Below code snippet creates a simple NodeJs application, which serves static files from root folder.
 
 ```javascript
 var express = require('express');
@@ -34,11 +34,13 @@ app.use(express.static(__dirname));
 
 // Start listening port 3001
 app.listen(3001, function () {
-
+    console.log('Demo App launched.'); //App has started.    
 })
 ```
 
 ## Step 2: Attaching jdash-express middleware to your application
+
+Right before ``app.listen()`` method, place the following code, just after initializing the static folder as seen above with ``app.use(express.static(__dirname))``.
 
 ```javascript
 var jexpress = require('jdash-express').default;
@@ -55,30 +57,30 @@ jexpress({
             appid: "myapp" // application id of this app
         }
     },
-    provider: null // we will explain provider details later.
+    provider: null // we will explain provider details at the later stages.
 }).use(jdashRoutes);
 
 // Use this router
 app.use('/jdash/api/v1', jdashRoutes);
 
 app.listen(3001, function () {
-
+    console.log('JDash Demo App launched.');
 })
 ```
 
 ### Setting a principal and application name
-Use `principal` property of `jexpress` configuration object to get user from current request. This value is used to set the user name property of dashboards and dashlets inside database so that each user can have their own dashboards and dashlets.
+Use `principal` property of `jexpress` configuration object to get user from current request. This value is used to set the user name property of dashboards and dashlets inside database, so that each user can have their own dashboards and dashlets.
 
 You also need to provide an application name. Application name allows to use same database instance for different applications. 
 
 ### Using providers
-Providers are NodeJs packages which allows to retrieve and persist dashboard data i.e. dashlet configurations, layouts and so on.
+Providers are NodeJs packages, which allow you to retrieve and persist dashboard data i.e. dashlet configurations, layouts and so on.
 
-Currently Jdash has two builtin NodeJs packages for MongoDB and MySQL.
+Currently JDash has two built-in NodeJs packages for MongoDB and MySQL.
 
-#### Using MongoDB with Jdash 
+#### Using MongoDB with JDash 
 
-Use npm to install Jdash MongoDb NodeJs package.
+Use npm to install JDash MongoDb for NodeJs package.
 
 ```no-highlight
 npm install jdash-mongodb --save
@@ -88,13 +90,16 @@ npm install jdash-mongodb --save
 var mongoose = require('mongoose');
 var jmongo = require('jdash-mongodb').default;
 
-var connStr = 'Your connection string goes here';
+var connStr = 'Your connection string goes here'; 
+/* i.e. 'mongodb://localhost:27017/jdash-demo' */
 
 // Create a database connection
 var connection = mongoose.createConnection(connStr);
 
-// Configure Jdash when database connection is ready.
+// Configure JDash when database connection is ready.
 connection.on('connected', function () {
+    console.log('Connected to the JDash Demo Mongo Database.')
+    // Configure jexpress with router and user callback 
     jexpress({
         principal: function (request) {
             return {
@@ -110,8 +115,11 @@ connection.on('connected', function () {
 })
 ```
 
-#### Using MySQL with Jdash
-Use npm to install Jdash MySQL provider.
+As seen above, ``jexpress`` and ``principal`` can now be configured inside the ``connection.on()`` method callback, which is called as soon as the database is ready. Once the application connects to the database, set the ``user`` and ``appid`` values and specify the ``provider``.  
+
+
+#### Using MySQL with JDash
+Use npm to install JDash MySQL Provider.
 
 ```no-highlight
 npm install jdash-mysqldb --save
@@ -145,13 +153,13 @@ jexpress({
 ```
 
 ## Step 3: Client side development
-Use npm to install Jdash UI package.
+Use npm to install JDash UI package.
 
 ```no-highlight
 npm install jdash-ui --save
 ```
 
-This will create node_modules/jdash-ui folder.
+This will create ``node_modules/jdash-ui`` folder.
 
 Create index.html inside your project root and paste below code.
 
@@ -183,7 +191,7 @@ You use `j-dashlet` element to define a dashlet.
 
 Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. An optional `script` element inside `j-dashlet` can be used to execute javascript for this dashlet. 
 
-Copy the following code inside body tag. 
+Copy the following code inside ``<body>`` tag. 
 
 ```html
 <!-- Define <hello-world> dashlet -->
@@ -209,7 +217,7 @@ Copy the following code inside body tag.
 ### Step 5: Create and display dashboard
 Use `j-dashboard` element to display a dashboard. 
 
-Inside `body` tag add following code.
+Inside `body` tag, add following code.
 
 ```html
     <button id="createDashboardBtn">Create Dashboard</button>
@@ -257,7 +265,7 @@ Add a `script` element after `body` and paste below code.
 ```
 
 ### Step 6: View dashboards
-As last step we will implement creating buttons to view existing dashboards.
+As the last step, we will implement the code to view existing dashboards.
 
 `jdash.Provider.getMyDashboards` method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for `userToken` param for `jdash.Provider.init` method.
 
@@ -285,9 +293,9 @@ function createDashboardList() {
     })
 }
 ```
-Uncomment this function when page loads / user creates a new dashboard so that dashboard list is updated.
+Note that the ``createDashboardList()`` function is commented on Step 5. Uncomment this function after Step 6, so that the when page loads / user creates a new dashboard, dashboard list is updated.
 
 ### Step 7: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-nodejs-tutorial).
 
-If you enjoy Jdash you can continue from Basic Concepts.
+If you enjoy JDash you can continue from Basic Concepts.

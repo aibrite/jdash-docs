@@ -1,21 +1,21 @@
 # Getting Started
 
 ## Quick Start
-The aim of this article is to get you up and running with Jdash in 5 minutes.
+The aim of this article is to get you up and running with JDash in 5 minutes.
 
 ### Step 1: Install JDash Client
-Use npm to install Jdash UI package.
+Use ``npm`` to install JDash UI package.
 
 ```no-highlight
 npm install jdash-ui --save
 ```
 
-This will create node_modules/jdash-ui folder.
+This will create ``node_modules/jdash-ui`` folder.
 
-Note: If this is the first time you use npm to add a package first execute npm init to create a package.json.
+Note: If this is the first time you use npm to add a package, first execute ``npm init`` to create a ``package.json``.
 
 ### Step 2: Create a basic HTML page
-Create index.html and paste below code inside.
+Create index.html and paste the below code inside.
 
 ```html
 <!DOCTYPE html>
@@ -41,11 +41,13 @@ Create index.html and paste below code inside.
 ```
 
 ### Step 3: Develop your first dashlet
-You use `j-dashlet` element to define a dashlet. 
+Use `j-dashlet` element to define a dashlet. 
 
-Content of `j-dashlet` can include `template` element which can be used to define dom (innerHTML) of your dashlet. An optional `script` element inside `j-dashlet` can be used to execute javascript for this dashlet. That simple & clear!
+Content of `j-dashlet` can include `template` element, which can be used to define dom (innerHTML) of your dashlet. 
 
-Copy the following code inside body tag. 
+An optional `script` element inside `j-dashlet` can be used to execute Javascript for this dashlet. That simple & clear!
+
+Copy the following code inside `body` tag. 
 
 ```html
 <!-- Define <hello-world> dashlet -->
@@ -58,7 +60,7 @@ Copy the following code inside body tag.
         jdash.define(function () {
 
             this.initialized = function () {
-                // Dom is ready!
+                // Dom is ready! this refers to actual element instance.
                 var h1 = this.querySelector('h1')
                 h1.textContent = 'Hello World!';
             }
@@ -68,12 +70,14 @@ Copy the following code inside body tag.
 </j-dashlet>
 ```
 
-### Step 4: Get a free api key
-JDash cloud can save and retrieve user data i.e. dashboards, layouts, dashlet configurations and positions.
+### Step 4: Get a free Api Key
+JDash Cloud can persist and retrieve dashboard data, i.e. dashboards, layouts, dashlet configurations and positions.
 
-To use Jdash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration you will get an api key and test user token. Use them to initialize authentication.
+In order to use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an ``Api Key`` and ``Secret`` for your first application. You can use these data to configure the authentication.
 
-Todo so, add a `script` element just before `</body>` tag.
+Please remember that you can always access the ``Api Key`` and the ``Secret`` of your selected application(s) and generate ``Test User Token``, at the Applications Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.
+
+To perform the authentication, add a `script` element just before `</body>` tag.
 
 ```html
     <script>
@@ -86,30 +90,29 @@ Todo so, add a `script` element just before `</body>` tag.
     </script>
 </body>
 ```
-apikey
-:  A string value which identifies your application.
+`apikey`
+:  Uniquely identifies your application.
 
-userToken
-:  A string value or function to authenticate your end user to Jdash cloud.
+`userToken`
+:  A string value or function to identify your end-user to JDash Cloud.
 
 ### Step 5: Create and display dashboard
 Use `j-dashboard` element to display a dashboard. 
 
-Inside `body` tag, before `<script>` element add following code.
+Append the following code inside `body` tag.
 
 ```html
-<button id="createDashboardBtn">Create Dashboard</button>
-<button id="addDashletBtn">Add Dashlet</button>
-<div id="dashboardList"></div>
+    <button id="createDashboardBtn">Create Dashboard</button>
+    <button id="addDashletBtn">Add Dashlet</button>
+    <div id="dashboardList"></div>
 
-<j-dashboard id="dashboard" j-view-mode="dashletedit">
-    <h2 j-bind="title"></h2>
-</j-dashboard>
+    <j-dashboard id="dashboard" j-view-mode="dashletedit">
+        <h2 j-bind="title"></h2>
+    </j-dashboard>
+</body>
 ```
 
-We also added some buttons to create dashboard and adding dashlets.
-
-Now and event handlers inside `jdash.ready` handler.
+Set event handlers inside `jdash.ready` handler.
 
 ```html
 <script>
@@ -120,6 +123,8 @@ Now and event handlers inside `jdash.ready` handler.
             userToken: 'USER TOKEN'
         })
 
+        // createDashboardList();
+
         document.querySelector('#createDashboardBtn').addEventListener('click', function () {
             var title = window.prompt('Set a title for new dashboard');
  
@@ -128,6 +133,7 @@ Now and event handlers inside `jdash.ready` handler.
                 title: title
             }).then(function (result) {
                 console.log('Dashboard created with id:' + result.id);
+                //createDashboardList();
                 dashboard.load(result.id);
             }).catch(function (err) {
                 alert('There was an error creating dashboard: ' + err.message || err)
@@ -143,10 +149,10 @@ Now and event handlers inside `jdash.ready` handler.
 </body>
 ```
 
-### Step 6: View dashboards
-As last step we will implement creating buttons to view existing dashboards.
+### Step 6: View Dashboards
+As the last step, we will implement a code to view existing dashboards.
 
-`jdash.Provider.getMyDashboards` method returns a list of dashboards current user owns. Note that you initialize current credentials by setting a valid value for `userToken` param for `jdash.Provider.init` method.
+`jdash.Provider.getMyDashboards` method returns a list of dashboards that the current user owns. Note that you initialize current credentials by setting a valid value for `userToken` param for `jdash.Provider.init` method.
 
 Add following function inside `script` element.
 
@@ -172,9 +178,9 @@ function createDashboardList() {
     })
 }
 ```
-Call this function when page loads or user creates a new dashboard.
+Note that the ``createDashboardList()`` function is commented on Step 5. Uncomment this function after Step 6, so that the when page loads / user creates a new dashboard, dashboard list is updated.
 
-### Step 7: Download source code
+### Step 7: Download Source Code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-tutorial).
 
-If you enjoy Jdash you can continue from Basic Concepts.
+If you enjoy JDash, you can continue from Basic Concepts.

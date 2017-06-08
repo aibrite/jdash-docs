@@ -1,11 +1,11 @@
 # Dashlet Development
 
-## About dashlets
-In Jdash, *Dashlet* means a custom element which consists of Html dom elements and optional business layer.
+## About Dashlets
+In JDash, *Dashlet* means a custom element which consists of Html dom elements and optional business layer.
 
-Jdash includes component based custom element development framework. This framework allows you to develop and register custom elements easily.
+JDash includes component based custom element development framework. This framework allows you to develop and register custom elements easily.
 
-## Defining dashlets
+## Defining Dashlets
 
 ```html
 <!-- Define <hello-world> element -->
@@ -30,9 +30,9 @@ Jdash includes component based custom element development framework. This framew
 
 `template`element is used to set html dom elements. When a new instance of dashlet is created, elements inside template element is cloned and dom of new dashlet instance is created.
 
-`script` element is optional and allows you to execute javascript for dashlet. 
+`script` element is optional and allows you to execute Javascript for dashlet. 
 
-After defining a dashlet you can add it to a dashboard or just use as custom element.
+After defining a dashlet, you can add it to a dashboard or just use it as a custom element.
 
 ```html
 <hello-world></hello-word>
@@ -42,7 +42,7 @@ or add to a dashboard.
 ```javascript
 dashboard.addDashlet('hello-world');
 ```
-Jdash also supports placing dashlet definition inside another file.
+JDash also supports placing dashlet definitions inside another file.
 
 ```html
 <link rel="import" href="dashlets/helloworld.html">
@@ -74,9 +74,9 @@ jdash.define('hello-world', function () {
 </script>
 ```
 
-## Dashlet lifecycle
+## Dashlet Lifecycle
 
-Since Jdash uses custom elements as dashlets same rules for custom elements apply for dashlets.
+Since JDash uses custom elements as dashlets, same rules for custom elements apply for dashlets.
 
 Below code summarizes dashlet lifecycle.
 
@@ -102,13 +102,13 @@ jdash.define('hello-world', function () {
 
 See <a href=" https://www.w3.org/TR/custom-elements/" target="_blank">W3C Custom Elements</a> document to get more information about custom elements.
 
-Note: For backward compability we used ES5 style dashlet definition in this document. Jdash also supports ES6 and you can use `class` keyword and inherit from `Dashlet` to define your dashlet.
+Note: For backward compability, we used ES5 style dashlet definition in this document. JDash also supports ES6 and you can use `class` keyword and inherit from `Dashlet` to define your dashlet.
 
-## Configurable dashlets
+## Configurable Dashlets
 
-### Defining editor element
+### Defining Editor Element
 
-Use `j-dashlet-editor` element to define a dashlet editor. Same rules (templates, script, lifecycle etc.) are valid for dashlet editors since they are developed by Jdash component framework.
+Use `j-dashlet-editor` element to define a dashlet editor. Same rules (templates, script, lifecycle etc.) are valid for dashlet editors since they are developed with JDash component framework.
 
 ```html
 <j-dashlet-editor id="hello-world-editor">
@@ -129,7 +129,7 @@ Use `j-dashlet-editor` element to define a dashlet editor. Same rules (templates
 
 </j-dashlet-editor>
 ```
-When a new dashlet is defined, Jdash looks for an element tag with postfixed by `-editor`. For example if your dashlet is defined by `hello-world` Jdash looks for `hello-world-editor`. If it finds it associates this tag as editor for your dashlet.
+When a new dashlet is defined, JDash looks for an element tag that is postfixed by `-editor`. For example if your dashlet is defined by `hello-world` JDash looks for `hello-world-editor`. If it finds such element, it associates this tag as editor for your dashlet.
 
 You can override this behaviour by explicitly setting a value to `j-editor` attribute.
 
@@ -137,8 +137,8 @@ You can override this behaviour by explicitly setting a value to `j-editor` attr
 <j-dashlet id="hello-world" j-editor="my-editor" title="Hello world!"></j-dashlet>
 <j-dashlet-editor id="my-editor"></j-dashlet-editor>
 ```
-### Loading configuration
-You can set and retrieve configuration values for dashlets. Configuration values are automatically converted to Json and stored on Jdash Cloud or on your backend.
+### Loading Configuration
+You can set and retrieve configuration values for dashlets. Configuration values are automatically converted to Json and stored on JDash Cloud or on your backend.
 
 ```html
 <j-dashlet id="hello-world" title="Hello world!">
@@ -160,7 +160,7 @@ You can set and retrieve configuration values for dashlets. Configuration values
     </script>
 </j-dashlet>
 ```
-If you attach a function named `loadConfig` to your dashlet Jdash automatically calls it when a new instance of your dashlet is created or after successfully saving new configuration values.
+If you attach a function named `loadConfig` to your dashlet, JDash automatically calls it when a new instance of your dashlet is created or after successfully saving new configuration values.
 
 ```html
 <j-dashlet-editor id="hello-world-editor">
@@ -191,5 +191,5 @@ If you attach a function named `loadConfig` to your dashlet Jdash automatically 
 
 </j-dashlet-editor>
 ``` 
-Add an event listener for `setconfig` event so that you can set new values for configuration.
+Add an event listener for `setconfig` event, so that you can set new values for configuration.
 

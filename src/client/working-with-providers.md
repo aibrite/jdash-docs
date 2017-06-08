@@ -1,16 +1,16 @@
 # Working with Provider
 
-## Provider basics
+## Provider Basics
 
-Jdash uses `jdash.Provider` methods to create, save and delete dashboards and dashlets.
+JDash uses `jdash.Provider` methods to create, save and delete dashboards and dashlets.
 
-Provider should be initialized before using any methods of the below methods. 
+Provider should be initialized before using any of the below methods. 
 
-### İnitializing provider
+### Initializing Provider
 
-If you are using Jdash Cloud initializing means setting a valid api key and user token.
+If you are using JDash Cloud, initializing means setting a valid Api Key and User Token.
 
-After <a href="https://app.jdash.io/#!/app/account/register" target="_blank">registering as a new user</a> you will get an api key and test user token. Use them to initialize provider.
+After <a href="https://app.jdash.io/#!/app/account/register" target="_blank">registering as a new user</a>, you will get an Api Key and a Test User Token. Use these data to initialize provider.
 
 ```javascript
 jdash.ready(function () {
@@ -21,14 +21,14 @@ jdash.ready(function () {
 })
 ```
 
-### User based design 
-In Jdash, a dashboard belongs to a user. A user may have many dashboards and a dashboard contains dashlets.
+### User Based Design 
+In JDash, a dashboard belongs to a user. A user may have many dashboards and a dashboard contains dashlets.
 
 This allows your users to create and design their own dashboards.
 
-When you initialize provider, `apiKey` represents your application in Jdash cloud. `userToken` allows you to set a security token for current user. Methods like `createDashboard` uses this token to assign dashboard to current user. 
+When you initialize provider, `apiKey` represents your application in JDash Cloud. `userToken` allows you to set a security token for the current user. Methods like `createDashboard` uses this token to assign dashboard to the current user. 
 
-### Methods and samples
+### Methods and Samples
 
 Use `getDashboard` method to get dashboard model with dashboard id.
 ```javascript
@@ -51,19 +51,19 @@ jdash.Provider.createDashboard({
     alert('There was an error creating dashboard: ' + err.message || err)
 })
 ```
-Note that the user which creates the dashboard is autoımatically retreived from the user token.
+Note that the user, who creates the dashboard is automatically retreived from the User Token.
 
-Use `getMyDashboards` method to get a list of dashboards which belongs to current user.
+Use `getMyDashboards` method to get a list of dashboards, which belongs to the current user.
 
-Use `searchDashboards`method to search for dashboards.
+Use `searchDashboards` method to search for dashboards.
 
-Use `deleteDashboard` method to delete a dashboard. When a dashboard is deleted all dashlets inside that dashboard are automatically deleted.
+Use `deleteDashboard` method to delete a dashboard. When a dashboard is deleted, all dashlets inside that dashboard are also automatically deleted.
 
 Use `saveDashboard` to update a dashboard.
 
-Provider also has CRUD methods for dashlets. Although you can use these methods directly it's better to use methods of `j-dashboard` element to create, remove or save dashlets.
+Provider also has CRUD methods for dashlets. Although you can use these methods directly, it's a better practice to use the methods of `j-dashboard` element to create, remove or save dashlets.
 
-Below table is a summary of methods for dashlets.
+Below table is a summary of methods for dashlets:
 
 | Method       | Description                   |
 | ------------- | -------------------------     |
@@ -73,7 +73,7 @@ Below table is a summary of methods for dashlets.
 
 ### Key interfaces
 
-`jdash.Provider` implements `IClientProvider`interface.
+`jdash.Provider` implements `IClientProvider` interface.
 
 ```typescript
 interface IClientProvider {
