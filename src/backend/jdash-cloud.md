@@ -45,19 +45,17 @@ On client side:
 
 #### Step 1: Install JSON Web Token package via npm
 JWT.IO allows you to decode, verify and generate JWT.
-
-<<<<<<< HEAD
-                jdash.Http.get('jdashController/authorize').then(function(result){
-                    // response must be a jwt string that will be filled to the result.data property.
-                    // response JWT text will be passed to the JDash Token Callback
-                    tokenCallback(null,result.data);
-                });
-            }
-        })
-=======
+```javascript
+            jdash.Http.get('jdashController/authorize').then(function(result){
+                // response must be a jwt string that will be filled to the result.data property.
+                // response JWT text will be passed to the JDash Token Callback
+                tokenCallback(null,result.data);
+            });
+        }
+    })
+```
 ```no-highlight
 npm install JSONwebtoken --save
->>>>>>> 4686c92f289f9afca6ced4baf98fa14356c1c717
 ```
 
 #### Step 2: Implement JWT endpoint
