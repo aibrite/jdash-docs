@@ -60,7 +60,7 @@ On jdash.Provider.init function of jdash you will have to make some changes like
                 jdash.Http.get('jdashController/authorize').then(function(result){
                     // response must be a jwt string that will be filled to the result.data property.
                     // response JWT text will be passed to the JDash Token Callback
-                    tokenCallback(result.data);
+                    tokenCallback(null,result.data);
                 });
             }
         })
