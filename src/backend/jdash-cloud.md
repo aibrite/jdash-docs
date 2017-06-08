@@ -54,8 +54,9 @@ JWT.IO allows you to decode, verify and generate JWT.
         }
     })
 ```
+ 
 ```no-highlight
-npm install JSONwebtoken --save
+npm install JSONwebtoken --save 
 ```
 
 #### Step 2: Implement JWT endpoint
