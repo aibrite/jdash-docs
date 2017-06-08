@@ -63,8 +63,7 @@ app.get('/auth/jwt', function (req, res, next) {
         data: {
             user: enduser /* current user of request */
         }
-        //}, 'TODO: REPLACE WITH SECRET', {
-    }, 'a9f26c2daeb4e0af693eab1c59d5e9b0', {
+        }, 'TODO: REPLACE WITH SECRET', {
             algorithm: 'HS256',
             subject: 'TODO: REPLACE WITH APIKEY',
             subject: '4f20f93e-5004-4daf-a629-76af8f4f9b95',
