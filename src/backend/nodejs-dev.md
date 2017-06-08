@@ -78,7 +78,7 @@ Providers are NodeJs packages, which allow you to retrieve and persist dashboard
 
 Currently JDash has two built-in NodeJs packages for MongoDB and MySQL.
 
-#### Using MongoDB with Jdash 
+#### Using MongoDB with JDash 
 
 Use npm to install JDash MongoDb for NodeJs package.
 
@@ -99,6 +99,7 @@ var connection = mongoose.createConnection(connStr);
 // Configure JDash when database connection is ready.
 connection.on('connected', function () {
     console.log('Connected to the JDash Demo Mongo Database.')
+    // Configure jexpress with router and user callback 
     jexpress({
         principal: function (request) {
             return {
@@ -114,7 +115,10 @@ connection.on('connected', function () {
 })
 ```
 
-#### Using MySQL with Jdash
+As seen above, ``jexpress`` and ``principal`` can now be configured inside the ``connection.on()`` method callback, which is called as soon as the database is ready. Once the application connects to the database, set the ``user`` and ``appid`` values and specify the ``provider``.  
+
+
+#### Using MySQL with JDash
 Use npm to install JDash MySQL Provider.
 
 ```no-highlight
