@@ -244,9 +244,8 @@ Install-Package Microsoft.AspNetCore.StaticFiles
 </code></pre>
 
 <p>This will create an application with the default configuration.</p>
-<p>Open <code>.csproj</code> file and add JDash references.</p>
-<pre><code class="xml">&lt;ItemGroup&gt;
-    &lt;PackageReference Include=&quot;Microsoft.AspNetCore&quot; Version=&quot;1.1.2&quot; /&gt;
+<p>Open <code>.csproj</code> file (dotnettest.csproj - in case dotnet new web has been used) and add JDash references, just after <code>&lt;PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" /&gt;</code>.</p>
+<pre><code class="xml">    &lt;PackageReference Include=&quot;Microsoft.AspNetCore&quot; Version=&quot;1.1.2&quot; /&gt;
 
     &lt;!-- Add below references --&gt;
     &lt;PackageReference Include=&quot;JDash.NetCore.Api&quot; Version=&quot;*&quot; /&gt;
@@ -262,33 +261,40 @@ Install-Package Microsoft.AspNetCore.StaticFiles
 <h2 id="step-2-implement-configuration-class">Step 2: Implement configuration class</h2>
 <p>JDash .NetCore uses a configuration class, in order to configure authentication and provider settings. </p>
 <p>Below is a sample configuration class.</p>
+<p>Create a new file called <code>JDashConfig.cs</code> and paste the below content inside.</p>
 <pre><code class="csharp">
-public class JDashConfig: BaseJDashConfigurator {
+using JDash.NetCore.Api;
+using JDash.NetCore.Models;
+using Microsoft.AspNetCore.Http;
 
-    public JDashConfigurator(HttpContext context) : base(context)
+    public class JDashConfig : BaseJDashConfigurator
     {
+
+        public JDashConfig(HttpContext context) : base(context)
+        {
+        }
+
+        // Use this method to get current user for current request.
+        public override JDashPrincipal GetPrincipal()
+        {
+            return new JDashPrincipal(&quot;user name&quot;);
+        }
+
+        // Jdash NetCore library calls this method 
+        // to get a provider instance.
+        public override IJDashProvider GetProvider()
+        {
+            // Ensure you have a valid database.
+
+            //string msSqlConnStr = &quot;Data Source=.;Initial Catalog=DemoJDash;Integrated Security=SSPI;&quot;;
+            //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
+
+            // if you are using MySql uncomment below lines.
+            string mySqlConnStr = &quot;Server=127.0.01;Database=jdash;Uid=root;Pwd=1;&quot;;
+            return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+
+        }
     }
-
-    // Use this method to get current user for current request.
-    public override JDashPrincipal GetPrincipal()
-    {            
-        return new JDashPrincipal(&quot;current-user&quot;);
-    }
-
-    // JDash .NetCore library calls this method 
-    // to get a provider instance.
-    public override IJDashProvider GetProvider()
-    {
-         // Ensure you have a valid database.
-
-        string connectionString = &quot;Your SQL Server connection string&quot;;
-        return new JSQLProvider(connectionString);
-
-        // if you are using MySql uncomment below lines.
-        // string mySqlConnStr = &quot;Server=127.0.01;Database=jdash;Uid=root;Pwd=1;&quot;;
-        // return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
-    }
-}
 
 </code></pre>
 
