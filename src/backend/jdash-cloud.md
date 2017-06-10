@@ -92,22 +92,22 @@ Inside ``jdash.ready`` handler, make a call to the above endpoint to get a secur
 Note that ``jdash.ready`` is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.
 
 ```javascript
-jdash.ready(function () {
-        jdash.Provider.init({
-            apiKey: 'API KEY',           
-            userToken: function (tokenCallback) {
-                // make a XMLHttpRequest (aka Ajax call) to your endpoint
-                // you can use any ajax library ie $.ajax, we are just using axios
-                // response must be a jwt string.
-                jdash.Http.get('auth/jwt').then(function (result) {
-                    // securely set end-user
-                    tokenCallback(null, result.data);
-                }, function (err) {
-                    tokenCallback(err);
-                });
-            }
-        })
-}
+    jdash.ready(function () {
+            jdash.Provider.init({
+                apiKey: 'API KEY',           
+                userToken: function (tokenCallback) {
+                    // make a XMLHttpRequest (aka Ajax call) to your endpoint
+                    // you can use any ajax library ie $.ajax, we are just using axios
+                    // response must be a jwt string.
+                    jdash.Http.get('auth/jwt').then(function (result) {
+                        // securely set end-user
+                        tokenCallback(null, result.data);
+                    }, function (err) {
+                        tokenCallback(err);
+                    });
+                }
+            })
+    }
 ```
 Keep in mind that JDash Cloud User Panel also allows you to create a Test User Token.
 
@@ -116,6 +116,9 @@ Source code of this guide can be found at this [GitHub Repo](https://github.com/
 
 
 ### .Net Core implementation
+
+
+#### Step 1 : Create an enpoint on server side
 
 You can use `Jwt.Net` NuGet package <a href="https://www.nuget.org/packages/jose-jwt/" target="_blank" > here </a> or you can find source code on git <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank"> here</a>.  Or you can chose any .Net Libraries listed on <a href="https://jwt.io/#libraries-io">https://jwt.io/#libraries-io</a> 
 
@@ -156,8 +159,8 @@ You can define a middleware that can be used for authorization purposes, here we
             {
                 { "data" , new { user = "CURRENT USER NAME/ID" } },
                 {"sub", "YOUR API KEY"},
-                {"iat", ToUnixTime(issued).ToString()},
-                {"exp", ToUnixTime(expire).ToString()} // optional(recommended)
+                {"iat", ToUnixTime(issued)},
+                {"exp", ToUnixTime(expire)} // optional(recommended)
             };
 
             string token = JWT.Encode(payload, Encoding.UTF8.GetBytes("YOUR API SECRET"), JwsAlgorithm.HS256);
@@ -193,6 +196,31 @@ You can just simply bind an endpoint from ``JDashAuthorizer.Register(IApplicatio
 ```
 
 You can find detailed information for jose-jwt package <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank">here</a>.
+
+
+#### Step 2 : Use endpoint on client side
+
+Inside jdash.ready handler, make a call to the above endpoint to get a secure JWT Token for your end-user.
+
+Note that jdash.ready is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.
+
+    jdash.ready(function () {
+            jdash.Provider.init({
+                apiKey: 'API KEY',           
+                userToken: function (tokenCallback) {
+                    // make a XMLHttpRequest (aka Ajax call) to your endpoint
+                    // you can use any ajax library ie $.ajax, we are just using axios
+                    // response must be a jwt string.
+                    jdash.Http.get('/jdashController/authorize').then(function (result) {
+                        // securely set end-user
+                        tokenCallback(null, result.data);
+                    }, function (err) {
+                        tokenCallback(err);
+                    });
+                }
+            })
+    }
+
 
 #### Notes:
 1- JDash will call ``userToken`` function when it needs a new token (as initial token request or for the renewal of expired JWT).
