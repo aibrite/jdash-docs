@@ -13,7 +13,7 @@ pages:
 - Backend Development:
     - Backend Home: backend/index.md
     - NodeJS Development: backend/nodejs-dev.md
-    # - Asp.Net MVC Development: backend/aspnet-mvc-dev.md
+    - Asp.Net MVC Development: backend/aspnet-mvc-dev.md
     - .Net Core Development: backend/net-core-dev.md
     - JDash Cloud: backend/jdash-cloud.md    
     # - MongoDB: backend/using-mongodb.md
