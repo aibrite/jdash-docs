@@ -136,6 +136,12 @@
                         
                             
 <li >
+    <a href="../aspnet-mvc-dev/">Asp.Net MVC Development</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../net-core-dev/">.Net Core Development</a>
 </li>
 
@@ -281,28 +287,29 @@
 <h4 id="step-3-use-endpoint-on-client-side">Step 3: Use endpoint on client side</h4>
 <p>Inside <code>jdash.ready</code> handler, make a call to the above endpoint to get a secure JWT Token for your end-user.</p>
 <p>Note that <code>jdash.ready</code> is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.</p>
-<pre><code class="javascript">jdash.ready(function () {
-        jdash.Provider.init({
-            apiKey: 'API KEY',           
-            userToken: function (tokenCallback) {
-                // make a XMLHttpRequest (aka Ajax call) to your endpoint
-                // you can use any ajax library ie $.ajax, we are just using axios
-                // response must be a jwt string.
-                jdash.Http.get('auth/jwt').then(function (result) {
-                    // securely set end-user
-                    tokenCallback(null, result.data);
-                }, function (err) {
-                    tokenCallback(err);
-                });
-            }
-        })
-}
+<pre><code class="javascript">    jdash.ready(function () {
+            jdash.Provider.init({
+                apiKey: 'API KEY',           
+                userToken: function (tokenCallback) {
+                    // make a XMLHttpRequest (aka Ajax call) to your endpoint
+                    // you can use any ajax library ie $.ajax, we are just using axios
+                    // response must be a jwt string.
+                    jdash.Http.get('auth/jwt').then(function (result) {
+                        // securely set end-user
+                        tokenCallback(null, result.data);
+                    }, function (err) {
+                        tokenCallback(err);
+                    });
+                }
+            })
+    }
 </code></pre>
 
 <p>Keep in mind that JDash Cloud User Panel also allows you to create a Test User Token.</p>
 <h3 id="step-4-download-source-code">Step 4: Download source code</h3>
 <p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-nodejs-cloud-tutorial">GitHub Repo</a>.</p>
 <h3 id="net-core-implementation">.Net Core implementation</h3>
+<h4 id="step-1-create-an-enpoint-on-server-side">Step 1 : Create an enpoint on server side</h4>
 <p>You can use <code>Jwt.Net</code> NuGet package <a href="https://www.nuget.org/packages/jose-jwt/" target="_blank" > here </a> or you can find source code on git <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank"> here</a>.  Or you can chose any .Net Libraries listed on <a href="https://jwt.io/#libraries-io">https://jwt.io/#libraries-io</a> </p>
 <p>We will show you how to implement JWT for Jose-JWT Nuget Package.</p>
 <p>First install Jose-JWT </p>
@@ -336,8 +343,8 @@
             {
                 { &quot;data&quot; , new { user = &quot;CURRENT USER NAME/ID&quot; } },
                 {&quot;sub&quot;, &quot;YOUR API KEY&quot;},
-                {&quot;iat&quot;, ToUnixTime(issued).ToString()},
-                {&quot;exp&quot;, ToUnixTime(expire).ToString()} // optional(recommended)
+                {&quot;iat&quot;, ToUnixTime(issued)},
+                {&quot;exp&quot;, ToUnixTime(expire)} // optional(recommended)
             };
 
             string token = JWT.Encode(payload, Encoding.UTF8.GetBytes(&quot;YOUR API SECRET&quot;), JwsAlgorithm.HS256);
@@ -371,6 +378,26 @@
 </code></pre>
 
 <p>You can find detailed information for jose-jwt package <a href="https://github.com/dvsekhvalnov/jose-jwt" target="_blank">here</a>.</p>
+<h4 id="step-2-use-endpoint-on-client-side">Step 2 : Use endpoint on client side</h4>
+<p>Inside jdash.ready handler, make a call to the above endpoint to get a secure JWT Token for your end-user.</p>
+<p>Note that jdash.ready is called once all the requirements of the JDash Service are met, such that the scripts are loaded and dom is ready.</p>
+<pre><code>jdash.ready(function () {
+        jdash.Provider.init({
+            apiKey: 'API KEY',           
+            userToken: function (tokenCallback) {
+                // make a XMLHttpRequest (aka Ajax call) to your endpoint
+                // you can use any ajax library ie $.ajax, we are just using axios
+                // response must be a jwt string.
+                jdash.Http.get('/jdashController/authorize').then(function (result) {
+                    // securely set end-user
+                    tokenCallback(null, result.data);
+                }, function (err) {
+                    tokenCallback(err);
+                });
+            }
+        })
+}
+</code></pre>
 <h4 id="notes">Notes:</h4>
 <p>1- JDash will call <code>userToken</code> function when it needs a new token (as initial token request or for the renewal of expired JWT).</p>
 <p>2- JDash JWT must be signed with a symmetric algorithm (Preferably "HS256" algorithm). </p>

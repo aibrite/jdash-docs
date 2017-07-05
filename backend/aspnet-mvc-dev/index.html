@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="canonical" href="http://doc.jdash.io/client/getting-started/"> 
+    <link rel="canonical" href="http://doc.jdash.io/backend/aspnet-mvc-dev/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Getting Started - JDash</title>
+    <title>Asp.Net MVC Development - JDash</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -73,43 +73,43 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client Development <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../">Client Home</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Getting Started</a>
+    <a href="../../client/">Client Home</a>
 </li>
 
                         
                             
 <li >
-    <a href="../basic-concepts/">Basic Concepts</a>
+    <a href="../../client/getting-started/">Getting Started</a>
 </li>
 
                         
                             
 <li >
-    <a href="../working-with-providers/">Providers</a>
+    <a href="../../client/basic-concepts/">Basic Concepts</a>
 </li>
 
                         
                             
 <li >
-    <a href="../working-with-dashboards/">Working with Dashboards</a>
+    <a href="../../client/working-with-providers/">Providers</a>
 </li>
 
                         
                             
 <li >
-    <a href="../dashlet-development/">Dashlet Development</a>
+    <a href="../../client/working-with-dashboards/">Working with Dashboards</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../client/dashlet-development/">Dashlet Development</a>
 </li>
 
                         
@@ -118,37 +118,37 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Backend Development <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../backend/">Backend Home</a>
+    <a href="../">Backend Home</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../backend/nodejs-dev/">NodeJS Development</a>
+    <a href="../nodejs-dev/">NodeJS Development</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Asp.Net MVC Development</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../backend/aspnet-mvc-dev/">Asp.Net MVC Development</a>
+    <a href="../net-core-dev/">.Net Core Development</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../backend/net-core-dev/">.Net Core Development</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../backend/jdash-cloud/">JDash Cloud</a>
+    <a href="../jdash-cloud/">JDash Cloud</a>
 </li>
 
                         
@@ -167,12 +167,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../">
+                        <a rel="next" href="../nodejs-dev/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../basic-concepts/">
+                        <a rel="prev" href="../net-core-dev/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -188,23 +188,29 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#getting-started">Getting Started</a></li>
+        <li class="first-level active"><a href="#aspnet-mvc-development">Asp.Net MVC Development</a></li>
         
-            <li class="second-level"><a href="#quick-start">Quick Start</a></li>
+            <li class="second-level"><a href="#step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</a></li>
             
-                <li class="third-level"><a href="#step-1-install-jdash-client">Step 1: Install JDash Client</a></li>
+        
+            <li class="second-level"><a href="#step-2-implement-configuration-class">Step 2: Implement configuration class</a></li>
             
-                <li class="third-level"><a href="#step-2-create-a-basic-html-page">Step 2: Create a basic HTML page</a></li>
+        
+            <li class="second-level"><a href="#step-3-registering-jdash-api-endpoints">Step 3: Registering JDash Api endpoints</a></li>
             
-                <li class="third-level"><a href="#step-3-develop-your-first-dashlet">Step 3: Develop your first dashlet</a></li>
+        
+            <li class="second-level"><a href="#step-4-client-side-development">Step 4: Client side development</a></li>
             
-                <li class="third-level"><a href="#step-4-get-a-free-api-key">Step 4: Get a free Api Key</a></li>
+                <li class="third-level"><a href="#step-5-develop-your-first-dashlet">Step 5: Develop your first dashlet</a></li>
             
-                <li class="third-level"><a href="#step-5-create-and-display-dashboard">Step 5: Create and display dashboard</a></li>
+                <li class="third-level"><a href="#step-6-create-and-display-dashboard">Step 6: Create and display dashboard</a></li>
             
-                <li class="third-level"><a href="#step-6-view-dashboards">Step 6: View Dashboards</a></li>
+                <li class="third-level"><a href="#step-7-view-dashboards">Step 7: View dashboards</a></li>
             
-                <li class="third-level"><a href="#step-7-download-source-code">Step 7: Download Source Code</a></li>
+        
+            <li class="second-level"><a href="#step-8-run-your-application">Step 8: Run your application</a></li>
+            
+                <li class="third-level"><a href="#step-10-download-source-code">Step 10: Download source code</a></li>
             
         
     
@@ -212,18 +218,85 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="getting-started">Getting Started</h1>
-<h2 id="quick-start">Quick Start</h2>
-<p>The aim of this article is to get you up and running with JDash in 5 minutes.</p>
-<h3 id="step-1-install-jdash-client">Step 1: Install JDash Client</h3>
-<p>Use <code>npm</code> to install JDash UI package.</p>
+<h1 id="aspnet-mvc-development">Asp.Net MVC Development</h1>
+<p>This article is about installing and using JDash Asp.Net MVC libraries on your backend. </p>
+<p>If you would like to use JDash Cloud to store and manage dashboard related data you can continue from <a href="../../client/getting-started/">Getting Started</a> section.</p>
+<h2 id="step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</h2>
+<p>Use File | New Project | Asp.Net Web Application menu to create an empty project.</p>
+<p>Use NuGet Package Manager Console window to add JDash .NetCore library references to your project.  </p>
+<pre><code class="no-highlight">Install-Package JDash.NetFramework.Api
+Install-Package JDash.NetFramework.Provider.MsSQL
+Install-Package JDash.NetFramework.Provider.MySQL 
+</code></pre>
+
+<h2 id="step-2-implement-configuration-class">Step 2: Implement configuration class</h2>
+<p>JDash .NetFramework uses a configuration class, in order to configure authentication and provider settings. </p>
+<p>Below is a sample configuration class.</p>
+<p>Create a new file called <code>JDashConfig.cs</code> and paste the below content inside.</p>
+<pre><code class="csharp">
+using JDash.NetFramework.Api;
+using JDash.NetFramework.Models; 
+
+    public class JDashConfig : BaseJDashConfigurator
+    {
+
+        public JDashConfig(JRequestWrapper request) : base(context)
+        {
+        }
+
+        // Use this method to get current user for current request.
+        public override JDashPrincipal GetPrincipal()
+        {
+            return new JDashPrincipal(&quot;user name&quot;);
+        }
+
+        // Jdash library calls this method 
+        // to get a provider instance.
+        public override IJDashProvider GetProvider()
+        {
+            // Ensure you have a valid database.
+
+            //string msSqlConnStr = &quot;Data Source=.;Initial Catalog=DemoJDash;Integrated Security=SSPI;&quot;;
+            //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
+
+            // if you are using MySql uncomment below lines.
+            string mySqlConnStr = &quot;Server=127.0.01;Database=jdash;Uid=root;Pwd=1;&quot;;
+            return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+
+        }
+    }
+
+</code></pre>
+
+<h2 id="step-3-registering-jdash-api-endpoints">Step 3: Registering JDash Api endpoints</h2>
+<p>Open <code>Global.asax.cs</code> and paste below namespaces first. This will add extension methods.</p>
+<pre><code class="csharp">using JDash.NetFramework.Api; 
+using JDash.NetFramework.Models;
+</code></pre>
+
+<p>Locate <code>Application_Start</code> method in your <code>Global.asax.cs</code> file and replace it as below.</p>
+<pre><code class="csharp">  protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+             //this line will bind jdash routes
+            JDash.NetFramework.Api.Routing.Configurator.UseJDash&lt;JDashConfig&gt;();
+
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+</code></pre>
+
+<h2 id="step-4-client-side-development">Step 4: Client side development</h2>
+<p>Use <code>npm</code> to install JDash User Interface package. Ensure you are inside root of your project folder (where *.csproj file exists).</p>
 <pre><code class="no-highlight">npm install jdash-ui --save
 </code></pre>
 
+<p>Note: If this is the first time you use npm to add a package, first execute <code>npm init</code> to create <code>package.json</code> file.</p>
 <p>This will create <code>node_modules/jdash-ui</code> folder.</p>
-<p>Note: If this is the first time you use npm to add a package, first execute <code>npm init</code> to create a <code>package.json</code>.</p>
-<h3 id="step-2-create-a-basic-html-page">Step 2: Create a basic HTML page</h3>
-<p>Create index.html and paste the below code inside.</p>
+<p>Create index.html inside root folder and paste below code.</p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
@@ -246,11 +319,26 @@
 &lt;/html&gt;
 </code></pre>
 
-<h3 id="step-3-develop-your-first-dashlet">Step 3: Develop your first dashlet</h3>
-<p>Use <code>j-dashlet</code> element to define a dashlet. </p>
-<p>Content of <code>j-dashlet</code> can include <code>template</code> element, which can be used to define dom (innerHTML) of your dashlet. </p>
-<p>An optional <code>script</code> element inside <code>j-dashlet</code> can be used to execute Javascript for this dashlet. That simple &amp; clear!</p>
-<p>Copy the following code inside <code>body</code> tag. </p>
+<p>For demonstration purposes, we will serve a this static index.html page, to configure your routing just locate your </p>
+<p><code>RouteConfig.RegisterRoutes</code> method and replace it like below </p>
+<pre><code class="csharp">  public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute(&quot;{resource}.axd/{*pathInfo}&quot;);
+            // this line will allow your &quot;/&quot; url will server the index.html page as default page.
+            routes.IgnoreRoute(&quot;&quot;);
+
+            routes.MapRoute(
+                name: &quot;Default&quot;,
+                url: &quot;{controller}/{action}/{id}&quot;,
+                defaults: new { controller = &quot;Home&quot;, action = &quot;Index&quot;, id = UrlParameter.Optional }
+            );
+        }
+</code></pre>
+
+<h3 id="step-5-develop-your-first-dashlet">Step 5: Develop your first dashlet</h3>
+<p>You use <code>j-dashlet</code> element to define a dashlet. </p>
+<p>Content of <code>j-dashlet</code> can include <code>template</code> element which can be used to define dom (innerHTML) of your dashlet. An optional <code>script</code> element inside <code>j-dashlet</code> can be used to execute Javascript for this dashlet. </p>
+<p>Copy the following code inside body tag. </p>
 <pre><code class="html">&lt;!-- Define &lt;hello-world&gt; dashlet --&gt;
 &lt;j-dashlet id=&quot;hello-world&quot; title=&quot;Hello world!&quot;&gt;
     &lt;template&gt;
@@ -261,7 +349,7 @@
         jdash.define(function () {
 
             this.initialized = function () {
-                // Dom is ready! this refers to actual element instance.
+                // Dom is ready!
                 var h1 = this.querySelector('h1')
                 h1.textContent = 'Hello World!';
             }
@@ -271,29 +359,9 @@
 &lt;/j-dashlet&gt;
 </code></pre>
 
-<h3 id="step-4-get-a-free-api-key">Step 4: Get a free Api Key</h3>
-<p>JDash Cloud can persist and retrieve dashboard data, i.e. dashboards, layouts, dashlet configurations and positions.</p>
-<p>In order to use JDash Cloud <a href="https://app.jdash.io/#!/app/account/register" target="_blank">register as a new user</a>. After registration, you will automatically be assigned an <code>Api Key</code> and <code>Secret</code> for your first application. You can use these data to configure the authentication.</p>
-<p>Please remember that you can always access the <code>Api Key</code> and the <code>Secret</code> of your selected application(s) and generate <code>Test User Token</code>, at the Applications Pane of your User Panel at <a href="https://app.jdash.io" target="_blank">jdash.io </a>.</p>
-<p>To perform the authentication, add a <code>script</code> element just before <code>&lt;/body&gt;</code> tag.</p>
-<pre><code class="html">    &lt;script&gt;
-        jdash.ready(function () {
-            jdash.Provider.init({
-                apiKey: 'YOUR API KEY',
-                userToken: 'USER TOKEN'
-            })
-        })
-    &lt;/script&gt;
-&lt;/body&gt;
-</code></pre>
-
-<p><code>apikey</code>
-:  Uniquely identifies your application.</p>
-<p><code>userToken</code>
-:  A string value or function to identify your end-user to JDash Cloud.</p>
-<h3 id="step-5-create-and-display-dashboard">Step 5: Create and display dashboard</h3>
+<h3 id="step-6-create-and-display-dashboard">Step 6: Create and display dashboard</h3>
 <p>Use <code>j-dashboard</code> element to display a dashboard. </p>
-<p>Append the following code inside <code>body</code> tag.</p>
+<p>Inside <code>body</code> tag add following code.</p>
 <pre><code class="html">    &lt;button id=&quot;createDashboardBtn&quot;&gt;Create Dashboard&lt;/button&gt;
     &lt;button id=&quot;addDashletBtn&quot;&gt;Add Dashlet&lt;/button&gt;
     &lt;div id=&quot;dashboardList&quot;&gt;&lt;/div&gt;
@@ -304,17 +372,14 @@
 &lt;/body&gt;
 </code></pre>
 
-<p>Set event handlers inside <code>jdash.ready</code> handler.</p>
+<p>Add a <code>script</code> element after <code>body</code> and paste below code.</p>
 <pre><code class="html">&lt;script&gt;
     jdash.ready(function () {
 
-        jdash.Provider.init({
-            apiKey: 'YOUR API KEY',
-            userToken: 'USER TOKEN'
-        })
+        // Set provider
+        jdash.Provider = new jdash.ProviderTypes.OnPremise({ url: '/jdash/api/v1' }); // define your endpoint
 
         // createDashboardList();
-
         document.querySelector('#createDashboardBtn').addEventListener('click', function () {
             var title = window.prompt('Set a title for new dashboard');
 
@@ -323,8 +388,8 @@
                 title: title
             }).then(function (result) {
                 console.log('Dashboard created with id:' + result.id);
-                //createDashboardList();
                 dashboard.load(result.id);
+                //createDashboardList();
             }).catch(function (err) {
                 alert('There was an error creating dashboard: ' + err.message || err)
             })
@@ -339,9 +404,9 @@
 &lt;/body&gt;
 </code></pre>
 
-<h3 id="step-6-view-dashboards">Step 6: View Dashboards</h3>
-<p>As the last step, we will implement a code to view existing dashboards.</p>
-<p><code>jdash.Provider.getMyDashboards</code> method returns a list of dashboards that the current user owns. Note that you initialize current credentials by setting a valid value for <code>userToken</code> param for <code>jdash.Provider.init</code> method.</p>
+<h3 id="step-7-view-dashboards">Step 7: View dashboards</h3>
+<p>As the last step, we will implement the code to view existing dashboards.</p>
+<p><code>jdash.Provider.getMyDashboards</code> method returns a list of dashboards current user owns.</p>
 <p>Add following function inside <code>script</code> element.</p>
 <pre><code class="javascript">function createDashboardList() {
     var container = document.querySelector('#dashboardList');
@@ -365,10 +430,11 @@
 }
 </code></pre>
 
-<p>Note that the <code>createDashboardList()</code> function is commented on Step 5. Uncomment this function after Step 6, so that the when page loads / user creates a new dashboard, dashboard list is updated.</p>
-<h3 id="step-7-download-source-code">Step 7: Download Source Code</h3>
-<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-tutorial">GitHub Repo</a>.</p>
-<p>If you enjoy JDash, you can continue from Basic Concepts.</p></div>
+<p>Note that the <code>createDashboardList()</code> function is commented on Step 6. Uncomment this function after Step 8, so that the when page loads / user creates a new dashboard, dashboard list is updated.</p>
+<h2 id="step-8-run-your-application">Step 8: Run your application</h2>
+<p>Now run your mvc application and enjoy JDash. </p>
+<h3 id="step-10-download-source-code">Step 10: Download source code</h3>
+<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-netframework-tutorial">GitHub Repo</a>.</p></div>
         
     </div>
 
