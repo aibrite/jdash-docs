@@ -190,7 +190,7 @@
     
         <li class="first-level active"><a href="#aspnet-mvc-development">Asp.Net MVC Development</a></li>
         
-            <li class="second-level"><a href="#step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</a></li>
+            <li class="second-level"><a href="#step-1-add-jdashnetframework-references">Step 1 : Add JDash.NetFramework references</a></li>
             
         
             <li class="second-level"><a href="#step-2-implement-configuration-class">Step 2: Implement configuration class</a></li>
@@ -219,11 +219,11 @@
         <div class="col-md-9" role="main">
 
 <h1 id="aspnet-mvc-development">Asp.Net MVC Development</h1>
-<p>This article is about installing and using JDash Asp.Net MVC libraries on your backend. </p>
+<p>This article is about installing and using JDash Asp.Net MVC libraries on your backend. In this section, you can find how to implement .NetFramework 4.5.2 to your backend server.</p>
 <p>If you would like to use JDash Cloud to store and manage dashboard related data you can continue from <a href="../../client/getting-started/">Getting Started</a> section.</p>
-<h2 id="step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</h2>
+<h2 id="step-1-add-jdashnetframework-references">Step 1 : Add JDash.NetFramework references</h2>
 <p>Use File | New Project | Asp.Net Web Application menu to create an empty project.</p>
-<p>Use NuGet Package Manager Console window to add JDash .NetCore library references to your project.  </p>
+<p>Use NuGet Package Manager Console window to add JDash .NetFramework library references to your project.  </p>
 <pre><code class="no-highlight">Install-Package JDash.NetFramework.Api
 Install-Package JDash.NetFramework.Provider.MsSQL
 Install-Package JDash.NetFramework.Provider.MySQL 
@@ -257,11 +257,11 @@ using JDash.NetFramework.Models;
             // Ensure you have a valid database.
 
             //string msSqlConnStr = &quot;Data Source=.;Initial Catalog=DemoJDash;Integrated Security=SSPI;&quot;;
-            //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
+            //return new JDash.NetFramework.Provider.MsSQL.JSQLProvider(msSqlConnStr);
 
             // if you are using MySql uncomment below lines.
             string mySqlConnStr = &quot;Server=127.0.01;Database=jdash;Uid=root;Pwd=1;&quot;;
-            return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+            return new JDash.NetFramework.Provider.MySQL.JMySQLProvider(mySqlConnStr);
 
         }
     }
