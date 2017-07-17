@@ -4,11 +4,11 @@ This article is about installing and using JDash Asp.Net MVC libraries on your b
 
 If you would like to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
-## Step 1 : Add JDash.NetCore references 
+## Step 1 : Add JDash.NetFramework references 
 
 Use File | New Project | Asp.Net Web Application menu to create an empty project.
 
-Use NuGet Package Manager Console window to add JDash .NetCore library references to your project.  
+Use NuGet Package Manager Console window to add JDash .NetFramework library references to your project.  
 
 ```no-highlight
 Install-Package JDash.NetFramework.Api
@@ -48,11 +48,11 @@ using JDash.NetFramework.Models;
             // Ensure you have a valid database.
 
             //string msSqlConnStr = "Data Source=.;Initial Catalog=DemoJDash;Integrated Security=SSPI;";
-            //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
+            //return new JDash.NetFramework.Provider.MsSQL.JSQLProvider(msSqlConnStr);
 
             // if you are using MySql uncomment below lines.
             string mySqlConnStr = "Server=127.0.01;Database=jdash;Uid=root;Pwd=1;";
-            return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
+            return new JDash.NetFramework.Provider.MySQL.JMySQLProvider(mySqlConnStr);
 
         }
     }
