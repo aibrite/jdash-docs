@@ -256,7 +256,7 @@ Note that the ``createDashboardList()`` function is commented on Step 6. Uncomme
 
 ## Step 8: Run your application
 
-Now run your mvc application and enjoy JDash. 
+Now run your MVC application and enjoy JDash. 
 
 ### Step 10: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-netframework-tutorial).

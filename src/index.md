@@ -18,7 +18,7 @@ End-users can personalize your application better with JDash. Users can:
 * Builtin themes for Bootstrap & Material
 * Custom themes
 
-Please see [Client Developoment Section](./client/index.md) to get more information.
+Please see [Client Development Section](./client/index.md) to get more information.
 
 
 ### Server-Side Features
@@ -26,6 +26,6 @@ Please see [Client Developoment Section](./client/index.md) to get more informat
 * Support for NodeJs and .Net Core 
 * Support for MongoDB, MySQL and Microsoft SQL Server
 
-Please see [Backend Developoment Section](./backend/index.md) to get more information.
+Please see [Backend Development Section](./backend/index.md) to get more information.
 
 
