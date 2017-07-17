@@ -1,6 +1,6 @@
 # Asp.Net MVC Development
 
-This article is about installing and using JDash Asp.Net MVC libraries on your backend. 
+This article is about installing and using JDash Asp.Net MVC libraries on your backend. In this section, you can find how to implement .NetFramework 4.5.2 to your backend server.
 
 If you would like to use JDash Cloud to store and manage dashboard related data you can continue from [Getting Started](../client/getting-started.md) section.
 
