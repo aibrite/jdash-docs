@@ -304,5 +304,6 @@ Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:
 ### Step 10: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-netcore-tutorial).
 
+Also to find more detailed samples about client development see our sample application, you can download source code from our <a target="_blank" href="https://github.com/aibrite/jdash-demo">GitHub Repository</a>
 
 

@@ -260,3 +260,5 @@ Now run your MVC application and enjoy JDash.
 
 ### Step 10: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-netframework-tutorial).
+
+Also to find more detailed samples about client development see our sample application, you can download source code from our <a target="_blank" href="https://github.com/aibrite/jdash-demo">GitHub Repository</a>

@@ -114,6 +114,7 @@ Keep in mind that JDash Cloud User Panel also allows you to create a Test User T
 ### Step 4: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-nodejs-cloud-tutorial).
 
+Also to find more detailed samples about client development see our sample application, you can download source code from our <a target="_blank" href="https://github.com/aibrite/jdash-demo">GitHub Repository</a>
 
 ### .Net Core implementation
 
@@ -230,6 +231,7 @@ Note that jdash.ready is called once all the requirements of the JDash Service a
 3- You can use any other claims instead of ``Data`` property and its values.
 
 4- You can use any headers / any header values such as expiration time. 
+
 
 
 

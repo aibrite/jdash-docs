@@ -14,3 +14,6 @@ To get more information about using dashboards, see [Dashboards](./working-with-
 
 ## Dashlet Development
 To get more information about developing dashlets, see [Dashlet Development](./dashlet-development.md).
+
+## Sample Application
+To see our sample application you can download source code from our <a href="https://github.com/aibrite/jdash-demo"  target="_blank" >GitHub Repository</a>

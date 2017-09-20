@@ -298,4 +298,7 @@ Note that the ``createDashboardList()`` function is commented on Step 5. Uncomme
 ### Step 7: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-nodejs-tutorial).
 
+Also to find more detailed samples about client development see our sample application, you can download source code from our <a  target="_blank"  href="https://github.com/aibrite/jdash-demo">GitHub Repository</a>
+
 If you enjoy JDash you can continue from Basic Concepts.
+
