@@ -47,6 +47,12 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>http://doc.jdash.io/client/client-events/</loc>
+     <lastmod>2017-09-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
