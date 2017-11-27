@@ -98,6 +98,7 @@ Open ``Startup.cs`` and paste below namespaces first. This will add extension me
 ```csharp
 using JDash.NetCore.Api; 
 using JDash.NetCore.Models;
+using Microsoft.Extensions.Logging;
 ```
 
 Locate ``Configure`` method of your ``Startup`` class and replace it as below.
@@ -231,7 +232,7 @@ Inside `body` tag add following code.
 </body>
 ```
 
-Add a `script` element after `body` and paste below code.
+Add a `script` element just before the closing `body` and paste below code.
 
 ```html
 <script>
