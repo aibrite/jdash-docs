@@ -84,7 +84,7 @@ using Microsoft.AspNetCore.Http;
             //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
 
             // if you are using MySql uncomment below lines.
-            string mySqlConnStr = "Server=127.0.01;Database=jdash;Uid=root;Pwd=1;";
+            string mySqlConnStr = "Server=127.0.0.1;Database=jdash;Uid=root;Pwd=1;";
             return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
 
         }
