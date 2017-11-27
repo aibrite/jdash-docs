@@ -314,6 +314,7 @@ using Microsoft.AspNetCore.Http;
 <p>Open <code>Startup.cs</code> and paste below namespaces first. This will add extension methods.</p>
 <pre><code class="csharp">using JDash.NetCore.Api; 
 using JDash.NetCore.Models;
+using Microsoft.Extensions.Logging;
 </code></pre>
 
 <p>Locate <code>Configure</code> method of your <code>Startup</code> class and replace it as below.</p>
@@ -426,7 +427,7 @@ npm install jdash-ui --save
 &lt;/body&gt;
 </code></pre>
 
-<p>Add a <code>script</code> element after <code>body</code> and paste below code.</p>
+<p>Add a <code>script</code> element just before the closing <code>body</code> and paste below code.</p>
 <pre><code class="html">&lt;script&gt;
     jdash.ready(function () {
 
