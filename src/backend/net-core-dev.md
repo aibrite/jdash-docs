@@ -21,6 +21,10 @@ Use NuGet Package Manager Console window to add JDash .NetCore library reference
 Install-Package JDash.NetCore.Api
 Install-Package JDash.NetCore.Provider.MsSQL
 Install-Package JDash.NetCore.Provider.MySQL
+```
+For demonstration purposes, we also need to add the following package. Note that this package is not a dependency of JDash.
+
+```no-highlight
 Install-Package Microsoft.AspNetCore.StaticFiles
 ```
 
@@ -97,30 +101,30 @@ Open ``Startup.cs`` and paste below namespaces first. This will add extension me
 
 ```csharp
 using JDash.NetCore.Api; 
-using JDash.NetCore.Models;
-using Microsoft.Extensions.Logging;
 ```
 
 Locate ``Configure`` method of your ``Startup`` class and replace it as below.
 
 ```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    loggerFactory.AddConsole();
-
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
     }
+    else
+    {
+        app.UseExceptionHandler("/Home/Error");
+    }
 
     // use index.html as default.
-    app.UseDefaultFiles(); 
+    app.UseDefaultFiles();
 
     // serve static content.
-    app.UseStaticFiles(); 
+    app.UseStaticFiles();
 
-    // register JDash routes.
     app.UseJDash<JDashConfig>(); 
+
 }
 
 ```
@@ -300,7 +304,7 @@ Note that the ``createDashboardList()`` function is commented on Step 7. Uncomme
 
 ## Step 9: Run your application
 
-Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> and enjoy JDash. 
+Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> or a port you have previously configured and enjoy JDash. 
 
 ### Step 10: Download source code
 Source code of this guide can be found at this [GitHub Repo](https://github.com/aibrite/jdash-netcore-tutorial).
