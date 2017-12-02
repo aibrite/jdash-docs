@@ -247,7 +247,10 @@
 <pre><code class="no-highlight">Install-Package JDash.NetCore.Api
 Install-Package JDash.NetCore.Provider.MsSQL
 Install-Package JDash.NetCore.Provider.MySQL
-Install-Package Microsoft.AspNetCore.StaticFiles
+</code></pre>
+
+<p>For demonstration purposes, we also need to add the following package. Note that this package is not a dependency of JDash.</p>
+<pre><code class="no-highlight">Install-Package Microsoft.AspNetCore.StaticFiles
 </code></pre>
 
 <h3 id="if-you-are-using-code-editors">If you are using code editors</h3>
@@ -313,28 +316,28 @@ using Microsoft.AspNetCore.Http;
 <h2 id="step-3-registering-jdash-api-endpoints">Step 3: Registering JDash Api endpoints</h2>
 <p>Open <code>Startup.cs</code> and paste below namespaces first. This will add extension methods.</p>
 <pre><code class="csharp">using JDash.NetCore.Api; 
-using JDash.NetCore.Models;
-using Microsoft.Extensions.Logging;
 </code></pre>
 
 <p>Locate <code>Configure</code> method of your <code>Startup</code> class and replace it as below.</p>
-<pre><code class="csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+<pre><code class="csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    loggerFactory.AddConsole();
-
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
     }
+    else
+    {
+        app.UseExceptionHandler(&quot;/Home/Error&quot;);
+    }
 
     // use index.html as default.
-    app.UseDefaultFiles(); 
+    app.UseDefaultFiles();
 
     // serve static content.
-    app.UseStaticFiles(); 
+    app.UseStaticFiles();
 
-    // register JDash routes.
     app.UseJDash&lt;JDashConfig&gt;(); 
+
 }
 
 </code></pre>
@@ -487,7 +490,7 @@ npm install jdash-ui --save
 
 <p>Note that the <code>createDashboardList()</code> function is commented on Step 7. Uncomment this function after Step 8, so that the when page loads / user creates a new dashboard, dashboard list is updated.</p>
 <h2 id="step-9-run-your-application">Step 9: Run your application</h2>
-<p>Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> and enjoy JDash. </p>
+<p>Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> or a port you have previously configured and enjoy JDash. </p>
 <h3 id="step-10-download-source-code">Step 10: Download source code</h3>
 <p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-netcore-tutorial">GitHub Repo</a>.</p>
 <p>Also to find more detailed samples about client development see our sample application, you can download source code from our <a target="_blank" href="https://github.com/aibrite/jdash-demo">GitHub Repository</a></p></div>
