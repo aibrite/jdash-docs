@@ -8,7 +8,7 @@
     <link rel="canonical" href="http://doc.jdash.io/backend/net-core-dev/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>.Net Core Development - JDash</title>
+    <title>Asp.Net Core Development - JDash</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -135,8 +135,8 @@
 
                         
                             
-<li >
-    <a href="../nodejs-dev/">NodeJS Development</a>
+<li class="active">
+    <a href="./">Asp.Net Core Development</a>
 </li>
 
                         
@@ -147,8 +147,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">.Net Core Development</a>
+<li >
+    <a href="../nodejs-dev/">NodeJS Development</a>
 </li>
 
                         
@@ -173,12 +173,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../aspnet-mvc-dev/">
+                        <a rel="next" href="../">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../jdash-cloud/">
+                        <a rel="prev" href="../aspnet-mvc-dev/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -199,7 +199,7 @@
             <li class="second-level"><a href="#prerequisites">Prerequisites</a></li>
             
         
-            <li class="second-level"><a href="#step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</a></li>
+            <li class="second-level"><a href="#step-1-add-jdash-netcore-package">Step 1 : Add JDash .NetCore package</a></li>
             
                 <li class="third-level"><a href="#if-you-are-using-visual-studio">If you are using Visual Studio</a></li>
             
@@ -226,7 +226,8 @@
         
             <li class="second-level"><a href="#step-9-run-your-application">Step 9: Run your application</a></li>
             
-                <li class="third-level"><a href="#step-10-download-source-code">Step 10: Download source code</a></li>
+        
+            <li class="second-level"><a href="#sample-application">Sample application</a></li>
             
         
     
@@ -236,45 +237,52 @@
 
 <h1 id="net-core-development">.Net Core Development</h1>
 <p>This article is about installing and using JDash .NetCore libraries on your backend. </p>
-<p>If you would like to use JDash Cloud to store and manage dashboard related data you can continue from <a href="../../client/getting-started/">Getting Started</a> section.</p>
 <h2 id="prerequisites">Prerequisites</h2>
+<p>Jdash supports both Asp.Net Core 1.x and 2.x.</p>
 <p>Before proceeding with this tutorial ensure you have installed .Net Core SDK on your development machine. For more information see
 <a target="_blank" href="https://www.microsoft.com/net/core">Microsoft's .NET Core Installation Page.</a></p>
-<h2 id="step-1-add-jdashnetcore-references">Step 1 : Add JDash.NetCore references</h2>
+<blockquote>
+<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash-netcore-tutorial">GitHub Repo</a>.</p>
+</blockquote>
+<h2 id="step-1-add-jdash-netcore-package">Step 1 : Add JDash .NetCore package</h2>
 <h3 id="if-you-are-using-visual-studio">If you are using Visual Studio</h3>
 <p>Use File | New Project | Asp.Net Core Web Application menu to create an empty project.</p>
-<p>Use NuGet Package Manager Console window to add JDash .NetCore library references to your project.  </p>
-<pre><code class="no-highlight">Install-Package JDash.NetCore.Api
-Install-Package JDash.NetCore.Provider.MsSQL
-Install-Package JDash.NetCore.Provider.MySQL
+<p>Use <code>Add Packages</code> menu item to add following Jdash packages to your project.</p>
+<pre><code class="no-highlight">JDash.NetCore.Api
+JDash.NetCore.Models
+JDash.NetCore.Provider.MsSQL
+JDash.NetCore.Provider.MySQL
 </code></pre>
 
 <p>For demonstration purposes, we also need to add the following package. Note that this package is not a dependency of JDash.</p>
-<pre><code class="no-highlight">Install-Package Microsoft.AspNetCore.StaticFiles
+<pre><code class="no-highlight">Microsoft.AspNetCore.StaticFiles
 </code></pre>
 
 <h3 id="if-you-are-using-code-editors">If you are using code editors</h3>
-<p>If you are using Vs Code or similar code editors, you can use <code>dotnet</code> command to create a basic web application structure.</p>
+<p>Use <code>dotnet</code> command to create an empty web application.</p>
 <pre><code class="no-highlight">dotnet new web
 </code></pre>
 
-<p>This will create an application with the default configuration.</p>
-<p>Open <code>.csproj</code> file (dotnettest.csproj - in case dotnet new web has been used) and add JDash references, just after <code>&lt;PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" /&gt;</code>.</p>
-<pre><code class="xml">    &lt;PackageReference Include=&quot;Microsoft.AspNetCore&quot; Version=&quot;1.1.2&quot; /&gt;
+<p>Execute following commands to add Jdash package references.</p>
+<pre><code class="no-highlight">dotnet add package JDash.NetCore.Api 
+dotnet add package JDash.NetCore.Models 
+dotnet add package JDash.NetCore.Provider.MsSQL 
+dotnet add package JDash.NetCore.Provider.MySQL 
+</code></pre>
 
-    &lt;!-- Add below references --&gt;
-    &lt;PackageReference Include=&quot;JDash.NetCore.Api&quot; Version=&quot;*&quot; /&gt;
-    &lt;PackageReference Include=&quot;JDash.NetCore.Provider.MsSQL&quot; Version=&quot;*&quot; /&gt;
-    &lt;PackageReference Include=&quot;JDash.NetCore.Provider.MySQL&quot; Version=&quot;*&quot; /&gt;
+<p>Note: This will install .Net Core 2.x libraries. To use .Net Core 1.x Jdash packages use:</p>
+<pre><code class="no-highlight">dotnet add package JDash.NetCore.Api --version 1.*
+dotnet add package JDash.NetCore.Models --version 1.*
+dotnet add package JDash.NetCore.Provider.MsSQL --version 1.*
+dotnet add package JDash.NetCore.Provider.MySQL --version 1.*
+</code></pre>
 
-    &lt;!-- We also need this assembly to serve static files for this tutorial --&gt;    
-    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.StaticFiles&quot; Version=&quot;1.1.2&quot; /&gt;
-
-&lt;/ItemGroup&gt;
+<p>For demonstration purposes, we also need to add the following package. Note that this package is not a dependency of JDash.</p>
+<pre><code class="no-highlight">dotnet add package Microsoft.AspNetCore.StaticFiles
 </code></pre>
 
 <h2 id="step-2-implement-configuration-class">Step 2: Implement configuration class</h2>
-<p>JDash .NetCore uses a configuration class, in order to configure authentication and provider settings. </p>
+<p>JDash .NetCore uses a configuration class in order to configure authentication and provider settings. </p>
 <p>Below is a sample configuration class.</p>
 <p>Create a new file called <code>JDashConfig.cs</code> and paste the below content inside.</p>
 <pre><code class="csharp">
@@ -282,17 +290,16 @@ using JDash.NetCore.Api;
 using JDash.NetCore.Models;
 using Microsoft.AspNetCore.Http;
 
-    public class JDashConfig : BaseJDashConfigurator
-    {
+public class JDashConfig : BaseJDashConfigurator {
 
         public JDashConfig(HttpContext context) : base(context)
         {
         }
 
         // Use this method to get current user for current request.
-        public override JDashPrincipal GetPrincipal()
+        public override JDashPrincipal GetPrincipal(string authorizationHeader)
         {
-            return new JDashPrincipal(&quot;user name&quot;);
+            return new JDashPrincipal(&quot;tutorial-user&quot;);
         }
 
         // Jdash NetCore library calls this method 
@@ -301,24 +308,24 @@ using Microsoft.AspNetCore.Http;
         {
             // Ensure you have a valid database.
 
-            //string msSqlConnStr = &quot;Data Source=.;Initial Catalog=DemoJDash;Integrated Security=SSPI;&quot;;
+            // *** TO USE MSSQL ** //
+            //string msSqlConnStr = &quot;Server=10.0.2.15;Database=JDashTutorial;User Id=sa;Password=1.&quot;;
             //return new JDash.NetCore.Provider.MsSQL.JSQLProvider(msSqlConnStr);
 
-            // if you are using MySql uncomment below lines.
-            string mySqlConnStr = &quot;Server=127.0.0.1;Database=jdash;Uid=root;Pwd=1;&quot;;
+            // *** TO USE MYSQL ** //
+            string mySqlConnStr = &quot;Server=127.0.0.1;SslMode=none;Database=jdash;Uid=root;Pwd=1;&quot;;
             return new JDash.NetCore.Provider.MySQL.JMySQLProvider(mySqlConnStr);
-
         }
-    }
+}
 
 </code></pre>
 
 <h2 id="step-3-registering-jdash-api-endpoints">Step 3: Registering JDash Api endpoints</h2>
-<p>Open <code>Startup.cs</code> and paste below namespaces first. This will add extension methods.</p>
+<p>Open <code>Startup.cs</code> and add Jdash namespace.</p>
 <pre><code class="csharp">using JDash.NetCore.Api; 
 </code></pre>
 
-<p>Locate <code>Configure</code> method of your <code>Startup</code> class and replace it as below.</p>
+<p>Locate <code>Configure</code> method of your <code>Startup</code> class and add <code>UseJDash</code> and <code>UseStaticFiles()</code> methods. </p>
 <pre><code class="csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
     if (env.IsDevelopment())
@@ -336,8 +343,8 @@ using Microsoft.AspNetCore.Http;
     // serve static content.
     app.UseStaticFiles();
 
+    // add Jdash end points
     app.UseJDash&lt;JDashConfig&gt;(); 
-
 }
 
 </code></pre>
@@ -353,13 +360,6 @@ using Microsoft.AspNetCore.Http;
 <p>Use <code>dotnet restore</code> command to restore project references. After succesfully restoring references, use <code>dotnet run</code> to run your project. </p>
 <pre><code class="no-highlight">dotnet restore
 dotnet run
-</code></pre>
-
-<p>Now you should see an output as below.</p>
-<pre><code class="no-highlight">Hosting environment: Production
-Content root path: /Users/aibrite/project/jdash/jdash.netcore.tutorial
-Now listening on: http://localhost:5000
-Application started. Press Ctrl+C to shut down.
 </code></pre>
 
 <h2 id="step-5-client-side-development">Step 5: Client side development</h2>
@@ -411,7 +411,6 @@ npm install jdash-ui --save
                 var h1 = this.querySelector('h1')
                 h1.textContent = 'Hello World!';
             }
-
         })
     &lt;/script&gt;
 &lt;/j-dashlet&gt;
@@ -491,9 +490,9 @@ npm install jdash-ui --save
 <p>Note that the <code>createDashboardList()</code> function is commented on Step 7. Uncomment this function after Step 8, so that the when page loads / user creates a new dashboard, dashboard list is updated.</p>
 <h2 id="step-9-run-your-application">Step 9: Run your application</h2>
 <p>Now go to your <a target="_blank" href="http://localhost:5000">http://localhost:5000</a> or a port you have previously configured and enjoy JDash. </p>
-<h3 id="step-10-download-source-code">Step 10: Download source code</h3>
-<p>Source code of this guide can be found at this <a href="https://github.com/aibrite/jdash.netcore.tutorial">GitHub Repo</a>.</p>
-<p>Also to find more detailed samples about client development see our sample application, you can download source code from our <a target="_blank" href="https://github.com/aibrite/jdash-demo">GitHub Repository</a></p></div>
+<h2 id="sample-application">Sample application</h2>
+<p>Jdash also provies a full featured open source sample application using .Net Core. </p>
+<p>Use <a target="_blank" href="https://github.com/aibrite/jdash-netcore-demoapp">GitHub Repository</a> to download source code of sample application.</p></div>
         
     </div>
 
