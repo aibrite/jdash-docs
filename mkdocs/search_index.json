@@ -282,7 +282,7 @@
         }, 
         {
             "location": "/backend/", 
-            "text": "Backend Development\n\n\nNodeJS\n\n\nTo use JDash on your own servers with your NodeJs application, see \nNodeJs Development\n.\n\n\n.Net Core\n\n\nTo use JDash on your own servers with your .Net Core application, see \n.Net Core Development\n.\n\n\nIntegrating JDash Cloud\n\n\nTo get more information about JDash Cloud and authentication, see \nJDash Cloud\n.\n\n\nSample Application\n\n\nTo see our sample application you can download source code from our \nGitHub Repository", 
+            "text": "Backend Development\n\n\nAsp.Net Core\n\n\nTo use JDash on your own servers with your .Net Core application, see \nAsp.Net Core Development\n.\n\n\nAsp.Net MVC\n\n\nTo use JDash on your own servers with your .Net Mvc application, see \nAsp.Net MVC Development\n.\n\n\nNodeJS\n\n\nTo use JDash on your own servers with your NodeJs application, see \nNodeJs Development\n.\n\n\nJDash Cloud\n\n\nTo get more information about JDash Cloud and authentication, see \nJDash Cloud\n.", 
             "title": "Backend Home"
         }, 
         {
@@ -291,24 +291,24 @@
             "title": "Backend Development"
         }, 
         {
+            "location": "/backend/#aspnet-core", 
+            "text": "To use JDash on your own servers with your .Net Core application, see  Asp.Net Core Development .", 
+            "title": "Asp.Net Core"
+        }, 
+        {
+            "location": "/backend/#aspnet-mvc", 
+            "text": "To use JDash on your own servers with your .Net Mvc application, see  Asp.Net MVC Development .", 
+            "title": "Asp.Net MVC"
+        }, 
+        {
             "location": "/backend/#nodejs", 
             "text": "To use JDash on your own servers with your NodeJs application, see  NodeJs Development .", 
             "title": "NodeJS"
         }, 
         {
-            "location": "/backend/#net-core", 
-            "text": "To use JDash on your own servers with your .Net Core application, see  .Net Core Development .", 
-            "title": ".Net Core"
-        }, 
-        {
-            "location": "/backend/#integrating-jdash-cloud", 
+            "location": "/backend/#jdash-cloud", 
             "text": "To get more information about JDash Cloud and authentication, see  JDash Cloud .", 
-            "title": "Integrating JDash Cloud"
-        }, 
-        {
-            "location": "/backend/#sample-application", 
-            "text": "To see our sample application you can download source code from our  GitHub Repository", 
-            "title": "Sample Application"
+            "title": "JDash Cloud"
         }, 
         {
             "location": "/backend/net-core-dev/", 
